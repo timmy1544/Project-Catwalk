@@ -70,7 +70,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************************/
 /***/ ((module) => {
 
-eval("// Put your API key goes here!\nvar API_KEY = 'change';\nvar ALTELIER_API = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';\nmodule.exports = {\n  API_KEY: API_KEY,\n  ALTELIER_API: ALTELIER_API\n};\n\n//# sourceURL=webpack://Project-Catwalk/./client/src/config/config.js?");
+eval("// Put your API key goes here!\nvar API_KEY = 'lasttime';\nvar ALTELIER_API = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';\nmodule.exports = {\n  API_KEY: API_KEY,\n  ALTELIER_API: ALTELIER_API\n};\n\n//# sourceURL=webpack://Project-Catwalk/./client/src/config/config.js?");
 
 /***/ }),
 

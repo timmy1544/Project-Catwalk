@@ -3,4 +3,4 @@ node_modules
 
 
 ## API keys ##
-src/config/config.js
+client/src/config/config.js
