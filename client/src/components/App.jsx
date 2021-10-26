@@ -1,4 +1,8 @@
 import React from 'react';
+import ProductDetails from './ProductDetails/ProductDetails.jsx';
+import QandA from './QandA/QandA.jsx';
+import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,7 +11,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Hello Cat Trap</div>
+      <div>
+        <p>Hello Cat Trap</p>
+        <ProductDetails />
+        <RelatedProducts />
+        <QandA />
+        <Reviews />
+      </div>
     )
   }
 }
