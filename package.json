@@ -1,0 +1,37 @@
+{
+  "name": "Project-Catwalk",
+  "version": "1.0.0",
+  "description": "Capstone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cat-trap-wtnt/Project-Catwalk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cat-trap-wtnt/Project-Catwalk/issues"
+  },
+  "homepage": "https://github.com/cat-trap-wtnt/Project-Catwalk#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.24.0",
+    "babel-loader": "^8.2.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.14",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
