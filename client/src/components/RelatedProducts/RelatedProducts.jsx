@@ -8,6 +8,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>
+        <h1>THIS IS THE CHANGE :3</h1>
         <select>
           <option>OH WOW SOOOO COOOL</option>
           <option>OH WOW SOOOO COOOL</option>
