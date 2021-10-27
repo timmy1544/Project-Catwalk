@@ -10,7 +10,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      productsData: []
+    }
 
     this.getProducts = this.getProducts.bind(this);
   }
@@ -28,10 +30,12 @@ class App extends React.Component {
         'Authorization': `${config.API_KEY}`
       }
     })
-    .then((res) => {
-      console.log('data', res.data);
-    })
-    .catch(err => console.log('error', err));
+      .then((res) => {
+        this.setState({
+          productsData: res.data
+        })
+      })
+      .catch(err => console.log('error', err));
   }
 
   render() {
