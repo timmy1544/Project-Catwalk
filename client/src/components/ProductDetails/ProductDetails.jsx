@@ -36,7 +36,7 @@ class ProductDetails extends React.Component{
     return (
       <div>Product Detail</div>
       <div>
-        Product Details
+        Product Details with more details
         <ul>
       {this.state.productsData.map((item, index) => {
         return <Product item={item} key={index}/>;
@@ -56,4 +56,4 @@ const Product = (props) => {
   )
 }
 
-export default ProductDetails; 
+export default ProductDetails;
