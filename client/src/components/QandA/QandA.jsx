@@ -7,9 +7,11 @@ class QandA extends React.Component {
 
   render() {
     return (
-      <div>Questions and Answers</div>
-      <div>SO MANY QUESTIONS...</div>
-      <div>Second Time</div>
+      <div>
+        <div>Questions and Answers</div>
+        <div>SO MANY QUESTIONS...</div>
+        <div>Second Time</div>
+      </div>
     )
   }
 }
