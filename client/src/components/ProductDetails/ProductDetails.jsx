@@ -34,7 +34,8 @@ class ProductDetails extends React.Component{
   render() {
     if(!this.state.productsData) {return null;}
     return (
-      <div>Product Detail</div>
+      <div>
+        <div>Product Detail</div>
       <div>
         Product Details with more details
         <ul>
@@ -42,6 +43,7 @@ class ProductDetails extends React.Component{
         return <Product item={item} key={index}/>;
       })}
       </ul>
+      </div>
       </div>
     );
   }

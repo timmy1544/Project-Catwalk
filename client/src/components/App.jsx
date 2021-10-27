@@ -3,7 +3,7 @@ import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import QandA from './QandA/QandA.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Reviews from './Reviews/Reviews.jsx';
-import config from '../config/config.js';
+import config from '../../../config.js';
 import axios from 'axios';
 
 class App extends React.Component {
