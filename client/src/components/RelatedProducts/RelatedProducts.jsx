@@ -8,8 +8,6 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>Related Products here :D</div>
-
-      <div> conflict test, don't appove this </div>
     )
   }
 }
