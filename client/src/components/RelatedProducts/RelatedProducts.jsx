@@ -1,8 +1,10 @@
+/* eslint-disable eol-last */
 import React from 'react';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {};
   }
 
   render() {
@@ -27,7 +29,7 @@ class RelatedProducts extends React.Component {
         <div>Would you like dis related E</div>
         <div>Would you like dis related F</div>
       </div>
-    )
+    );
   }
 }
 
