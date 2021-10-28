@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable no-console */
 /* eslint-disable eol-last */
 /* eslint-disable react/destructuring-assignment */
@@ -14,7 +16,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      productsData: [],
+      productsData: null,
     };
 
     this.getProducts = this.getProducts.bind(this);
@@ -39,7 +41,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(config);
+    if (!this.state.productsData) { return null; }
     return (
       <div>
         <p>Hello Cat Trap</p>
