@@ -12,7 +12,7 @@ class Reviews extends React.Component {
     return (
       <div>
         <div>Review Section</div>
-        <div>merging test 10/27 - final test!! Let's go! </div>
+        <div>merging test 10/27 - final test!! Lets go! </div>
       </div>
     );
   }

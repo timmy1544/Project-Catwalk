@@ -1,8 +1,10 @@
+/* eslint-disable eol-last */
 import React from 'react';
 
 class QandA extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {};
   }
 
   render() {
@@ -12,7 +14,7 @@ class QandA extends React.Component {
         <div>SO MANY QUESTIONS...</div>
         <div>Second Time</div>
       </div>
-    )
+    );
   }
 }
 
