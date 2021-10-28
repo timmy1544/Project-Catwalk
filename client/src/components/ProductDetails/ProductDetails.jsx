@@ -40,7 +40,7 @@ class ProductDetails extends React.Component {
       <div>
         <div>Product Detail</div>
         <div>
-          Product Details with more details
+          Product Details with more details, im adding it now!
           <ul>
             {/* {this.state.productsData.map((item, index) =>
               <Product item={item} key={index} />)} */}
