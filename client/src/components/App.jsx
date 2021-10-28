@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable eol-last */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
