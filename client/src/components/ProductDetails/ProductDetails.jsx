@@ -1,12 +1,12 @@
 import React from 'react';
-
-class ProductDetails extends React.Component{
+import axios from 'axios';
+import config from '../../../config.js';
+class ProductDetails extends React.Component {
   constructor(props) {
-    super(props)
     super(props);
     this.state = {
-      productsData: null
-    }
+      productsData: null,
+    };
     this.getProducts = this.getProducts.bind(this);
   }
 
@@ -17,10 +17,10 @@ class ProductDetails extends React.Component{
   getProducts() {
     axios.get(`${config.ALTELIER_API}/products`, {
       headers: {
-        'Authorization': `${config.API_KEY}`
+        'authorization': `${config.API_KEY}`
       }
     })
-    .then((res) => {
+          .then((res) => {
       //console.log('data', res.data);
       this.setState({
         productsData: res.data

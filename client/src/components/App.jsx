@@ -1,26 +1,25 @@
 import React from 'react';
+import axios from 'axios';
 import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import QandA from './QandA/QandA.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Reviews from './Reviews/Reviews.jsx';
-import config from '../../../config.js';
-import axios from 'axios';
+import config from './../../../config.js';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       productsData: []
-    }
+    };
 
     this.getProducts = this.getProducts.bind(this);
   }
 
-
   componentDidMount() {
-    this.getProducts()
 
+    this.getProducts();
 
   }
 
