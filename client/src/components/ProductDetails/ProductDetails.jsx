@@ -24,7 +24,7 @@ class ProductDetails extends React.Component {
       },
     }
       .then((res) => {
-      // console.log('data', res.data);
+        // console.log('data', res.data);
         this.setState({
           productsData: res.data,
         });
