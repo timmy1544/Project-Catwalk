@@ -38,6 +38,7 @@ class ProductDetails extends React.Component {
 
   render() {
   // if (!this.state.productsData) { return null; }
+    console.log('this.state', this.state);
     return (
       <div>
         <div>Product Detail</div>
@@ -54,7 +55,7 @@ class ProductDetails extends React.Component {
 
 const Product = (props) => (
   <li>
-    <span id="Product">{props.item.name}</span>
+    <span data-testid="Product" id="Product">{props.item.name}</span>
     <span>{props.item.id}</span>
   </li>
 );
