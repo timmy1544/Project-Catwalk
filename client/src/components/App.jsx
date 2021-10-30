@@ -9,7 +9,6 @@ import ProductDetails from './ProductDetails/ProductDetails';
 import QandA from './QandA/QandA';
 import RelatedProducts from './RelatedProducts/RelatedProducts';
 import Reviews from './Reviews/Reviews';
-import config from '../../../config';
 
 class App extends React.Component {
   constructor(props) {
