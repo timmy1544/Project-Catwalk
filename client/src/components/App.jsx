@@ -27,11 +27,7 @@ class App extends React.Component {
   }
 
   getProducts() {
-    axios.get(`${config.ALTELIER_API}/products`, {
-      headers: {
-        Authorization: `${config.API_KEY}`,
-      },
-    })
+    axios.get('/products')
       .then((res) => {
         this.setState({
           productsData: res.data,
