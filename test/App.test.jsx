@@ -18,7 +18,7 @@ import App from '../client/src/components/App.jsx'
 import config from '../config';
 
 //----------------------set up fake server that only respond with certain data
-const route = `localhost:3005/test/products`; //research more on setup fake server
+const route = `/products`; //research more on setup fake server
 
 const server = setupServer(
   rest.get(route, (req, res, ctx) => {//'ctx===context'
@@ -38,29 +38,11 @@ const server = setupServer(
 
 
 
-
-
 //------------------------------
 //Need to mock out route
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
-
-// test('test product details component', async () => {
-//   var data = [{//data from api database
-//     "id": 42366,
-//     "campus": "hr-lax",
-//     "name": "Camo Onesie",
-//     "slogan": "Blend in to your crowd",
-//     "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-//     "category": "Jackets",
-//     "default_price": "140.00",
-//     "created_at": "2021-08-13T14:39:39.968Z",
-//     "updated_at": "2021-08-13T14:39:39.968Z"
-//   }]
-//   render(<ProductDetails productsData={data}/>)
-//   expect(screen.getByTestId('Product')).toHaveTextContent('Camo Onesie');
-// })
 
 
 test('testing fake server', async () => {
@@ -83,6 +65,16 @@ test('testing fake server', async () => {
       expect(results).toEqual(data);
     }
   })
+})
 
 
+test('testing live server request', async () => {
+  rest.get(route, (err, results) => {
+    if (err) {
+      throw Error(err)
+    } else {
+      render(<App />)
+      expect(screen.getByTestId('Product')).toHaveTextContent('starwars land');
+    }
+  })
 })
