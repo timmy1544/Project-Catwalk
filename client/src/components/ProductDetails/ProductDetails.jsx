@@ -37,12 +37,9 @@ class ProductDetails extends React.Component {
   // }
 
   render() {
-<<<<<<< HEAD
     // if (!this.state.productsData) { return null; }
-=======
-  // if (!this.state.productsData) { return null; }
+    // if (!this.state.productsData) { return null; }
     console.log('this.state', this.state);
->>>>>>> 48d2a13f0c0cacb624ae9a0946db3d4be1d9c029
     return (
       <div>
         <div>Product Detail</div>
