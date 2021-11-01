@@ -16,7 +16,20 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    getProductById: () => {},
+    getProductById: (req, res) => {
+      axios.get(`${config.ALTELIER_API}/products/${req.params.product_id}`, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then((response) => {
+          console.log('req', req);
+          res.status(200).send(response.data);
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
     getStyles: () => {},
     getRelated: () => {},
   },
