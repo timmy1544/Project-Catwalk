@@ -3,28 +3,51 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import Album from './album';
+import axios from 'axios';
 import ProductStyle from './productStyle';
 import ProductSlogan from './productSlogan';
-// import axios from 'axios';
 // import config from '../../../../config';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productsData: this.props.productsData,
-      currentProduct: this.props.productsData[0].id,
+      product: null,
+      currentID: this.props.productsData[0].id,
+      style: null,
     };
   }
 
+  componentDidMount() {
+    this.getProductInfo();
+  }
+
+  getProductInfo() {
+    axios.get(`/products/${this.state.currentID}`)
+      .then((response) => {
+        console.log('product info', this.state.currentID, response.data);
+        this.setState({
+          product: response.data,
+        });
+      })
+      .then(axios.get(`/products/${this.state.currentID}/styles`)
+        .then((response) => {
+          console.log('product style', response.data);
+          this.setState({
+            style: response.data,
+          });
+        }))
+      .catch((err) => {
+        throw err;
+      });
+  }
+
   render() {
-    console.log('this.state', this.state);
+    if (!this.state.product) { return null; }
     return (
       <div className="productDetails">
-        <Album />
-        <ProductStyle />
-        <ProductSlogan />
+        <ProductStyle style={this.state.style} product={this.state.product} />
+        <ProductSlogan product={this.state.product} />
       </div>
     );
   }
