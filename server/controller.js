@@ -21,8 +21,32 @@ module.exports = {
     getRelated: () => {},
   },
   reviews: {
-    getReviews: () => {},
-    getMetadata: () => {},
+    getReviews: (req, res) => {
+      axios.get(`${config.ALTELIER_API}/reviews?product_id=42366`, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then((response) => {
+          res.status(200).send(response.data);
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
+    getMetadata: (req, res) => {
+      axios.get(`${config.ALTELIER_API}/reviews/meta`, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then((response) => {
+          res.status(200).send(response.data);
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
     postReviews: () => {},
     putReviewHelpful: () => {},
     putReviewReport: () => {},

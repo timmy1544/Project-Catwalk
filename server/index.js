@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/products', routerProducts);
 app.use('/reviews', routerReviews);
-app.use('/qanda', routerQandA);
+app.use('/qa', routerQandA);
 
 app.set('port', 3000);
 
