@@ -42,7 +42,19 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    getRelated: () => {},
+    getRelated: (req, res) => {
+      axios.get(`${config.ALTELIER_API}/products/${req.params.product_id}/related`, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then((response) => {
+          res.status(200).send(response.data);
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
   },
   reviews: {
     getReviews: () => {},
