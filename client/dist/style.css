@@ -1,25 +1,8 @@
-/* .Reviews {
-  display: grid;
-  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-  grid-template-rows: [first] 100px [line2] 200px [line3] auto [end];
-  grid-template-areas:
-  ". info . . ."
-  ". star reviewstext . ."
-  ". . . helpful .";
+#app {
+  width: 80%;
+  margin: auto;
+  text-align: center;
 }
-
-#ReviewStars {
-  grid-area: star;
+.productDetails {
+  display: flex;
 }
-
-#ReviewName {
-  grid-area: info;
-}
-
-#ReviewBody {
-  grid-area: reviewstext;
-}
-
-#ReviewHelpfulness {
-  grid-area: helpful;
-} */
