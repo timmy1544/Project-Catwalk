@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductSlogan = () => (
-  <div>
+  <div className="slogan">
     this is slogan section
   </div>
 );
