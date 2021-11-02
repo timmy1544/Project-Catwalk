@@ -17,6 +17,7 @@ class App extends React.Component {
 
     this.state = {
       productsData: null,
+      currentID: '',
     };
 
     this.getProducts = this.getProducts.bind(this);
@@ -31,20 +32,28 @@ class App extends React.Component {
       .then((res) => {
         this.setState({
           productsData: res.data,
+          currentID: res.data[0].id,
         });
       })
       .catch((err) => console.log('error', err));
   }
 
+  IDchanger(targetID) {
+    this.setState({
+      currentID: targetID,
+    });
+  }
+
   render() {
     if (!this.state.productsData) { return null; }
+    console.log('currentID', this.state.currentID);
     return (
       <div>
         <p>Hello Cat Trap</p>
-        <ProductDetails productsData={this.state.productsData} />
-        <RelatedProducts />
+        <ProductDetails productId={this.state.currentID} />
+        <RelatedProducts productId={this.state.currentID} IDchanger={this.IDchanger} />
         <QandA />
-        <Reviews productId={this.state.productsData.id} />
+        <Reviews productId={this.state.currentID} />
       </div>
     );
   }
