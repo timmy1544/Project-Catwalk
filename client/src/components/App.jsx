@@ -44,7 +44,7 @@ class App extends React.Component {
         <ProductDetails productsData={this.state.productsData} />
         <RelatedProducts />
         <QandA />
-        <Reviews />
+        <Reviews productId={this.state.productsData.id} />
       </div>
     );
   }
