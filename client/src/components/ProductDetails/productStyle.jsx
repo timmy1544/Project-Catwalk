@@ -11,17 +11,30 @@ class ProductStyle extends React.Component {
       product: this.props.product,
       styles: this.props.style.results,
       currentStyle: this.props.style.results[0],
+      selectSize:'Select Size',
+      selectQuantity:'QTY'
     };
 
 
     this.selectStyle=this.selectStyle.bind(this);
+    this.handleChange=this.handleChange.bind(this);
   }
 
   selectStyle(info) {
     //console.log(info);
     this.setState({
-      currentStyle:info
-    })
+      currentStyle:info,
+      selectSize:'Select Size',
+      selectQuantity:'QTY'
+    });
+
+  }
+
+  handleChange(e) {
+    console.log(e.target.className);
+    this.setState({
+      [e.target.className]:e.target.value
+    });
   }
 
   render() {
@@ -42,7 +55,7 @@ class ProductStyle extends React.Component {
           <Img src={result.photos[0].thumbnail_url} key={index} onClick={this.selectStyle} info={result}/>
         ))}
       </div>
-      <SelectSize currentStyle={this.state.currentStyle}/>
+      <SelectSize currentStyle={this.state.currentStyle} onChange={this.handleChange} state={this.state}/>
       <button className="cartButton">Add to Cart</button>
       <button className="star">&#9734;</button>
     </div>
@@ -70,14 +83,14 @@ console.log('currentSize', currentSize);
   return (
     <div className="selectSizeDiv">
       <div>
-        <select className="selectSize">
+        <select className="selectSize" onChange={props.onChange} value={props.state.selectSize}>
           <option>Select Size</option>
           {Object.values(currentSize).map((item,index)=>{
             return <option value={item.size} key={index}>{item.size}</option>
           })}
         </select>
       </div>
-    <SelectQuantity currentSize={currentSize}/>
+    <SelectQuantity currentSize={currentSize} onChange={props.onChange} state={props.state}/>
     </div>
   );
 }
@@ -86,8 +99,8 @@ const SelectQuantity = (props) => {
   var currentSize = props.currentSize;
   return (
     <div>
-    <select className="SelectQuantity">
-      <option >QTY</option>
+    <select className="selectQuantity" onChange={props.onChange} value={props.state.selectQuantity}>
+      <option>QTY</option>
       {Object.values(currentSize).map((item,index)=>{
         return <option value={item.quantity} key={index}>{item.quantity}</option>
       })}
