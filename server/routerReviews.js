@@ -3,11 +3,11 @@ const { reviews } = require('./controller');
 
 const routerReviews = express.Router();
 
-routerReviews.route('/')
+routerReviews.route('/:product_id')
   .get(reviews.getReviews)
   .post(reviews.postReviews);
 
-routerReviews.route('/meta')
+routerReviews.route('/meta/:product_id')
   .get(reviews.getMetadata);
 
 routerReviews.route('/:review_id/helpful')
