@@ -1,5 +1,5 @@
-/*
-.related-products {
+/*RELATED PRODUCTS*/
+.related-products, .outfit {
   display: flex;
   flex-direction: row;
   justify-content:space-evenly;
@@ -7,14 +7,11 @@
 
 }
 
-.outfit {
-  display: flex;
-  justify-content: space-around;
+#app {
+  width: 80%;
+  margin: auto;
+  text-align: center;
 }
-
-.outfit-button {
+.productDetails {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: baseline;
-} */
+}
