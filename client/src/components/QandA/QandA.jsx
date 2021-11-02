@@ -1,5 +1,7 @@
 /* eslint-disable eol-last */
 import React from 'react';
+import SearchBar from './SearchBar';
+import QandAList from './QandAList';
 
 class QandA extends React.Component {
   constructor(props) {
@@ -11,9 +13,10 @@ class QandA extends React.Component {
     return (
       <div>
         <div>Questions and Answers</div>
-        <div>SO MANY QUESTIONS...</div>
-        <div>Second Time</div>
-        <div>Testing origin pull with Pancho</div>
+        <SearchBar />
+        <QandAList />
+        <button type="button">More Answered Questions</button>
+        <button type="button">Add A Question +</button>
       </div>
     );
   }
