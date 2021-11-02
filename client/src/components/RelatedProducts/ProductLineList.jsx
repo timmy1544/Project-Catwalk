@@ -7,29 +7,31 @@ const ProductLineList = ({ productId }) => {
   const currentId = productId;
   const [relatedProductIds, setrelatedProductIds] = useState([]);
   const [products, setProducts] = useState([]);
-  const [styles, setStyles] = useState([]);
+  const [productStyles, setProductStyles] = useState([]);
 
   useEffect(() => {
-    axios.get(`/products/${currentId}/related`)
-      .then((results) => {
-        setrelatedProductIds(results.data);
-      })
-      .then(axios.get(`/products/${relatedProductIds}`)
-        .then((results) => {
-          setProducts(results.data);
-        }))
-      .catch((err) => console.error(err));
-  }, []);
+    async function fetchData() {
 
-  // useEffect(() => {
-  //   axios.get(`/products/${relatedProductIds}/styles`)
-  //     .then((results) => {
-  //       console.log(results)
-  //       setStyles(results.data);
-  //     })
-  // })
+      try {
+        const getRelatedProducts = await axios.get(`/products/${currentId}/related`)
+        setrelatedProductIds(getRelatedProducts.data);
+        console.log(getRelatedProducts.data, 'GET RELATED PRODUCTS')
 
-  console.log(relatedProductIds)
+        const getRelatedProductIds = await axios.get(`/products/${relatedProductIds}`)
+        setProducts(getRelatedProductIds.data);
+
+        const getStyles = await axios.get(`/products/${relatedProductIds}/styles`)
+        console.log(getStyles)
+        setProductStyles(getStyles.data);
+      }
+      catch (err) {
+        console.error(err)
+      }
+
+    }
+    fetchData()
+  }, [currentId]);
+
 
   const product = products.map((item) => {
     const {
@@ -56,3 +58,18 @@ const ProductLineList = ({ productId }) => {
 
 
 export default ProductLineList;
+
+
+
+      // const getStyles = await axios.get(`/products/${relatedProductIds}/styles`);
+      // setStyles(getStyles.data)
+      // return request;
+      //     .then((results) => {
+      //       setrelatedProductIds(results.data);
+      //     })
+      //     .then(axios.get(`/products/${relatedProductIds}`)
+      //       .then((results) => {
+      //         setProducts(results.data);
+      //       }))
+      //     .catch((err) => console.error(err));
+    // }
