@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import ReviewTiles from './ReviewTiles';
+import AddReview from './AddReview';
 
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      review: {},
+      reviews: [],
+      currentID: props.productId,
     };
     this.getReviews = this.getReviews.bind(this);
   }
@@ -15,54 +18,33 @@ class Reviews extends React.Component {
   }
 
   getReviews() {
-    axios.get('/reviews')
+    const { currentID } = this.state;
+    axios.get(`/reviews/${currentID}`)
       .then((res) => {
         this.setState({
-          review: res.data.results[0],
+          reviews: res.data.results,
+        });
+      })
+      .catch((err) => console.log('error', err));
+  }
+
+  getReviewMeta() {
+    const { currentID } = this.state;
+    axios.get(`/reviews/meta/${currentID}`)
+      .then((res) => {
+        this.setState({
+          reviews: res.data.results,
         });
       })
       .catch((err) => console.log('error', err));
   }
 
   render() {
-    const {
-      body, date, helpfulness, rating, recommend, response, reviewer_name, summary,
-    } = this.state.review;
-    console.log('req review', this.state.review);
+    const { reviews, currentID } = this.state;
     return (
-      <div className="Reviews">
-        <div id="ReviewStars">
-          rating:
-          {rating}
-        </div>
-        <div id="ReviewDate">
-          date:
-          {date}
-        </div>
-        <div id="ReviewSummary">
-          summary:
-          {summary}
-        </div>
-        <div id="ReviewBody">
-          body:
-          {body}
-        </div>
-        <div id="ReviewRecommend">
-          recommend:
-          {recommend}
-        </div>
-        <div id="ReviewName">
-          Reviewer Name:
-          {reviewer_name}
-        </div>
-        <div id="ReviewResponse">
-          Response to Review:
-          {response}
-        </div>
-        <div id="ReviewHelpfulness">
-          Rating Helpfulness:
-          {helpfulness}
-        </div>
+      <div>
+        {reviews.map((review, index) => <ReviewTiles review={review} key={index} />)}
+        <AddReview currentID={currentID} />
       </div>
     );
   }
