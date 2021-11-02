@@ -36,6 +36,9 @@ class ProductDetails extends React.Component {
           this.setState({
             style: response.data,
           });
+        })
+        .catch((err) => {
+          throw err;
         }))
       .catch((err) => {
         throw err;
@@ -43,7 +46,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    if (!this.state.product) { return null; }
+    if (!this.state.product || !this.state.style) { return null; }
     return (
       <div className="productDetails">
         <ProductStyle style={this.state.style} product={this.state.product} />
