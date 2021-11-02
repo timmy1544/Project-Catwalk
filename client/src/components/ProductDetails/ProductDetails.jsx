@@ -13,7 +13,7 @@ class ProductDetails extends React.Component {
     super(props);
     this.state = {
       product: null,
-      currentID: this.props.productsData[0].id,
+      currentID: this.props.productId,
       style: null,
     };
   }
