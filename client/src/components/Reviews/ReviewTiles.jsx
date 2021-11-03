@@ -1,68 +1,101 @@
 import React from 'react';
+import axios from 'axios';
 
 class ReviewTiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpfulness:false,
+      helpfulClick: false,
+      helpfulness: this.props.review.helpfulness,
+      report: false,
     };
-
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
     this.handleReportClick = this.handleReportClick.bind(this);
   }
 
   handleHelpfulClick() {
-    console.log('helpful click!');
+    const { helpfulClick } = this.state;
+    if (helpfulClick === false) {
+      const { review_id } = this.props.review;
+      axios.put(`/reviews/${review_id}/helpful`)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .then(() => {
+          this.setState({
+            helpfulClick: true,
+            helpfulness: this.props.review.helpfulness + 1,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   }
 
   handleReportClick() {
-    console.log('report click!');
+    const { review_id } = this.props.review;
+    axios.put(`/reviews/${review_id}/report`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .then(() => {
+        this.setState({
+          report: true
+        })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   render() {
     const {
-      body, date, helpfulness, rating, recommend, response, reviewer_name, summary
+      body, date, rating, recommend, response, reviewer_name, summary
     } = this.props.review;
-
-    return (
-      <div className="Reviews">
-        <div id="ReviewStars">
-          rating:
-          {rating}
+    const { helpfulness, report } = this.state;
+    if (report === false) {
+      return (
+        <div className="Reviews">
+          <div id="ReviewStars">
+            rating:
+            {rating}
+          </div>
+          <div id="ReviewDate">
+            date:
+            {date}
+          </div>
+          <div id="ReviewSummary">
+            summary:
+            {summary}
+          </div>
+          <div id="ReviewBody">
+            body:
+            {body}
+          </div>
+          <div id="ReviewRecommend">
+            recommend:
+            {recommend}
+          </div>
+          <div id="ReviewName">
+            Reviewer Name:
+            {reviewer_name}
+          </div>
+          <div id="ReviewResponse">
+            Response to Review:
+            {response}
+          </div>
+          <div id="ReviewHelpfulness">
+            Rating Helpfulness:
+            {helpfulness}
+          </div>
+          <button type="button" id="helpfulBtn" onClick={this.handleHelpfulClick}> Helpful </button>
+          <button type="button" id="reportBtn" onClick={this.handleReportClick}> Report </button>
+          <p>{'\n'}</p>
         </div>
-        <div id="ReviewDate">
-          date:
-          {date}
-        </div>
-        <div id="ReviewSummary">
-          summary:
-          {summary}
-        </div>
-        <div id="ReviewBody">
-          body:
-          {body}
-        </div>
-        <div id="ReviewRecommend">
-          recommend:
-          {recommend}
-        </div>
-        <div id="ReviewName">
-          Reviewer Name:
-          {reviewer_name}
-        </div>
-        <div id="ReviewResponse">
-          Response to Review:
-          {response}
-        </div>
-        <div id="ReviewHelpfulness">
-          Rating Helpfulness:
-          {helpfulness}
-        </div>
-        <button onClick={this.handleHelpfulClick}> Helpful </button>
-        <button onClick={this.handleReportClick}> Report </button>
-        <p>{'\n'}</p>
-      </div>
-    );
+      );
+    }
+    return (<div> </div>);
   }
 }
 
