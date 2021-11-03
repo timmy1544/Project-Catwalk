@@ -17,21 +17,10 @@ const Product = ({ relatedId }) => {
       .catch((err) => console.log(err));
   }, [relatedId]);
 
-  // console.log(relatedId)
-  // console.log(features, 'features')
   const {
     id, name, category, default_price,
   } = product;
 
-  // const styleComponent = styles.results.map((style) => {
-  //   console.log(style);
-  //   return (
-  //     <Styles
-  //     />
-  //   )
-  // })
-  // console.log(styles.results, 'RESULTS')
-  // console.log(relatedId)
   return (
     <div key={id} className="related-product">
       <p>{category}</p>

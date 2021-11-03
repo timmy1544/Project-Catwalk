@@ -27,7 +27,6 @@ const ProductLineList = ({ productId }) => {
   );
 };
 
-
 export default ProductLineList;
 
 

@@ -6,12 +6,6 @@
   align-items: center;
 }
 
-.relateProduct-container {
-  display: flex;
-  flex-direction: row;
-  /* justify-content: space-around; */
-  /* align-content: space-around; */
-}
 
 .related-product {
   display: flex;
