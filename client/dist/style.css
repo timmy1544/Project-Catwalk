@@ -1,9 +1,23 @@
 /*RELATED PRODUCTS*/
-.related-products, .outfit {
+ .outfit {
   display: flex;
   flex-direction: row;
   justify-content:space-evenly;
   align-items: center;
+}
+
+.relateProduct-container {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  /* align-content: space-around; */
+}
+
+.related-product {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  /* align-items: center; */
 }
 
 #app {
