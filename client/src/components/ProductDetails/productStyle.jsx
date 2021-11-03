@@ -5,6 +5,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PhotoGallery from './PhotoGallery';
 
 class ProductStyle extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ProductStyle extends React.Component {
       currentStyle: this.props.style.results[0],
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
-      isSelected: false,
+      style_id: '',
     };
 
     this.selectStyle = this.selectStyle.bind(this);
@@ -33,13 +34,14 @@ class ProductStyle extends React.Component {
       currentStyle: info,
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
+      style_id: info.style_id,
     });
   }
 
   render() {
     return (
       <div className="productStyle">
-        <Photos />
+        <PhotoGallery currentStyle={this.state.currentStyle} />
         <div className="productSelect">
           <div className="review">review goes here!</div>
           <div className="smallfonts">{this.state.product.category}</div>
@@ -72,21 +74,20 @@ class ProductStyle extends React.Component {
     );
   }
 }
-const Img = (props) => (
-
-  <div
-    onClick={() => { props.onClick(props.info); }}
-    className="styleOption"
-  >
-    <img src={props.src} alt="first thumbnail" />
-  </div>
-);
-
-const Photos = () => (
-  <div className="photoGallery">
-    photoGallery
-  </div>
-);
+const Img = (props) => {
+  let currentClass = 'styleOption';
+  if (props.info.style_id === props.state.style_id) {
+    currentClass = 'selectedOption'; // change selectedOptions style in css
+  }
+  return (
+    <div
+      onClick={() => { props.onClick(props.info); }}
+      className={currentClass}
+    >
+      <img src={props.src} alt="first thumbnail" />
+    </div>
+  );
+};
 
 const SelectSize = (props) => {
 // console.log('currentStyle', props.currentStyle);

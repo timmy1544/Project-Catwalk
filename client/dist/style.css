@@ -74,7 +74,84 @@
 }
 
 .photoGallery {
+  position:relative;
+  height:100%;
+  display:flex;
+  flex-direction:row;
+  flex-direction:flex-start;
+  justify-content: flex-start;
+  overflow:hidden;
+}
+
+.slider {
+  position:absolute;
+  width: 15%;
+  height:100%;
+  top: 0%;
+  left: 0%;
   background-color: #C4C4C4;
+  z-index: 0;
+}
+
+.hide {
+  display: none;
+}
+
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.leftArrow:hover{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: black;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow:hover{
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: white;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
 }
 
 .productSelect {
@@ -88,6 +165,7 @@
   grid-template-columns: 60% 40%;
   object-fit: contain;
 }
+
 
 .styleOptions {
   width:80%;
@@ -113,7 +191,8 @@
   border:0.15em solid #080808;
 }
 
-#selectedOption img{
+
+.selectedOption img{
   border-radius:50%;
   width:50px;
   height:50px;
