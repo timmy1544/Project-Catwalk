@@ -5,7 +5,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import PhotoGallery from './PhotoGallery';
 
 class ProductStyle extends React.Component {
   constructor(props) {
@@ -36,12 +35,12 @@ class ProductStyle extends React.Component {
       selectQuantity: 'QTY',
       style_id: info.style_id,
     });
+    this.props.setCurrentStyle(info);
   }
 
   render() {
     return (
       <div className="productStyle">
-        <PhotoGallery currentStyle={this.state.currentStyle} />
         <div className="productSelect">
           <div className="review">review goes here!</div>
           <div className="smallfonts">{this.state.product.category}</div>

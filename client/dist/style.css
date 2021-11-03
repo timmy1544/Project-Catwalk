@@ -70,6 +70,7 @@
   height: 90vh;
   display: grid;
   grid-template-rows: 70% 30%;
+  grid-template-columns: 60% 40%;
   row-gap: 30px;
 }
 
@@ -165,9 +166,8 @@ height: 100vw;
 }
 
 .productStyle {
-  display:grid;
-  grid-template-columns: 60% 40%;
-  object-fit: contain;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -180,7 +180,6 @@ height: 100vw;
   justify-content: left;
   flex-direction:row;
   flex-flow:wrap;
-  overflow:hidden;
   gap: 1em 1em;
 }
 
@@ -294,5 +293,7 @@ height: 100vw;
 }
 
 .slogan {
+  grid-column-start: 1;
+  grid-column-end:3;
   background-color: #C4C4C4;
 }
