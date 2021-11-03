@@ -24,7 +24,7 @@ const Styles = ({ styleId }) => {
 
   return (
     <div>
-      <img src={imgUrl} alt={name} />
+      <img className="product-img" src={imgUrl} alt={name} />
     </div>
   );
 };

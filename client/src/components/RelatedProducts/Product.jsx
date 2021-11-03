@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-import Styles from './Styles';
 import axios from 'axios';
+import Styles from './Styles';
 
 const Product = ({ relatedId }) => {
   const [product, setProduct] = useState([]);
@@ -20,14 +20,18 @@ const Product = ({ relatedId }) => {
   } = product;
 
   return (
-    <div key={id} className="related-product">
-      <p>{category}</p>
-      <p>{name}</p>
-      <p>{default_price}</p>
-      <Styles
-        key={relatedId}
-        styleId={id}
-      />
+    <div key={id} className="product-container">
+      <div className="related-product">
+
+        <Styles
+          key={relatedId}
+          styleId={id}
+        />
+        <p className="related-category">{category}</p>
+        <p className="related-name">{name}</p>
+        <p className="related-d-price">${default_price}</p>
+        <p className="star-rating">star placeholder: * * * * *</p>
+      </div>
     </div>
   );
 };

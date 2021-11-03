@@ -18,7 +18,7 @@ class RelatedProducts extends React.Component {
     const { productId } = this.state;
 
     return (
-      <div className="test">
+      <div >
         <div className="product-line-list-component">
           <ProductLineList productId={productId} />
         </div>
