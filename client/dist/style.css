@@ -35,7 +35,98 @@
 }
 
 .photoGallery {
-  background-color: #C4C4C4;
+  position:relative;
+  height:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+  overflow:hidden;
+}
+.photoGalleryZoom {
+  position:relative;
+  height:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+}
+
+.hide {
+  display: none;
+}
+
+.photo {
+  height:auto;
+  width:auto;
+}
+
+.zoomOut {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.leftArrow:hover{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: black;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow:hover{
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: white;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
 }
 
 .productSelect {
@@ -49,6 +140,7 @@
   grid-template-columns: 60% 40%;
   object-fit: contain;
 }
+
 
 .styleOptions {
   width:80%;

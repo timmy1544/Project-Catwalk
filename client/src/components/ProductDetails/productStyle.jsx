@@ -5,6 +5,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PhotoGallery from './PhotoGallery';
 
 class ProductStyle extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class ProductStyle extends React.Component {
   render() {
     return (
       <div className="productStyle">
-        <Photos />
+        <PhotoGallery currentStyle={this.state.currentStyle} />
         <div className="productSelect">
           <div className="review">review goes here!</div>
           <div className="smallfonts">{this.state.product.category}</div>
@@ -76,9 +77,8 @@ class ProductStyle extends React.Component {
 const Img = (props) => {
   let currentClass = 'styleOption';
   if (props.info.style_id === props.state.style_id) {
-    currentClass = 'selectedOption';
+    currentClass = 'selectedOption'; // change selectedOptions style in css
   }
-  console.log(currentClass);
   return (
     <div
       onClick={() => { props.onClick(props.info); }}
@@ -88,12 +88,6 @@ const Img = (props) => {
     </div>
   );
 };
-
-const Photos = () => (
-  <div className="photoGallery">
-    photoGallery
-  </div>
-);
 
 const SelectSize = (props) => {
 // console.log('currentStyle', props.currentStyle);
