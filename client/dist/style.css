@@ -71,7 +71,8 @@
   display: grid;
   grid-template-rows: 70% 30%;
   grid-template-columns: 60% 40%;
-  row-gap: 30px;
+  row-gap: 3em;
+  margin-bottom: 10%;
 }
 
 .photoGallery {
