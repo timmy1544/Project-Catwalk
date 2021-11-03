@@ -15,7 +15,7 @@ class ProductStyle extends React.Component {
       currentStyle: this.props.style.results[0],
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
-      isSelected: false,
+      style_id: '',
     };
 
     this.selectStyle = this.selectStyle.bind(this);
@@ -33,6 +33,7 @@ class ProductStyle extends React.Component {
       currentStyle: info,
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
+      style_id: info.style_id,
     });
   }
 
@@ -72,15 +73,21 @@ class ProductStyle extends React.Component {
     );
   }
 }
-const Img = (props) => (
-
-  <div
-    onClick={() => { props.onClick(props.info); }}
-    className="styleOption"
-  >
-    <img src={props.src} alt="first thumbnail" />
-  </div>
-);
+const Img = (props) => {
+  let currentClass = 'styleOption';
+  if (props.info.style_id === props.state.style_id) {
+    currentClass = 'selectedOption';
+  }
+  console.log(currentClass);
+  return (
+    <div
+      onClick={() => { props.onClick(props.info); }}
+      className={currentClass}
+    >
+      <img src={props.src} alt="first thumbnail" />
+    </div>
+  );
+};
 
 const Photos = () => (
   <div className="photoGallery">
