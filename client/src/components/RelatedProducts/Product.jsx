@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const Product = ({ relatedId }) => {
   const [product, setProduct] = useState([]);
-  const [features, setFeatures] = useState([]);
-  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     axios.get(`/products/${relatedId}`)

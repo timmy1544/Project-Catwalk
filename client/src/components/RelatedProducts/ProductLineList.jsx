@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 // USING HOOKS
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -29,26 +31,6 @@ const ProductLineList = ({ productId }) => {
 
 export default ProductLineList;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
 // import React, { Component } from 'react';
 // import axios from 'axios';
 

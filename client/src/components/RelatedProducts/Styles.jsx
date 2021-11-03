@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
 const Styles = ({ styleId }) => {
   const [style, setStyle] = useState([]);
   let imgUrl;
