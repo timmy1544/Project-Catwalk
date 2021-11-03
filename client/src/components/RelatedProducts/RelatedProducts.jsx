@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable eol-last */
 import React from 'react';
 import ProductLineList from './ProductLineList';
@@ -8,7 +10,7 @@ class RelatedProducts extends React.Component {
     super(props);
 
     this.state = {
-      productId: this.props.productId
+      productId: this.props.productId,
     };
   }
 
@@ -16,7 +18,7 @@ class RelatedProducts extends React.Component {
     const { productId } = this.state;
 
     return (
-      <div className="test">
+      <div >
         <div className="product-line-list-component">
           <ProductLineList productId={productId} />
         </div>
