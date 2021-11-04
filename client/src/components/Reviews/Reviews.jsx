@@ -15,7 +15,7 @@ class Reviews extends React.Component {
       moreReviewtext: 'More Reviews',
     };
     this.getReviews = this.getReviews.bind(this);
-    //this.getReviewMeta = this.getReviewMeta.bind(this);
+    // this.getReviewMeta = this.getReviewMeta.bind(this);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
   }
 
@@ -23,7 +23,7 @@ class Reviews extends React.Component {
     this.getReviews();
   }
 
-  handleMoreReviewsClick() {
+  handleMoreReviewsClick() { // get request
     const { moreReview } = this.state;
     if (moreReview === false) {
       this.setState({
@@ -65,7 +65,6 @@ class Reviews extends React.Component {
     const {
       reviews, lessReviews, currentID, moreReviewtext, moreReview,
     } = this.state;
-    //console.log('all reviews:', reviews);
     // default: render 2 review, if more review button is clicked, show all reviews.
     let renderReviews;
     if (moreReview === true) {
@@ -76,18 +75,18 @@ class Reviews extends React.Component {
     if (reviews.length > 2) { // need button
       return (
         <div>
-          {/* eslint-disable-next-line react/no-array-index-key */}
-          {renderReviews.map((review, index) => <ReviewTiles review={review} key={index} />)}
+          {renderReviews.map((review, index) =>
+            <ReviewTiles review={review} key={index} getReviews={this.getReviews} />)}
           <button type="button" id="moreReviewBtn" onClick={this.handleMoreReviewsClick}>{moreReviewtext}</button>
           <br />
-          <AddReview currentID={currentID} />
+          <AddReview currentID={currentID} getReviews={this.getReviews} />
         </div>
       );
     }
     return ( // don't need button
       <div>
-        {/* eslint-disable-next-line react/no-array-index-key */}
-        {reviews.map((review, index) => <ReviewTiles review={review} key={index} />)}
+        {reviews.map((review, index) =>
+          <ReviewTiles review={review} key={index} getReviews={this.getReviews} />)}
         <AddReview currentID={currentID} />
       </div>
     );
