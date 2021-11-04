@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
+// import StarIcon from '@mui/icons-material/Star';
+import { Star } from '@mui/icons-material/';
 import axios from 'axios';
 import StylePhotos from './StylePhotos';
 import StarRating from './StarRating';
@@ -36,10 +38,17 @@ const ProductCard = ({ relatedId }) => {
   return (
     <div key={id} className="product-card">
       <div className="product-card__body">
-        <StylePhotos
-          key={relatedId}
-          styleId={id}
-        />
+        <div className="product-card-IMGcontainer">
+          <div className="star-placeholder__top-right">
+            <Star
+              sx={{ color: 'yellow' }}
+            />
+          </div>
+          <StylePhotos
+            key={relatedId}
+            styleId={id}
+          />
+        </div>
         <p className="product-card__category">{category}</p>
         <p className="product-card__name">{name}</p>
         <p className="product-card__price">${default_price}</p>
