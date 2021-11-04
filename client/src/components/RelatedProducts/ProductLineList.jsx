@@ -23,7 +23,7 @@ const ProductLineList = ({ productId }) => {
   ));
 
   return (
-    <div className="relatedProduct-container">
+    <div className="relatedProduct-wrapper">
       {relatedProduct}
     </div>
   );
