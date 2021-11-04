@@ -15,14 +15,14 @@ const StarRating = ({ rating }) => {
   const starRating = totalRating / ratingLength;
 
   if (rating.length >= 1) {
-    console.log(rating.length);
+    // console.log(rating.length);
 
     rating.forEach((item) => {
       const currentRating = item.rating;
       totalRating += currentRating;
     });
   }
-  console.log(ratingLength, 'CURRENT LENGTH')
+  // console.log(ratingLength, 'CURRENT LENGTH')
 
   return (
     <div>
