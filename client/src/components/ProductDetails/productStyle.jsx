@@ -41,7 +41,7 @@ class ProductStyle extends React.Component {
   render() {
     return (
       <div className="productStyle">
-        <div className="productSelect">
+        <div className="textPart">
           <div className="review">review goes here!</div>
           <div className="smallfonts">{this.state.product.category}</div>
           <div className="productName">{this.state.product.name}</div>
@@ -49,18 +49,20 @@ class ProductStyle extends React.Component {
             $
             {this.state.product.default_price}
           </div>
-          <p>STYLES &gt; SELECTED STYLE</p>
-          <div className="styleOptions">
-            {this.state.styles.map((result, index) => (
-              <Img
-                src={result.photos[0].thumbnail_url}
-                key={index}
-                onClick={this.selectStyle}
-                info={result}
-                state={this.state}
-              />
-            ))}
-          </div>
+          <div className="styleOptionTitle">STYLES &gt; SELECTED STYLE</div>
+        </div>
+        <div className="styleOptions">
+          {this.state.styles.map((result, index) => (
+            <Img
+              src={result.photos[0].thumbnail_url}
+              key={index}
+              onClick={this.selectStyle}
+              info={result}
+              state={this.state}
+            />
+          ))}
+        </div>
+        <div className="buttons">
           <SelectSize
             currentStyle={this.state.currentStyle}
             onChange={this.handleChange}
@@ -70,6 +72,7 @@ class ProductStyle extends React.Component {
           <button type="button" className="star">&#9734;</button>
         </div>
       </div>
+
     );
   }
 }
