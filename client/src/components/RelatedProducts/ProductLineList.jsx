@@ -3,7 +3,7 @@
 // USING HOOKS
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Product from './Product';
+import ProductCard from './ProductCard';
 
 const ProductLineList = ({ productId }) => {
   const currentId = productId;
@@ -16,7 +16,7 @@ const ProductLineList = ({ productId }) => {
   }, [currentId]);
 
   const relatedProduct = relatedProductIds.map((item, i) => (
-    <Product
+    <ProductCard
       key={i}
       relatedId={item}
     />
