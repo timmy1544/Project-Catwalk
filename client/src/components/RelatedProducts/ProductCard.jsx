@@ -9,7 +9,6 @@ const ProductCard = ({ relatedId }) => {
   const [product, setProduct] = useState([]);
   const [ratings, setRatings] = useState([]);
 
-
   useEffect(() => {
     axios.get(`/products/${relatedId}`)
       .then((productsResponse) => {
@@ -24,29 +23,16 @@ const ProductCard = ({ relatedId }) => {
     axios.get(`/reviews/${relatedId}`)
       .then((reviewResponse) => {
         // const responseData = reviewResponse.data;
-
         // setRatings(responseData)
-        setRatings(reviewResponse.data.results)
+        setRatings(reviewResponse.data.results);
       })
-      .catch((err) => console.error(err))
-  }, [relatedId])
-
-  // setRatings(reviewReponse.data.results)
-
-
-  //   useEffect(() => {
-  //   axios.get(`/reviews/${relatedId}`)
-  //     .then((reviewReponse) => setRatings(reviewReponse.data.results))
-  //     .catch((err) => console.error(err));
-  // }, []);
-
-  // console.log(ratings, 'ratings')
+      .catch((err) => console.error(err));
+  }, [relatedId]);
 
   const {
     id, name, category, default_price,
   } = product;
 
-  // console.log(ratings, 'these are the ratings')
   return (
     <div key={id} className="product-card">
       <div className="product-card__body">
@@ -57,7 +43,6 @@ const ProductCard = ({ relatedId }) => {
         <p className="product-card__category">{category}</p>
         <p className="product-card__name">{name}</p>
         <p className="product-card__price">${default_price}</p>
-        <p className="product-card__rating">star placeholder: * * * * *</p>
         <StarRating
           ratingResults={ratings}
         />
