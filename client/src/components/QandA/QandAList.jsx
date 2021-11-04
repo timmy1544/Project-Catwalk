@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 /* eslint-disable eol-last */
 import React from 'react';
 import QandAEntry from './QandAEntry';
@@ -11,7 +13,7 @@ class QandAList extends React.Component {
   render() {
     return (
       <div>
-        <QandAEntry />
+        <QandAEntry questions={this.props.questions} />
         <button type="button">Load More Answers</button>
       </div>
     );

@@ -116,7 +116,9 @@ module.exports = {
   QandA: {
     getQuestions: (req, res) => {
       // count 3 shows 2 questions. not sure why it's not consistent with the number
-      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=${req.params.product_id}&count=3`, {
+      // ${req.params.product_id}
+      console.log('req params QA', req.params);
+      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=42366&count=3`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
