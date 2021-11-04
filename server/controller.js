@@ -198,7 +198,7 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    putQuestionHelpful: (req, res) => { // need second argument, refer to line 90
+    putQuestionHelpful: (req, res) => {
       axios.put(`${config.ALTELIER_API}/qa/questions/${req.body.question_id}/helpful`, {
         headers: {
           Authorization: `${config.API_KEY}`,
