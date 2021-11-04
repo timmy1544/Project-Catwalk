@@ -26,10 +26,11 @@ const PhotoGallery = ({ currentStyle }) => {
         </div>
       ))}
       <div className="slider">
-        thumbnail area
-        {/* {slides.map((item, index) => (
-          <img src={item.thumbnail_url} alt="thumbnail" className="thumbnailPic" />
-        ))} */}
+        {slides.map((item, index) => (
+          <div className="thumbnailPic" key={index}>
+            <img src={item.thumbnail_url} alt="thumbnail" className="thumbnail" />
+          </div>
+        ))}
       </div>
     </div>
   );
