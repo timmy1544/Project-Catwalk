@@ -15,7 +15,7 @@ class ProductStyle extends React.Component {
       currentStyle: this.props.style.results[0],
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
-      style_id: '',
+      style_id: this.props.style.results[0].style_id,
     };
 
     this.selectStyle = this.selectStyle.bind(this);
@@ -116,17 +116,20 @@ const SelectSize = (props) => {
 };
 
 const SelectQuantity = (props) => {
-  const { currentSize } = props;
+  const { currentSize, state } = props;
+  let quantity = 0;
+  const obj = Object.values(currentSize).filter((item) => item.size === state.selectSize);
+  if (obj.length === 0) quantity = 0;
+  else quantity = obj[0].quantity;
+  const arr = Array(quantity);
+  arr.fill(0, 0);
   return (
     <div>
       <select className="selectQuantity" onChange={props.onChange} value={props.state.selectQuantity}>
         <option>QTY</option>
-        {Object.values(currentSize).map((item, index) => (
-          <option
-            value={item.quantity}
-            key={index}
-          >
-            {item.quantity}
+        {arr.map((item, index) => (
+          <option key={index}>
+            {index + 1}
           </option>
         ))}
       </select>
