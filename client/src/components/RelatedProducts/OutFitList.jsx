@@ -1,14 +1,11 @@
 import React from 'react';
+import OutFitCard from './OutfitCard';
 
 const OutFitList = () => (
 
-  <div className="outfit">
-    <h2>Outfit here</h2>
-    <h2>Outfit here</h2>
-    <h2>Outfit here</h2>
-    <h2>Outfit here</h2>
+  <div className="outfit-wrapper">
+    <OutFitCard />
   </div>
 );
-
 
 export default OutFitList;

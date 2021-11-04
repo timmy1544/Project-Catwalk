@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
@@ -6,6 +7,8 @@ import React from 'react';
 import axios from 'axios';
 import ProductStyle from './productStyle';
 import ProductSlogan from './productSlogan';
+import PhotoGallery from './PhotoGallery';
+
 // import config from '../../../../config';
 
 class ProductDetails extends React.Component {
@@ -15,7 +18,10 @@ class ProductDetails extends React.Component {
       product: null,
       currentID: this.props.productId,
       style: null,
+      currentStyle: null,
     };
+
+    this.setCurrentStyle = this.setCurrentStyle.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +41,7 @@ class ProductDetails extends React.Component {
           console.log('product style', response.data);
           this.setState({
             style: response.data,
+            currentStyle: response.data.results[0],
           });
         })
         .catch((err) => {
@@ -45,11 +52,22 @@ class ProductDetails extends React.Component {
       });
   }
 
+  setCurrentStyle(val) {
+    this.setState({
+      currentStyle: val,
+    });
+  }
+
   render() {
-    if (!this.state.product || !this.state.style) { return null; }
+    if (!this.state.product || !this.state.style || !this.state.currentStyle) { return null; }
     return (
       <div className="productDetails">
-        <ProductStyle style={this.state.style} product={this.state.product} />
+        <PhotoGallery currentStyle={this.state.currentStyle} />
+        <ProductStyle
+          style={this.state.style}
+          product={this.state.product}
+          setCurrentStyle={this.setCurrentStyle}
+        />
         <ProductSlogan product={this.state.product} />
       </div>
     );

@@ -58,7 +58,8 @@ module.exports = {
   },
   reviews: {
     getReviews: (req, res) => {
-      axios.get(`${config.ALTELIER_API}/reviews?product_id=42366`, {
+      const productStr = `?product_id=${req.params.product_id}`;
+      axios.get(`${config.ALTELIER_API}/reviews/${productStr}`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
@@ -71,7 +72,8 @@ module.exports = {
         });
     },
     getMetadata: (req, res) => {
-      axios.get(`${config.ALTELIER_API}/reviews/meta`, {
+      const productStr = `?product_id=${req.params.product_id}`;
+      axios.get(`${config.ALTELIER_API}/reviews/meta/${productStr}`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
@@ -84,8 +86,32 @@ module.exports = {
         });
     },
     postReviews: () => {},
-    putReviewHelpful: () => {},
-    putReviewReport: () => {},
+    putReviewHelpful: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/helpful`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: helpful');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
+    putReviewReport: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/report`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: report');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
   },
   QandA: {
     getQuestions: (req, res) => {
