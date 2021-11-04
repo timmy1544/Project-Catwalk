@@ -19,12 +19,13 @@ const Styles = ({ styleId }) => {
   if (style[0]) {
     const photosArr = style[0].photos;
     name = style[0].name;
-    imgUrl = photosArr[0].thumbnail_url;
+    // imgUrl = photosArr[0].thumbnail_url;
+    imgUrl = photosArr[0].url;
   }
 
   return (
     <div>
-      <img className="product-img" src={imgUrl} alt={name} />
+      <img className="product-card__image" src={imgUrl} alt={name} />
     </div>
   );
 };

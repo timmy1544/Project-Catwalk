@@ -18,13 +18,11 @@ class RelatedProducts extends React.Component {
     const { productId } = this.state;
 
     return (
-      <div >
-        <div className="product-line-list-component">
-          <ProductLineList productId={productId} />
-        </div>
-        <div className="outfit-list-component">
-          <OutFitList />
-        </div>
+      <div>
+        <h3>Related Products</h3>
+        <ProductLineList productId={productId} />
+        <h3>Your Outfit</h3>
+        <OutFitList />
       </div>
     );
   }
