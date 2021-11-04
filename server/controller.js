@@ -86,13 +86,39 @@ module.exports = {
         });
     },
     postReviews: () => {},
-    putReviewHelpful: () => {},
-    putReviewReport: () => {},
+    putReviewHelpful: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/helpful`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: helpful');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
+    putReviewReport: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/report`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: report');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
   },
   QandA: {
     getQuestions: (req, res) => {
       // count 3 shows 2 questions. not sure why it's not consistent with the number
-      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=${req.params.product_id}&count=3`, {
+      // ${req.params.product_id}
+      console.log('req params QA', req.params);
+      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=42366&count=3`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },

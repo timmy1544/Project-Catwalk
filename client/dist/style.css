@@ -107,6 +107,153 @@
 /* ******************************************************************************** */
 /* PRODUCT DETAILS */
 /* ******************************************************************************** */
+
+/*Product Detail Overall Grid*/
+
+.productDetails {
+  height: 90vh;
+  display: grid;
+  grid-template-rows: 70% 30%;
+  grid-template-columns: 60% 40%;
+  column-gap: 2em;
+  row-gap: 3em;
+  margin-bottom: 10%;
+  overflow:hidden;
+}
+
+/*Photo Gallery Style*/
+.photoGallery {
+  position:relative;
+  height:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-start;
+  align-items:flex-start;
+  overflow:hidden;
+}
+  .photoGallery img{
+  width: auto;
+  height: 100vw;
+  }
+
+  .slider {
+    position:absolute;
+    width: 9%;
+    height:100%;
+    top: 4%;
+    left: 3%;
+    background-color: #C4C4C4;
+    z-index: 0;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    overflow:hidden;
+    align-items:flex-start;
+    justify-content:flex-start;
+    background-color: transparent;
+    row-gap: 1.5%;
+  }
+  .thumbnailPic {
+    width:3.5rem;
+    height:3.5rem;
+    border:0.05em solid #080808;
+  }
+
+  .slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .thumbnailPic:hover{
+    width:3.5rem;
+    height:3.5rem;
+    border:0.05em solid white;
+    cursor:pointer;
+  }
+
+  .selectedThumbnailPic{
+    width:3.5rem;
+    height:3.5rem;
+    border-top:0.05em solid white;
+    border-bottom:0.4rem solid rgb(77, 75, 75);
+    padding-bottom: 0.2rem;
+  }
+
+
+  .hide {
+    display: none;
+  }
+
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.leftArrow:hover{
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: black;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.rightArrow:hover{
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  font-size: 1.5rem;
+  color: white;
+  object-fit:contain;
+  cursor: pointer;
+  z-index:10;
+  user-select:none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+/*Right Side Component Style*/
+.productStyle {
+  display: grid;
+  grid-template-columns: 1/3fr 1/3fr 1/3fr;
+}
+
+/*title and such*/
+.textPart {
+  overflow:hidden;
+}
 .review {
   margin-bottom:5%;
 }
@@ -116,67 +263,54 @@
   font-size: 3em
 }
 .smallfonts {
-  margin: 1%;
-
   font-family: 'Spartan', sans-serif;
 }
-.productDetails {
-  height: 90vh;
-  display: grid;
-  grid-template-rows: 70% 30%;
-  row-gap: 30px;
+
+.styleOptionTitle {
+  margin-top: 10%;
 }
 
-.photoGallery {
-  background-color: #C4C4C4;
-}
 
-.productSelect {
-  width: 90%;
-  height: 90%;
-  margin: auto
-}
-
-.productStyle {
-  display:grid;
-  grid-template-columns: 60% 40%;
-  object-fit: contain;
-}
+/*select style*/
 
 .styleOptions {
-  width:80%;
-  height:28%;
-  margin-top: 5%;
-  margin-right:auto;
-  display:flex;
-  justify-content: left;
-  flex-direction:row;
-  flex-flow:wrap;
-  gap: 15px 15px;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap:7%;
+  row-gap:auto;
+  align-items:flex-end;
+}
+.styleOption {
+  width:3.4rem;
+  height:3.4rem;
 }
 
 .styleOption img{
   border-radius:50%;
-  width:50px;
-  height:50px;
+  width:100%;
+  height:100%;
   border-color:black;
   cursor: pointer;
+  object-fit:cover;
 }
 
 .styleOption img:hover{
   border:0.15em solid #080808;
 }
 
-#selectedOption img{
+.selectedOption img{
   border-radius:50%;
-  width:50px;
-  height:50px;
+  width:3.4em;
+  height:3.4em;
   border-color:black;
   cursor: pointer;
   border:0.15em solid #080808;
+  object-fit:cover;
 }
 
 
+/*drop down*/
 
 .selectSizeDiv {
   display:flex;
@@ -224,7 +358,7 @@
   border-radius:0.12em;
   box-sizing: border-box;
   width: 15%;
-  height: 10%;
+  height: 30%;
   text-decoration:none;
   font-family:'Roboto',sans-serif;
   font-weight:300;
@@ -246,7 +380,7 @@
   border-radius:0.12em;
   box-sizing: border-box;
   width: 50%;
-  height: 10%;
+  height: 30%;
   text-decoration:none;
   font-family:'Roboto',sans-serif;
   font-weight:300;
@@ -261,8 +395,9 @@
   background-color:#FFFFFF;
 }
 
+/*Slogan*/
 .slogan {
-  background-color: #C4C4C4;
+  grid-column-start: 1;
+  grid-column-end:3;
+  background-color:transparent;
 }
-
-/* ******************************************************************************** */

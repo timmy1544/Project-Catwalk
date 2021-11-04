@@ -52,7 +52,7 @@ class App extends React.Component {
         <p>Hello Cat Trap</p>
         <ProductDetails productId={this.state.currentID} />
         <RelatedProducts productId={this.state.currentID} IDchanger={this.IDchanger} />
-        <QandA />
+        <QandA productId={this.state.currentID} />
         <Reviews productId={this.state.currentID} />
       </div>
     );
