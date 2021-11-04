@@ -1,32 +1,27 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
+import { Rating } from '@mui/material';
 
-const StarRating = ({ rating }) => {
-  // const [starRating, setStarRating] = useState([]);
-
-  // if (props.rating.length) {
-  //   setStarRating(props.rating);
-  // }
-  // let starRating = totalRating;
-
+const StarRating = ({ ratingResults }) => {
   let totalRating = 0;
-  const ratingLength = rating.length;
+  ratingResults.forEach((item) => {
+    const rateNum = item.rating;
+    if (typeof rateNum === 'number' && rateNum !== 0) {
+      totalRating += rateNum;
+    }
+  });
 
-  const starRating = totalRating / ratingLength;
+  const { length } = ratingResults;
 
-  if (rating.length >= 1) {
-    // console.log(rating.length);
-
-    rating.forEach((item) => {
-      const currentRating = item.rating;
-      totalRating += currentRating;
-    });
-  }
-  // console.log(ratingLength, 'CURRENT LENGTH')
+  const stars = totalRating / length;
 
   return (
     <div>
-      <p>{totalRating}</p>
+      <Rating
+        name="read-only"
+        value={stars}
+        readOnly
+      />
     </div>
   );
 };
