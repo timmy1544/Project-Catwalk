@@ -79,6 +79,20 @@
   transform: scale(1.02);
 }
 
+/*Manages ComparisonModal Star Element*/
+.product-card-IMGcontainer {
+  position: relative;
+  text-align: center;
+  color: black;
+}
+
+.star-placeholder__top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  align-self: center;
+}
+/***************************************/
 .product-card__image {
   height: 20rem;
   width: 100%;
