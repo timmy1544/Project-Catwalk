@@ -2,6 +2,7 @@
 import React from 'react';
 import { Rating } from '@mui/material';
 
+
 const StarRating = ({ ratingResults }) => {
   let totalRating = 0;
   ratingResults.forEach((item) => {
