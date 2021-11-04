@@ -128,8 +128,7 @@
   margin-bottom:3%;
   margin-right:3%;
   z-index:11;
-  overflow-y:visible;
-  overflow-x:hidden;
+  overflow:hidden;
 }
   .photoGallery img{
   width: 167%;
