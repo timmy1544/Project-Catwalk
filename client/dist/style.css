@@ -103,35 +103,28 @@
 /* ******************************************************************************** */
 /* PRODUCT DETAILS */
 /* ******************************************************************************** */
-.review {
-  margin-bottom:5%;
-}
-.productName {
-  margin: 0.15em 0.15em 0.15em 0em;
-  font-family: 'Asul', sans-serif;
-  font-size: 3em
-}
-.smallfonts {
-  margin: 1%;
 
-  font-family: 'Spartan', sans-serif;
-}
+/*Product Detail Overall Grid*/
+
 .productDetails {
   height: 90vh;
   display: grid;
   grid-template-rows: 70% 30%;
   grid-template-columns: 60% 40%;
+  column-gap: 2em;
   row-gap: 3em;
   margin-bottom: 10%;
+  overflow:hidden;
 }
 
+/*Photo Gallery Style*/
 .photoGallery {
   position:relative;
   height:100%;
   display:flex;
   flex-direction:row;
-  flex-direction:flex-start;
   justify-content: flex-start;
+  align-items:flex-start;
   overflow:hidden;
 }
   .photoGallery img{
@@ -141,30 +134,48 @@
 
   .slider {
     position:absolute;
-    width: 15%;
+    width: 9%;
     height:100%;
-    top: 0%;
-    left: 0%;
+    top: 4%;
+    left: 3%;
     background-color: #C4C4C4;
     z-index: 0;
     display:flex;
     flex-direction:column;
+    flex-wrap:wrap;
     overflow:hidden;
-    align-items:center;
-    justify-content:center;
+    align-items:flex-start;
+    justify-content:flex-start;
     background-color: transparent;
+    row-gap: 1.5%;
   }
   .thumbnailPic {
-    width:10em;
-    height:10rem;
-    overflow:hidden;
-    margin: 3%;
+    width:3.5rem;
+    height:3.5rem;
+    border:0.05em solid #080808;
   }
 
   .slider img{
     width:100%;
-    height:auto;
+    height:100%;
+    object-fit:cover;
   }
+
+  .thumbnailPic:hover{
+    width:3.5rem;
+    height:3.5rem;
+    border:0.05em solid white;
+    cursor:pointer;
+  }
+
+  .selectedThumbnailPic{
+    width:3.5rem;
+    height:3.5rem;
+    border-top:0.05em solid white;
+    border-bottom:0.4rem solid rgb(77, 75, 75);
+    padding-bottom: 0.2rem;
+  }
+
 
   .hide {
     display: none;
@@ -174,7 +185,7 @@
 .leftArrow {
   position: absolute;
   top: 50%;
-  left: 15%;
+  left: 12%;
   font-size: 1.5rem;
   color: black;
   cursor: pointer;
@@ -185,7 +196,7 @@
 .leftArrow:hover{
   position: absolute;
   top: 50%;
-  left: 15%;
+  left: 12%;
   font-size: 1.5rem;
   color: white;
   cursor: pointer;
@@ -222,39 +233,59 @@
   transition-duration: 1s ease;
 }
 
+
+
 .slide.active {
   opacity: 1;
   transition-duration: 1s;
 }
 
-.productSelect {
-  width: 90%;
-  height: 90%;
-  margin: auto
-}
-
+/*Right Side Component Style*/
 .productStyle {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1/3fr 1/3fr 1/3fr;
 }
 
+/*title and such*/
+.textPart {
+  overflow:hidden;
+}
+.review {
+  margin-bottom:5%;
+}
+.productName {
+  margin: 0.15em 0.15em 0.15em 0em;
+  font-family: 'Asul', sans-serif;
+  font-size: 3em
+}
+.smallfonts {
+  font-family: 'Spartan', sans-serif;
+}
+
+.styleOptionTitle {
+  margin-top: 10%;
+}
+
+
+/*select style*/
 
 .styleOptions {
-  width:80%;
-  height:28%;
-  margin-top: 5%;
-  margin-right:auto;
-  display:flex;
-  justify-content: left;
-  flex-direction:row;
-  flex-flow:wrap;
-  gap: 1em 1em;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap:7%;
+  row-gap:auto;
+  align-items:flex-end;
+}
+.styleOption {
+  width:3.4rem;
+  height:3.4rem;
 }
 
 .styleOption img{
   border-radius:50%;
-  width:3.4em;
-  height:3.4em;
+  width:100%;
+  height:100%;
   border-color:black;
   cursor: pointer;
   object-fit:cover;
@@ -263,7 +294,6 @@
 .styleOption img:hover{
   border:0.15em solid #080808;
 }
-
 
 .selectedOption img{
   border-radius:50%;
@@ -276,6 +306,7 @@
 }
 
 
+/*drop down*/
 
 .selectSizeDiv {
   display:flex;
@@ -323,7 +354,7 @@
   border-radius:0.12em;
   box-sizing: border-box;
   width: 15%;
-  height: 10%;
+  height: 30%;
   text-decoration:none;
   font-family:'Roboto',sans-serif;
   font-weight:300;
@@ -345,7 +376,7 @@
   border-radius:0.12em;
   box-sizing: border-box;
   width: 50%;
-  height: 10%;
+  height: 30%;
   text-decoration:none;
   font-family:'Roboto',sans-serif;
   font-weight:300;
@@ -360,6 +391,7 @@
   background-color:#FFFFFF;
 }
 
+/*Slogan*/
 .slogan {
   grid-column-start: 1;
   grid-column-end:3;
