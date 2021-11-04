@@ -86,8 +86,32 @@ module.exports = {
         });
     },
     postReviews: () => {},
-    putReviewHelpful: () => {},
-    putReviewReport: () => {},
+    putReviewHelpful: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/helpful`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: helpful');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
+    putReviewReport: (req, res) => {
+      axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/report`, {}, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(200).send('Successfully made PUT request: report');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
   },
   QandA: {
     getQuestions: (req, res) => {
