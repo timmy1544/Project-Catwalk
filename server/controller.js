@@ -85,7 +85,20 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    postReviews: () => {},
+    postReviews: (req, res) => {
+      console.log('req body:', req.body);
+      axios.post(`${config.ALTELIER_API}/reviews`, req.body, {
+        headers: {
+          Authorization: `${config.API_KEY}`,
+        },
+      })
+        .then(() => {
+          res.status(201).send('Successfully made POST request');
+        })
+        .catch((err) => {
+          res.status(500).send(err);
+        });
+    },
     putReviewHelpful: (req, res) => {
       axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/helpful`, {}, {
         headers: {
@@ -185,7 +198,7 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    putQuestionHelpful: (req, res) => {
+    putQuestionHelpful: (req, res) => { // need second argument, refer to line 90
       axios.put(`${config.ALTELIER_API}/qa/questions/${req.body.question_id}/helpful`, {
         headers: {
           Authorization: `${config.API_KEY}`,
