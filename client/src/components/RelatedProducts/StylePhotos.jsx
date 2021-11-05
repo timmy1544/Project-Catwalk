@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Styles = ({ styleId }) => {
+const StylePhotos = ({ styleId }) => {
   const [style, setStyle] = useState([]);
   let imgUrl;
   let name;
@@ -30,4 +30,4 @@ const Styles = ({ styleId }) => {
   );
 };
 
-export default Styles;
+export default StylePhotos;
