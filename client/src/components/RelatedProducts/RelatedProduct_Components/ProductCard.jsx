@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-// import StarIcon from '@mui/icons-material/Star';
 import { Star } from '@mui/icons-material/';
 import axios from 'axios';
 import StylePhotos from './StylePhotos';
@@ -24,8 +21,6 @@ const ProductCard = ({ relatedId }) => {
   useEffect(() => {
     axios.get(`/reviews/${relatedId}`)
       .then((reviewResponse) => {
-        // const responseData = reviewResponse.data;
-        // setRatings(responseData)
         setRatings(reviewResponse.data.results);
       })
       .catch((err) => console.error(err));

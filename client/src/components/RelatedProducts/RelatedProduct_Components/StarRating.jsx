@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { Rating } from '@mui/material';
 
-
 const StarRating = ({ ratingResults }) => {
   let totalRating = 0;
+
   ratingResults.forEach((item) => {
     const rateNum = item.rating;
     if (typeof rateNum === 'number' && rateNum !== 0) {
@@ -13,7 +12,6 @@ const StarRating = ({ ratingResults }) => {
   });
 
   const { length } = ratingResults;
-
   const stars = totalRating / length;
 
   return (
