@@ -2,35 +2,39 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable eol-last */
 import React from 'react';
-import moment from 'moment';
+import axios from 'axios';
+import Answer from './Answer';
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      answers: [],
+    };
+    console.log('question component prop:', this.props);
   }
 
   render() {
     let questionBody;
-    let askerName;
-    let questionDate;
-    let convertedDate;
+    let questionID;
     if (this.props.question) {
       questionBody = this.props.question.question_body;
-      askerName = this.props.question.asker_name;
-      questionDate = this.props.question.question_date;
-      convertedDate = moment(questionDate).format('MMMM Do[,] YYYY');
-      // console.log('question info', questionBody, askerName, convertedDate);
+      questionID = this.props.question.question_id;
+      // console.log('questionID', questionID);
     } else {
       questionBody = 'No Question Data';
-      askerName = '';
-      convertedDate = '';
+      questionID = '';
     }
     return (
       <div>
+        Q:
         {questionBody}
         <br />
-        {`${askerName}, ${convertedDate}`}
+        A:
+        <Answer questionID={questionID} />
+        {/* {this.state.answers.map((answer, index) => (
+          <Answer answer={answer} key={index} />
+        ))} */}
       </div>
     );
   }

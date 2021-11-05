@@ -12,6 +12,9 @@ class QandA extends React.Component {
       // currentID: this.props.productId,
       questions: [],
     };
+  }
+
+  componentDidMount() {
     this.getQuestions();
   }
 
@@ -19,7 +22,6 @@ class QandA extends React.Component {
     // axios.get(`/qa/questions/?product_id=${this.state.currentID}`)
     axios.get('/qa')
       .then((response) => {
-        // console.log('questions data: ', response.data.results);
         this.setState({
           questions: response.data.results,
         });
