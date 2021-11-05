@@ -1,11 +1,9 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-// import StarIcon from '@mui/icons-material/Star';
-import { Star } from '@mui/icons-material/';
+
 import axios from 'axios';
 import StylePhotos from './StylePhotos';
 import StarRating from './StarRating';
+import ComparisonModal from './ComparisonModal';
 
 const ProductCard = ({ relatedId }) => {
   const [product, setProduct] = useState([]);
@@ -24,8 +22,6 @@ const ProductCard = ({ relatedId }) => {
   useEffect(() => {
     axios.get(`/reviews/${relatedId}`)
       .then((reviewResponse) => {
-        // const responseData = reviewResponse.data;
-        // setRatings(responseData)
         setRatings(reviewResponse.data.results);
       })
       .catch((err) => console.error(err));
@@ -35,14 +31,14 @@ const ProductCard = ({ relatedId }) => {
     id, name, category, default_price,
   } = product;
 
+  const defaultPrice = `$${default_price}`;
+
   return (
     <div key={id} className="product-card">
       <div className="product-card__body">
         <div className="product-card-IMGcontainer">
           <div className="star-placeholder__top-right">
-            <Star
-              sx={{ color: 'yellow' }}
-            />
+            <ComparisonModal />
           </div>
           <StylePhotos
             key={relatedId}
@@ -51,7 +47,7 @@ const ProductCard = ({ relatedId }) => {
         </div>
         <p className="product-card__category">{category}</p>
         <p className="product-card__name">{name}</p>
-        <p className="product-card__price">${default_price}</p>
+        <p className="product-card__price">{defaultPrice}</p>
         <StarRating
           ratingResults={ratings}
         />

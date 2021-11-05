@@ -83,7 +83,20 @@
 .product-card-IMGcontainer {
   position: relative;
   text-align: center;
-  color: black;
+  /* color: black; */
+}
+
+.outfit-card-IMGcontainer {
+  position: relative;
+  text-align: center;
+}
+
+.plusIcon-placeholder__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1D9BF0;
 }
 
 .star-placeholder__top-right {

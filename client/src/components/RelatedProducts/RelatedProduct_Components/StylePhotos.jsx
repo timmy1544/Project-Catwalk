@@ -19,7 +19,6 @@ const StylePhotos = ({ styleId }) => {
   if (style[0]) {
     const photosArr = style[0].photos;
     name = style[0].name;
-    // imgUrl = photosArr[0].thumbnail_url;
     imgUrl = photosArr[0].url;
   }
 
