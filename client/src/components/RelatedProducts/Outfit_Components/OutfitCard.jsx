@@ -3,6 +3,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 const OutFitCard = () => {
   const outfitArr = [];
+
   if (outfitArr) {
     return (
       <div className="add-outfit-card">
