@@ -28,6 +28,7 @@ const Backdrop = styled('div')`
 
 const style = {
   width: 400,
+  height: 400,
   bgcolor: 'white',
   border: '2px solid #000',
   p: 2,
@@ -56,8 +57,24 @@ export default function ModalUnstyledDemo() {
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>
           <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+          <table>
+            <tbody>
+              <tr>
+                <thead>title</thead>
+                <td>this is some data</td>
+              </tr>
+              <tr>
+                <thead>next title</thead>
+                <td>more data here</td>
+              </tr>
+              <tr>
+                <thead>last title</thead>
+                <td>this is some other data</td>
+              </tr>
+            </tbody>
+          </table>
         </Box>
       </StyledModal>
-    </div>
+    </div >
   );
 }

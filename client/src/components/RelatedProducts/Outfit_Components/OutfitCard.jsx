@@ -8,7 +8,7 @@ const OutFitCard = () => {
     return (
       <div className="add-outfit-card">
         <div className="outfit-card__body">
-          <h2>Add Outfit Here</h2>
+          <h2>Add to Outfit</h2>
           {/* <img className="outfit__overlay__plusIcon" alt="" /> */}
           <div className="outfit-card-IMGcontainer">
             <h3 className="plusIcon-placeholder__center"><FaPlusCircle size={70} /></h3>
