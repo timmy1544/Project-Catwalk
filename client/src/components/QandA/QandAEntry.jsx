@@ -13,6 +13,7 @@ class QandAEntry extends React.Component {
   render() {
     const { questions } = this.props;
     let quest;
+    console.log('questions: ', questions);
     if (questions.length === 0) {
       quest = <Question />;
     } else {
@@ -20,6 +21,8 @@ class QandAEntry extends React.Component {
     }
     return (
       <div>
+        {/* {questions.map((question, index) =>
+          <Question question={question.question_body} key={index} />)} */}
         {quest}
       </div>
     );
