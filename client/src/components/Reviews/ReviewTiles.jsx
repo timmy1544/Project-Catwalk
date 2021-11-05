@@ -4,9 +4,10 @@ import axios from 'axios';
 class ReviewTiles extends React.Component {
   constructor(props) {
     super(props);
+    const { helpfulness } = this.props.review;
     this.state = {
       helpfulClick: false,
-      helpfulness: this.props.review.helpfulness,
+      helpfulness,
     };
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
     this.handleReportClick = this.handleReportClick.bind(this);
@@ -49,7 +50,7 @@ class ReviewTiles extends React.Component {
 
   render() {
     const {
-      body, date, rating, recommend, response, reviewer_name, summary
+      body, date, rating, recommend, response, reviewer_name, summary,
     } = this.props.review;
     const { helpfulness } = this.state;
     return (

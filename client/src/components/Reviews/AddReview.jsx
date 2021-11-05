@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Rating from '@mui/material/Rating';
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class AddReview extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleRatingChange = this.handleRatingChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -27,11 +29,17 @@ class AddReview extends React.Component {
     const newObj = this.state.newReview;
     if (e.target.type === 'text') {
       newObj[e.target.name] = e.target.value;
-    } else if (e.target.name === 'rating') {
-      newObj.rating = parseInt(e.target.value);
     } else if (e.target.name === 'recommend') {
       newObj.recommend = !newObj.recommend;
     }
+    this.setState({
+      newReview: newObj,
+    });
+  }
+
+  handleRatingChange(e, value) {
+    const newObj = this.state.newReview;
+    newObj.rating = value;
     this.setState({
       newReview: newObj,
     });
@@ -41,6 +49,7 @@ class AddReview extends React.Component {
     const { newReview } = this.state;
     const { getReviews } = this.props;
     e.preventDefault();
+    // validate the submitted form here
     axios.post(`/reviews/${newReview.product_id}`, newReview)
       .then((response) => {
         console.log(response.data);
@@ -55,13 +64,20 @@ class AddReview extends React.Component {
 
   render() {
     const {
-      summary, body, recommend, name, email, photos, characteristics,
+      rating, summary, body, recommend, name, email, photos, characteristics,
     } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="rating">
           Rating star:
-          <input type="radio" id="rating1" name="rating" value="1" onChange={this.handleChange} />
+          <Rating
+            name="simple-controlled"
+            value={rating}
+            onChange={(event, newValue) => {
+              this.handleRatingChange(event, newValue);
+            }}
+          />
+          {/* <input type="radio" id="rating1" name="rating" value="1" onChange={this.handleChange} />
           <label htmlFor="rating1">1</label>
           <input type="radio" id="rating2" name="rating" value="2" onChange={this.handleChange} />
           <label htmlFor="rating2">2</label>
@@ -70,7 +86,7 @@ class AddReview extends React.Component {
           <input type="radio" id="rating4" name="rating" value="4" onChange={this.handleChange} />
           <label htmlFor="rating4">4</label>
           <input type="radio" id="rating5" name="rating" value="5" onChange={this.handleChange} />
-          <label htmlFor="rating5">5</label>
+          <label htmlFor="rating5">5</label> */}
         </label>
         <br />
         <label htmlFor="summary">
