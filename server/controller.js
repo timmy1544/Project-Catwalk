@@ -129,9 +129,9 @@ module.exports = {
   QandA: {
     getQuestions: (req, res) => {
       // count 3 shows 2 questions. not sure why it's not consistent with the number
-      // ${req.params.product_id}
-      console.log('req params QA', req.params);
-      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=42366&count=3`, {
+      // /?product_id=42366&count=3
+      // console.log('req params QA', req.params.product_id);
+      axios.get(`${config.ALTELIER_API}/qa/questions/?product_id=${req.params.product_id}`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
@@ -144,8 +144,9 @@ module.exports = {
         });
     },
     getAnswers: (req, res) => {
-      // need to figure out how to get question id number to replace 426006
-      axios.get(`${config.ALTELIER_API}/qa/questions/426006/answers?count=2`, {
+      // console.log('get answers params', req.params);
+      // remove count `/answers?count=2`
+      axios.get(`${config.ALTELIER_API}/qa/questions/${req.params.question_id}/answers`, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
