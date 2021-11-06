@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled, Box } from '@mui/system';
 import { Star } from '@mui/icons-material/';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
+import ModalTable from './ModalTable';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -27,7 +28,8 @@ const Backdrop = styled('div')`
 `;
 
 const style = {
-  width: 400,
+  width: '35%',
+  height: 400,
   bgcolor: 'white',
   border: '2px solid #000',
   p: 2,
@@ -54,10 +56,8 @@ export default function ModalUnstyledDemo() {
         BackdropComponent={Backdrop}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title">Text in a modal</h2>
-          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+          <ModalTable />
         </Box>
       </StyledModal>
     </div>
   );
-}
