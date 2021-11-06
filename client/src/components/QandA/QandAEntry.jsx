@@ -23,10 +23,10 @@ class QandAEntry extends React.Component {
   getAnswers() {
     if (this.props.question) {
       const questionID = this.props.question.question_id;
-      console.log('questionID', questionID);
+      // console.log('questionID', questionID);
       axios.get(`/qa/questions/${questionID}/answers`)
         .then((answers) => {
-          console.log('axios answers', answers.data.results);
+          // console.log('axios answers', answers.data.results);
           this.setState({
             answers: answers.data.results,
           });
