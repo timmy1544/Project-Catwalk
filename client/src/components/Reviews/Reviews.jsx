@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ReviewTiles from './ReviewTiles';
+import ReviewTile from './ReviewTile';
 import AddReview from './AddReview';
 
 class Reviews extends React.Component {
@@ -13,6 +13,7 @@ class Reviews extends React.Component {
       currentID: props.productId,
       moreReview: false,
       moreReviewtext: 'More Reviews',
+      meta: {},
     };
     this.getReviews = this.getReviews.bind(this);
     // this.getReviewMeta = this.getReviewMeta.bind(this);
@@ -50,23 +51,24 @@ class Reviews extends React.Component {
       .catch((err) => console.log('error', err));
   }
 
-  // getReviewMeta() {
-  //   const { currentID } = this.state;
-  //   axios.get(`/reviews/meta/${currentID}`)
-  //     .then((res) => {
-  //       this.setState({
-  //         reviews: res.data.results,
-  //       });
-  //     })
-  //     .catch((err) => console.log('error', err));
-  // }
+  getReviewMeta() {
+    const { currentID } = this.state;
+    axios.get(`/reviews/meta/${currentID}`)
+      .then((res) => {
+        this.setState({
+          meta: res.data.results,
+        });
+      })
+      .catch((err) => console.log('error', err));
+  }
 
   render() {
     const {
-      reviews, lessReviews, currentID, moreReviewtext, moreReview,
+      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta
     } = this.state;
     // default: render 2 review, if more review button is clicked, show all reviews.
     let renderReviews;
+
     if (moreReview === true) {
       renderReviews = reviews;
     } else {
@@ -75,8 +77,8 @@ class Reviews extends React.Component {
     if (reviews.length > 2) { // need button
       return (
         <div>
-          {renderReviews.map((review, index) =>
-            <ReviewTiles review={review} key={index} getReviews={this.getReviews} />)}
+          {/* eslint-disable-next-line max-len */}
+          {renderReviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} characteristics={meta.characteristics} />)}
           <button type="button" id="moreReviewBtn" onClick={this.handleMoreReviewsClick}>{moreReviewtext}</button>
           <br />
           <AddReview currentID={currentID} getReviews={this.getReviews} />
@@ -85,8 +87,8 @@ class Reviews extends React.Component {
     }
     return ( // don't need button
       <div>
-        {reviews.map((review, index) =>
-          <ReviewTiles review={review} key={index} getReviews={this.getReviews} />)}
+        {/* eslint-disable-next-line max-len */}
+        {reviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} characteristics={meta.characteristics} />)}
         <AddReview currentID={currentID} />
       </div>
     );
