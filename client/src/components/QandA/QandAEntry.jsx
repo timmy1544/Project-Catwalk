@@ -1,29 +1,56 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 /* eslint-disable eol-last */
+import axios from 'axios';
 import React from 'react';
-import Question from './Question';
+// import axios from 'axios';
+import Answer from './Answer';
 
 class QandAEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      answers: [],
+    };
+    // console.log('question component prop:', this.props);
+  }
+
+  componentDidMount() {
+    this.getAnswers();
+  }
+
+  getAnswers() {
+    if (this.props.question) {
+      const questionID = this.props.question.question_id;
+      // console.log('questionID', questionID);
+      axios.get(`/qa/questions/${questionID}/answers`)
+        .then((answers) => {
+          // console.log('axios answers', answers.data.results);
+          this.setState({
+            answers: answers.data.results,
+          });
+        });
+    }
   }
 
   render() {
-    const { questions } = this.props;
-    let quest;
-    console.log('questions: ', questions);
-    if (questions.length === 0) {
-      quest = <Question />;
+    let questionBody;
+    if (this.props.question) {
+      questionBody = this.props.question.question_body;
     } else {
-      quest = questions.map((question, index) => (<Question question={question} key={index} />));
+      questionBody = 'No Question Data';
     }
     return (
       <div>
-        {/* {questions.map((question, index) =>
-          <Question question={question.question_body} key={index} />)} */}
-        {quest}
+        Q:
+        {questionBody}
+        <br />
+        A:
+        {this.state.answers.map((answerObj, index) => (
+          <Answer answerObj={answerObj} key={index} />
+        ))}
+        <button type="button">Load More Answers</button>
       </div>
     );
   }
