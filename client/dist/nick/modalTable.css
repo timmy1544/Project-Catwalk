@@ -8,7 +8,14 @@
 .table-list-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-content: center;
-  color: blue;
+  justify-content: center;
+  /* align-items: center; */
+  color: orange;
+}
+
+.product-characteristics-container {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: space-evenly;
 }

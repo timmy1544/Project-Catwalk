@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CheckIcon from '@mui/icons-material/Check';
 
 const ModalTable = () => (
   <div>
@@ -9,16 +10,20 @@ const ModalTable = () => (
     </span>
     <span className="table-list-container">
       <hr />
-      <ul>
-        <li>FREE</li>
-        <li>&#10004; Single User &#10004;</li>
-        <li>&#10004; Single User</li>
-        <li>&#10004; Single User</li>
-        <li>&#10004; Single User</li>
-        <li>&#10004; Single User</li>
-        <li>&#10006; Single User</li>
-        <li>&#10006; Single User</li>
-      </ul>
+      <div className="product-characteristics-container">
+        <div><CheckIcon /></div>
+        {/* if feature/characteristic is true for current then checkmark else null */}
+        <p>100% Cotten</p>
+        <div><CheckIcon /></div>
+        {/* if feature/characteristic is true for compared then checkmark else null */}
+      </div>
+      <div className="product-characteristics-container">
+        {/* if feature/characteristic is true for current then checkmark else null */}
+        <div><CheckIcon /></div>
+        <p>100% Cotten</p>
+        <div><CheckIcon /></div>
+        {/* if feature/characteristic is true for compared then checkmark else null */}
+      </div>
     </span>
   </div>
 );
