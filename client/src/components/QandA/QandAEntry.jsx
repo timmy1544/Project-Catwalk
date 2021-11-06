@@ -2,6 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable eol-last */
+import axios from 'axios';
 import React from 'react';
 // import axios from 'axios';
 import Answer from './Answer';
@@ -10,28 +11,35 @@ class QandAEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // answers: [],
+      answers: [],
     };
-    console.log('question component prop:', this.props);
+    // console.log('question component prop:', this.props);
+  }
+
+  componentDidMount() {
+    this.getAnswers();
+  }
+
+  getAnswers() {
+    if (this.props.question) {
+      const questionID = this.props.question.question_id;
+      console.log('questionID', questionID);
+      axios.get(`/qa/questions/${questionID}/answers`)
+        .then((answers) => {
+          console.log('axios answers', answers.data.results);
+          this.setState({
+            answers: answers.data.results,
+          });
+        });
+    }
   }
 
   render() {
     let questionBody;
-    // let questionID;
-    let answersArray;
     if (this.props.question) {
       questionBody = this.props.question.question_body;
-      // questionID = this.props.question.question_id;
-      // console.log('questionID', questionID);
-      // console.log('props question', this.props.question.answers);
-      const answerIDs = Object.keys(this.props.question.answers);
-      answersArray = Object.values(this.props.question.answers);
-      // console.log('answer ID arrays', answerIDs);
-      // console.log('answer object array', answersArray);
     } else {
       questionBody = 'No Question Data';
-      // questionID = '';
-      answersArray = [];
     }
     return (
       <div>
@@ -39,8 +47,7 @@ class QandAEntry extends React.Component {
         {questionBody}
         <br />
         A:
-        {/* <Answer answers={questionID} /> */}
-        {answersArray.map((answerObj, index) => (
+        {this.state.answers.map((answerObj, index) => (
           <Answer answerObj={answerObj} key={index} />
         ))}
         <button type="button">Load More Answers</button>
