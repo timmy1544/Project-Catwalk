@@ -1,0 +1,14 @@
+.headline-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: blue;
+}
+
+.table-list-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: center;
+  color: blue;
+}
