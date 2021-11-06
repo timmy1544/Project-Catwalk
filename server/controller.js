@@ -85,20 +85,7 @@ module.exports = {
           res.status(500).send(err);
         });
     },
-    postReviews: (req, res) => {
-      console.log('req body:', req.body);
-      axios.post(`${config.ALTELIER_API}/reviews`, req.body, {
-        headers: {
-          Authorization: `${config.API_KEY}`,
-        },
-      })
-        .then(() => {
-          res.status(201).send('Successfully made POST request');
-        })
-        .catch((err) => {
-          res.status(500).send(err);
-        });
-    },
+    postReviews: () => {},
     putReviewHelpful: (req, res) => {
       axios.put(`${config.ALTELIER_API}/reviews/${req.params.review_id}/helpful`, {}, {
         headers: {
