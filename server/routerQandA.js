@@ -3,24 +3,28 @@ const { QandA } = require('./controller');
 
 const routerQandA = express.Router();
 
-routerQandA.route('/')
+// Questions
+
+routerQandA.route('/questions/:product_id')
   .get(QandA.getQuestions)
   .post(QandA.postQuestion);
 
-routerQandA.route('/:question_id/answers')
+routerQandA.route('/questions/:question_id/answers')
   .get(QandA.getAnswers)
   .post(QandA.postAnswer);
 
-routerQandA.route('/:question_id/helpful')
+routerQandA.route('/questions/:question_id/helpful')
   .put(QandA.putQuestionHelpful);
 
-routerQandA.route('/:answer_id/helpful')
-  .put(QandA.putAnswerHelpful);
-
-routerQandA.route('/:question_id/report')
+routerQandA.route('/questions/:question_id/report')
   .put(QandA.putQuestionReport);
 
-routerQandA.route('/:answer_id/report')
+// Answers
+
+routerQandA.route('/answers/:answer_id/helpful')
+  .put(QandA.putAnswerHelpful);
+
+routerQandA.route('/answers/:answer_id/report')
   .put(QandA.putAnswerReport);
 
 module.exports = routerQandA;
