@@ -1,3 +1,4 @@
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -12,12 +13,22 @@ class QandAEntry extends React.Component {
     super(props);
     this.state = {
       answers: [],
+      initialAnswers: [],
+      click: false,
     };
-    // console.log('question component prop:', this.props);
+    this.handleMoreAnswersClick = this.handleMoreAnswersClick.bind(this);
   }
 
   componentDidMount() {
     this.getAnswers();
+  }
+
+  handleMoreAnswersClick() {
+    if (this.state.click === false) {
+      this.setState({ click: true });
+    } else {
+      this.setState({ click: false });
+    }
   }
 
   getAnswers() {
@@ -29,6 +40,7 @@ class QandAEntry extends React.Component {
           // console.log('axios answers', answers.data.results);
           this.setState({
             answers: answers.data.results,
+            initialAnswers: answers.data.results.slice(0, 2),
           });
         });
     }
@@ -36,10 +48,26 @@ class QandAEntry extends React.Component {
 
   render() {
     let questionBody;
-    if (this.props.question) {
+    let answerBody;
+    let loadMoreAnswersButton;
+    if (this.props.question && this.state.click === false) {
       questionBody = this.props.question.question_body;
+      answerBody = this.state.initialAnswers.map((answerObj, index) => (
+        <Answer answerObj={answerObj} key={index} />
+      ));
+    } else if (this.props.question && this.state.click === true) {
+      questionBody = this.props.question.question_body;
+      answerBody = this.state.answers.map((answerObj, index) => (
+        <Answer answerObj={answerObj} key={index} />
+      ));
     } else {
       questionBody = 'No Question Data';
+      answerBody = 'No Answer Data';
+    }
+    if (this.state.answers.length > 2) {
+      loadMoreAnswersButton = <button type="button" onClick={this.handleMoreAnswersClick}>Load More Answers</button>;
+    } else {
+      loadMoreAnswersButton = '';
     }
     return (
       <div>
@@ -47,10 +75,8 @@ class QandAEntry extends React.Component {
         {questionBody}
         <br />
         A:
-        {this.state.answers.map((answerObj, index) => (
-          <Answer answerObj={answerObj} key={index} />
-        ))}
-        <button type="button">Load More Answers</button>
+        {answerBody}
+        {loadMoreAnswersButton}
       </div>
     );
   }
