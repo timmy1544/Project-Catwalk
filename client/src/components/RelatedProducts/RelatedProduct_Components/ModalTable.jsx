@@ -3,21 +3,23 @@ import * as React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ModalTable = ({ features, mainFeatures }) => {
-  console.log(mainFeatures)
+  // TO BE CONTINUED...
+  // make a compare products method
+  // refactor to be a table
 
   const mapFeatures = features.map((item, i) => (
     <div key={`modal-table-feature-${i}`} className="product-characteristics-container">
-      <div><CheckIcon /></div>
-      <p>{item.feature}</p>
-      <div><CheckIcon /></div>
+      <div className="whiteCheckIcon"><CheckIcon /></div>
+      <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
+      <div className="comparedCheckIcon"><CheckIcon /></div>
     </div>
   ));
 
   const mapMainFeatures = mainFeatures.map((item, i) => (
     <div key={`modal-table-mainFeature-${i}`} className="product-characteristics-container">
-      <div><CheckIcon /></div>
-      <p>{item.feature}</p>
-      <div><CheckIcon /></div>
+      <div className="mainCheckIcon"><CheckIcon /></div>
+      <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
+      <div className="whiteCheckIcon"><CheckIcon /></div>
     </div>
   ));
 
@@ -29,8 +31,8 @@ const ModalTable = ({ features, mainFeatures }) => {
         <h2>Compared Product</h2>
       </span>
       <span className="table-list-container">
-        {mapFeatures}
         {mapMainFeatures}
+        {mapFeatures}
       </span>
     </div>
   );

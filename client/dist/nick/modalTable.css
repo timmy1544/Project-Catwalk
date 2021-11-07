@@ -9,13 +9,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  color: orange;
 }
 
 .product-characteristics-container {
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
   justify-content: space-evenly;
+}
+
+.comparedCheckIcon {
+  color:green;
+}
+
+.mainCheckIcon {
+  color: green
+}
+
+.whiteCheckIcon {
+  color:white
+}
+
+.featureText {
+  color: black
 }
