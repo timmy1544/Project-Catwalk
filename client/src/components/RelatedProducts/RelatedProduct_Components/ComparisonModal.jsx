@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, Box } from '@mui/system';
 import { Star } from '@mui/icons-material/';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
