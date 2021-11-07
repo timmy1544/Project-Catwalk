@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const StylePhotos = ({ styleId }) => {
+  // const [styleID, setStyleId] = useState(styleId)
   const [style, setStyle] = useState([]);
   let imgUrl;
   let name;
@@ -14,13 +15,14 @@ const StylePhotos = ({ styleId }) => {
         })
         .catch((err) => console.error(err));
     }
-  }, [styleId]);
+  }, []);
 
   if (style[0]) {
     const photosArr = style[0].photos;
     name = style[0].name;
     imgUrl = photosArr[0].url;
   }
+  // console.log(styleID)
 
   return (
     <div>

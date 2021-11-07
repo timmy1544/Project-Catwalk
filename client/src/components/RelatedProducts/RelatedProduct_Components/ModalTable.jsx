@@ -30,6 +30,40 @@ const ModalTable = () => (
 
 export default ModalTable;
 
+// LIST LIKE IMPLEMENTATION
+// import * as React from 'react';
+// import CheckIcon from '@mui/icons-material/Check';
+
+// const ModalTable = () => (
+//   <div>
+//     <h1>Comparing</h1>
+//     <span className="headline-container">
+//       <h2>Current Product</h2>
+//       <h2>Compared Product</h2>
+//     </span>
+//     <span className="table-list-container">
+//       <hr />
+//       <div className="product-characteristics-container">
+//         <div><CheckIcon /></div>
+//         {/* if feature/characteristic is true for current then checkmark else null */}
+//         <p>100% Cotten</p>
+//         <div><CheckIcon /></div>
+//         {/* if feature/characteristic is true for compared then checkmark else null */}
+//       </div>
+//       <div className="product-characteristics-container">
+//         {/* if feature/characteristic is true for current then checkmark else null */}
+//         <div><CheckIcon /></div>
+//         <p>100% Cotten</p>
+//         <div><CheckIcon /></div>
+//         {/* if feature/characteristic is true for compared then checkmark else null */}
+//       </div>
+//     </span>
+//   </div>
+// );
+
+// export default ModalTable;
+
+//  TABLE IMPLEMENTATION
 // import * as React from 'react';
 // import Table from '@mui/material/Table';
 // import TableBody from '@mui/material/TableBody';
