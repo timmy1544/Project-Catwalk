@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
+import MoreReviewBtn from './MoreReviewBtn';
 import AddReview from './AddReview';
+import Breakdown from './Breakdown';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -77,21 +79,18 @@ class Reviews extends React.Component {
     } else {
       renderReviews = lessReviews;
     }
-    if (reviews.length > 2) { // need button
-      return (
-        <div>
-          {/* eslint-disable-next-line max-len */}
-          {renderReviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
-          <button type="button" id="moreReviewBtn" onClick={this.handleMoreReviewsClick}>{moreReviewtext}</button>
-          <br />
-          <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
-        </div>
-      );
-    }
-    return ( // don't need button
+
+    return (
       <div>
-        {/* eslint-disable-next-line max-len */}
-        {reviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+        <Breakdown />
+        {renderReviews.map((review, index) =>
+          <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+        <MoreReviewBtn
+          reviews={reviews}
+          handleMoreReviewsClick={this.handleMoreReviewsClick}
+          moreReviewtext={moreReviewtext}
+        />
+        <br />
         <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
       </div>
     );

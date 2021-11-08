@@ -58,7 +58,6 @@ class AddReview extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log('run this?')
     const newReview = this.state;
     const { getReviews } = this.props;
     e.preventDefault();
