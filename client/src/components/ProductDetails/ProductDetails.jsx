@@ -19,6 +19,7 @@ class ProductDetails extends React.Component {
       currentID: this.props.productId,
       style: null,
       currentStyle: null,
+      currentReviews: null,
     };
 
     this.setCurrentStyle = this.setCurrentStyle.bind(this);
@@ -43,9 +44,13 @@ class ProductDetails extends React.Component {
             style: response.data,
             currentStyle: response.data.results[0],
           });
-        })
-        .catch((err) => {
-          throw err;
+        }))
+      .then(axios.get(`/reviews/${this.state.currentID}`)
+        .then((response) => {
+          console.log('product reviews', response.data);
+          this.setState({
+            currentReviews: response.data,
+          });
         }))
       .catch((err) => {
         throw err;
@@ -59,7 +64,11 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    if (!this.state.product || !this.state.style || !this.state.currentStyle) { return null; }
+    if (!this.state.product
+      || !this.state.style
+      || !this.state.currentStyle
+      || !this.state.currentReviews) { return null; }
+    // console.log(this.state.currentReviews);
     return (
       <div className="productDetails">
         <PhotoGallery currentStyle={this.state.currentStyle} />
@@ -67,6 +76,7 @@ class ProductDetails extends React.Component {
           style={this.state.style}
           product={this.state.product}
           setCurrentStyle={this.setCurrentStyle}
+          currentReviews={this.state.currentReviews}
         />
         <ProductSlogan product={this.state.product} />
       </div>

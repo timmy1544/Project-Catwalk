@@ -1,46 +1,67 @@
 import React from 'react';
 import axios from 'axios';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import AddReviewChar from './AddReviewChar';
+
+const labels = {
+  1: 'Poor',
+  2: 'Fair',
+  3: 'Average',
+  4: 'Good',
+  5: 'Great',
+};
 
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newReview: {
-        product_id: props.currentID,
-        rating: 0,
-        summary: '',
-        body: '',
-        recommend: false,
-        name: '',
-        email: '',
-        photos: [],
-        characteristics: {},
-      },
+      product_id: props.currentID,
+      rating: 0,
+      summary: '',
+      body: '',
+      // eslint-disable-next-line react/no-unused-state
+      recommend: false,
+      name: '',
+      email: '',
+      photos: [],
+      characteristics: {},
+      hover: -1,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleHover = this.handleHover.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    // eslint-disable-next-line react/destructuring-assignment
-    const newObj = this.state.newReview;
-    if (e.target.type === 'text') {
-      newObj[e.target.name] = e.target.value;
-    } else if (e.target.name === 'rating') {
-      newObj.rating = parseInt(e.target.value);
+  handleChange(e, newValue) {
+    if (e.target.name === 'rating') {
+      this.setState({
+        rating: newValue,
+      });
     } else if (e.target.name === 'recommend') {
-      newObj.recommend = !newObj.recommend;
+      this.setState({
+        // eslint-disable-next-line react/no-unused-state
+        recommend: newValue,
+      });
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
     }
+  }
+
+  handleHover(newHover) {
     this.setState({
-      newReview: newObj,
+      hover: newHover,
     });
   }
 
   handleSubmit(e) {
-    const { newReview } = this.state;
+    const newReview = this.state;
     const { getReviews } = this.props;
     e.preventDefault();
+    // validate the submitted form here
     axios.post(`/reviews/${newReview.product_id}`, newReview)
       .then((response) => {
         console.log(response.data);
@@ -55,22 +76,26 @@ class AddReview extends React.Component {
 
   render() {
     const {
-      summary, body, recommend, name, email, photos, characteristics,
+      rating, summary, body, name, email, photos, characteristics, hover,
     } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="rating">
           Rating star:
-          <input type="radio" id="rating1" name="rating" value="1" onChange={this.handleChange} />
-          <label htmlFor="rating1">1</label>
-          <input type="radio" id="rating2" name="rating" value="2" onChange={this.handleChange} />
-          <label htmlFor="rating2">2</label>
-          <input type="radio" id="rating3" name="rating" value="3" onChange={this.handleChange} />
-          <label htmlFor="rating3">3</label>
-          <input type="radio" id="rating4" name="rating" value="4" onChange={this.handleChange} />
-          <label htmlFor="rating4">4</label>
-          <input type="radio" id="rating5" name="rating" value="5" onChange={this.handleChange} />
-          <label htmlFor="rating5">5</label>
+          <Rating
+            name="rating"
+            value={rating}
+            onChange={(event, newValue) => {
+              this.handleChange(event, newValue);
+            }}
+            onChangeActive={(event, newHover) => {
+              this.handleHover(newHover);
+            }}
+          />
+          {rating !== null && (
+          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+          )}
         </label>
         <br />
         <label htmlFor="summary">
@@ -85,8 +110,10 @@ class AddReview extends React.Component {
         <br />
         <label htmlFor="recommend">
           recommend:
-          <input type="checkbox" id="recommendBox" name="recommend" value={recommend} onChange={this.handleChange} />
-          <label htmlFor="recommendBox">Recommend</label>
+          <input type="radio" id="recommendYes" name="recommend" onChange={(e) => { this.handleChange(e, true); }} />
+          <label htmlFor="recommendYes">Yes</label>
+          <input type="radio" id="recommendNo" name="recommend" onChange={(e) => { this.handleChange(e, false); }} />
+          <label htmlFor="recommendNo">No</label>
         </label>
         <br />
         <label htmlFor="name">
@@ -104,10 +131,7 @@ class AddReview extends React.Component {
           <input type="text" name="photos" value={photos} onChange={this.handleChange} />
         </label>
         <br />
-        <label htmlFor="characteristics">
-          characteristics:
-          <input type="text" name="characteristics" value={characteristics} onChange={this.handleChange} />
-        </label>
+        <AddReviewChar characteristics={characteristics} handleChange={this.handleChange} />
         <br />
         <input type="submit" value="Submit Review" />
       </form>

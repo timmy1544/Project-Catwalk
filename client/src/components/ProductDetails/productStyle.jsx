@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -5,6 +6,8 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Rating from '@mui/material/Rating';
+import { Link } from 'react-scroll';
 
 class ProductStyle extends React.Component {
   constructor(props) {
@@ -16,6 +19,7 @@ class ProductStyle extends React.Component {
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
       style_id: this.props.style.results[0].style_id,
+      currentReviews: this.props.currentReviews,
     };
 
     this.selectStyle = this.selectStyle.bind(this);
@@ -39,10 +43,26 @@ class ProductStyle extends React.Component {
   }
 
   render() {
+    let currentRating = 0;
+    this.state.currentReviews.results.map((item) => currentRating = item.rating + currentRating);
+    currentRating /= this.state.currentReviews.count;
+    console.log('currentRating', currentRating);
     return (
       <div className="productStyle">
         <div className="textPart">
-          <div className="review">review goes here!</div>
+          <div className="review">
+            <Rating name="read-only" value={currentRating} precision={0.25} size="small" readOnly />
+            <div style={{ cursor: 'pointer' }}>
+              <Link to="Reviews" spy smooth>
+                Read all
+                {' '}
+                {this.state.currentReviews.count}
+                {' '}
+                reviews
+              </Link>
+
+            </div>
+          </div>
           <div className="smallfonts">{this.state.product.category}</div>
           <div className="productName">{this.state.product.name}</div>
           <div className="smallfonts">

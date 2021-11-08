@@ -1,29 +1,32 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
+import Rating from '@mui/material/Rating';
 
-class ReviewTiles extends React.Component {
+class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
+    const { helpfulness } = this.props.review;
     this.state = {
       helpfulClick: false,
-      helpfulness: this.props.review.helpfulness,
+      helpfulness,
     };
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
     this.handleReportClick = this.handleReportClick.bind(this);
   }
 
   handleHelpfulClick() {
-    const { helpfulClick } = this.state;
+    const { helpfulClick, helpfulness } = this.state;
     if (helpfulClick === false) {
-      const { review_id } = this.props.review;
-      axios.put(`/reviews/${review_id}/helpful`)
+      const { review } = this.props;
+      axios.put(`/reviews/${review.review_id}/helpful`)
         .then((response) => {
           console.log(response.data);
         })
         .then(() => {
           this.setState({
             helpfulClick: true,
-            helpfulness: this.props.review.helpfulness + 1,
+            helpfulness: helpfulness + 1,
           });
         })
         .catch((err) => {
@@ -33,9 +36,8 @@ class ReviewTiles extends React.Component {
   }
 
   handleReportClick() {
-    const { review_id } = this.props.review;
-    const { getReviews } = this.props;
-    axios.put(`/reviews/${review_id}/report`)
+    const { review, getReviews } = this.props;
+    axios.put(`/reviews/${review.review_id}/report`)
       .then((response) => {
         console.log(response.data);
       })
@@ -48,39 +50,36 @@ class ReviewTiles extends React.Component {
   }
 
   render() {
-    const {
-      body, date, rating, recommend, response, reviewer_name, summary
-    } = this.props.review;
+    const { review } = this.props;
     const { helpfulness } = this.state;
+    const convertedDate = moment(review.date).format('MMMM Do[,] YYYY');
     return (
       <div className="Reviews">
-        <div id="ReviewStars">
-          rating:
-          {rating}
-        </div>
+        Rating:
+        <Rating id="ReviewStars" name="read-only" value={review.rating} readOnly />
         <div id="ReviewDate">
           date:
-          {date}
+          {convertedDate}
         </div>
         <div id="ReviewSummary">
           summary:
-          {summary}
+          {review.summary}
         </div>
         <div id="ReviewBody">
           body:
-          {body}
+          {review.body}
         </div>
         <div id="ReviewRecommend">
           recommend:
-          {recommend}
+          {review.recommend}
         </div>
         <div id="ReviewName">
           Reviewer Name:
-          {reviewer_name}
+          {review.reviewer_name}
         </div>
         <div id="ReviewResponse">
           Response to Review:
-          {response}
+          {review.response}
         </div>
         <div id="ReviewHelpfulness">
           Rating Helpfulness:
@@ -94,4 +93,4 @@ class ReviewTiles extends React.Component {
   }
 }
 
-export default ReviewTiles;
+export default ReviewTile;
