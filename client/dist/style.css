@@ -39,24 +39,68 @@
   width: 167%;
   height: auto;
   }
-
-  .slider {
+  .sliderWrapper {
     position:absolute;
-    width: 9%;
+    width: 8.8%;
     height:100%;
-    top: 4%;
+    top: 0.5%;
     left: 3%;
     background-color: #C4C4C4;
     z-index: 0;
     display:flex;
-    flex-direction:column;
-    flex-wrap:wrap;
     overflow:hidden;
-    align-items:flex-start;
+    flex-wrap: nowrap;
+    flex-direction:column;
+    align-items:center;
     justify-content:flex-start;
     background-color: transparent;
-    row-gap: 1.5%;
   }
+  .slider {
+    width:100%;
+    height:90%;
+    background-color: #C4C4C4;
+    z-index: 0;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    overflow:hidden;
+    align-items:center;
+    justify-content:flex-start;
+    background-color: transparent;
+    row-gap: 1%;
+  }
+  .upArrow {
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    z-index:10;
+    user-select:none;
+  }
+
+  .upArrow:hover{
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index:10;
+    user-select:none;
+  }
+
+  .downArrow {
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    z-index:10;
+    user-select:none;
+  }
+
+  .downArrow:hover{
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index:10;
+    user-select:none;
+  }
+
   .thumbnailPic {
     width:3.5rem;
     height:3.5rem;
