@@ -13,6 +13,9 @@ class QandAList extends React.Component {
 
   render() {
     const { questions } = this.props;
+    const quantity = 2;
+    const initialQuestions = questions.slice(0, quantity);
+    console.log('initial Q', initialQuestions);
     let quest;
     if (questions.length === 0) {
       quest = <QandAEntry />;
