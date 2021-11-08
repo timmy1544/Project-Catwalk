@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
@@ -24,8 +24,11 @@ const PhotoGallery = ({ currentStyle }) => {
   const prevPic = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
+  useEffect(() => {
+    setSelectThumb(current);
+  }, [current]);
+
   const scroll = (scrollOffset) => {
-    console.log(ref);
     ref.current.scrollTop += scrollOffset;
   };
 
@@ -48,7 +51,7 @@ const PhotoGallery = ({ currentStyle }) => {
         {showArrow && <TiArrowSortedUp onClick={() => scroll(-20)} className="upArrow" />}
         <div ref={ref} className="slider">
           {slides.map((item, index) => (
-            <div className={index === selectThumb || index === current ? 'selectedThumbnailPic' : 'thumbnailPic'} key={index}>
+            <div className={index === selectThumb ? 'selectedThumbnailPic' : 'thumbnailPic'} key={index}>
               <img
                 src={item.thumbnail_url}
                 alt="thumbnail"
