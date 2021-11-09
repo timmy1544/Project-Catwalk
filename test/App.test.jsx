@@ -78,3 +78,15 @@ test('testing live server request', async () => {
     }
   })
 })
+
+// Product Details
+
+
+// Related Products
+
+
+// Q and A
+
+
+// Reviews
+
