@@ -95,6 +95,15 @@ class Reviews extends React.Component {
       renderReviews = lessReviews;
     }
 
+    if (reviews.length === 0) {
+      return (
+        <div>
+          <div> No review available. </div>
+          <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
+        </div>
+      );
+    }
+
     return (
       <div>
         {'\n'}

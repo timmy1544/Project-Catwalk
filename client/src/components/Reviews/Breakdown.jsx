@@ -14,16 +14,17 @@ const AverageRatingsHelper = (ratings) => {
 };
 
 const RecommendHelper = (recommended) => {
-  const trueNum = parseInt(recommended.true, 10);
-  const falseNum = parseInt(recommended.false, 10);
+  const trueNum = parseInt(recommended.true, 10) || 0;
+  const falseNum = parseInt(recommended.false, 10) || 0;
   return (100 * trueNum) / (trueNum + falseNum);
 };
 
 const BarChartHelper = (ratings) => {
   const dataArr = [];
   // eslint-disable-next-line guard-for-in
-  for (const i in ratings) {
-    const arr = [`${i} Stars`, parseInt(ratings[i], 10)];
+  for (let i = 1; i <= 5; i += 1) {
+    const starNum = parseInt(ratings[i], 10) || 0;
+    const arr = [`${i} Stars`, starNum];
     dataArr.push(arr);
   }
   return [['stars', 'numbers']].concat(dataArr);
