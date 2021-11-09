@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
+import MoreReviewBtn from './MoreReviewBtn';
 import AddReview from './AddReview';
+import Breakdown from './Breakdown';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -14,14 +16,16 @@ class Reviews extends React.Component {
       moreReview: false,
       moreReviewtext: 'More Reviews',
       meta: {},
+      charItem: {},
     };
     this.getReviews = this.getReviews.bind(this);
-    // this.getReviewMeta = this.getReviewMeta.bind(this);
+    this.getReviewMeta = this.getReviewMeta.bind(this);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
   }
 
   componentDidMount() {
     this.getReviews();
+    this.getReviewMeta();
   }
 
   handleMoreReviewsClick() { // get request
@@ -56,7 +60,8 @@ class Reviews extends React.Component {
     axios.get(`/reviews/meta/${currentID}`)
       .then((res) => {
         this.setState({
-          meta: res.data.results,
+          meta: res.data,
+          charItem: res.data.characteristics,
         });
       })
       .catch((err) => console.log('error', err));
@@ -64,7 +69,7 @@ class Reviews extends React.Component {
 
   render() {
     const {
-      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta
+      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta, charItem,
     } = this.state;
     // default: render 2 review, if more review button is clicked, show all reviews.
     let renderReviews;
@@ -74,22 +79,22 @@ class Reviews extends React.Component {
     } else {
       renderReviews = lessReviews;
     }
-    if (reviews.length > 2) { // need button
-      return (
-        <div>
-          {/* eslint-disable-next-line max-len */}
-          {renderReviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} characteristics={meta.characteristics} />)}
-          <button type="button" id="moreReviewBtn" onClick={this.handleMoreReviewsClick}>{moreReviewtext}</button>
-          <br />
-          <AddReview currentID={currentID} getReviews={this.getReviews} />
-        </div>
-      );
-    }
-    return ( // don't need button
+
+    return (
       <div>
-        {/* eslint-disable-next-line max-len */}
-        {reviews.map((review, index) => <ReviewTile review={review} key={index} getReviews={this.getReviews} characteristics={meta.characteristics} />)}
-        <AddReview currentID={currentID} />
+        {'\n'}
+        <Breakdown meta={meta} />
+        {'\n'}
+        {renderReviews.map((review, index) =>
+          <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+        {'\n'}
+        <MoreReviewBtn
+          reviews={reviews}
+          handleMoreReviewsClick={this.handleMoreReviewsClick}
+          moreReviewtext={moreReviewtext}
+        />
+        {'\n'}
+        <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
       </div>
     );
   }
