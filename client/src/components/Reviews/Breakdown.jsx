@@ -25,9 +25,7 @@ const BarChartHelper = (ratings) => {
   for (const i in ratings) {
     const arr = [`${i} Stars`, parseInt(ratings[i], 10)];
     dataArr.push(arr);
-    console.log('arr', arr);
   }
-  console.log('dataArr', dataArr);
   return [['stars', 'numbers']].concat(dataArr);
 };
 
@@ -39,11 +37,9 @@ const Breakdown = (props) => {
     );
   }
   const { ratings, recommended, characteristics} = meta;
-  console.log('meta', props.meta);
   const aveRating = parseFloat(AverageRatingsHelper(ratings).toFixed(1), 10);
   const recommendPercentage = parseFloat(RecommendHelper(recommended).toFixed(0), 10);
   const barchartData = BarChartHelper(ratings);
-  console.log('barchartData = ', barchartData);
 
   return (
     <div>
