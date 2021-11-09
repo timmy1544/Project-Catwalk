@@ -82,15 +82,18 @@ class Reviews extends React.Component {
 
     return (
       <div>
-        <Breakdown />
+        {'\n'}
+        <Breakdown meta={meta} />
+        {'\n'}
         {renderReviews.map((review, index) =>
           <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+        {'\n'}
         <MoreReviewBtn
           reviews={reviews}
           handleMoreReviewsClick={this.handleMoreReviewsClick}
           moreReviewtext={moreReviewtext}
         />
-        <br />
+        {'\n'}
         <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
       </div>
     );
