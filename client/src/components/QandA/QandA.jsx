@@ -23,8 +23,6 @@ class QandA extends React.Component {
   }
 
   handleMoreQuestions() {
-    const maxQuantity = this.state.questions.length;
-    console.log('max Qs', maxQuantity);
     this.setState({ quantity: this.state.quantity + 2 });
   }
 
