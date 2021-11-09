@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
@@ -28,6 +30,19 @@ class Reviews extends React.Component {
     this.getReviewMeta();
   }
 
+  componentDidUpdate() {
+    const { currentID } = this.state;
+    const { productId } = this.props;
+    if (currentID !== productId) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        currentID: productId,
+      });
+      this.getReviews();
+      this.getReviewMeta();
+    }
+  }
+
   handleMoreReviewsClick() { // get request
     const { moreReview } = this.state;
     if (moreReview === false) {
@@ -44,8 +59,8 @@ class Reviews extends React.Component {
   }
 
   getReviews() {
-    const { currentID } = this.state;
-    axios.get(`/reviews/${currentID}`)
+    const { productId } = this.props;
+    axios.get(`/reviews/${productId}`)
       .then((res) => {
         this.setState({
           reviews: res.data.results,
@@ -56,8 +71,8 @@ class Reviews extends React.Component {
   }
 
   getReviewMeta() {
-    const { currentID } = this.state;
-    axios.get(`/reviews/meta/${currentID}`)
+    const { productId } = this.props;
+    axios.get(`/reviews/meta/${productId}`)
       .then((res) => {
         this.setState({
           meta: res.data,

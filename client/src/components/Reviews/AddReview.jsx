@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import axios from 'axios';
 import Rating from '@mui/material/Rating';
@@ -133,7 +134,10 @@ class AddReview extends React.Component {
           <input type="text" name="photos" value={photos} onChange={this.handleChange} />
         </label>
         <br />
-        <AddReviewChar characteristics={characteristics} handleChange={this.handleChange} charItem={charItem} />
+        <AddReviewChar
+          characteristics={characteristics}
+          handleChange={this.handleChange}
+          charItem={charItem} />
         <br />
         <input type="submit" value="Submit Review" />
       </form>

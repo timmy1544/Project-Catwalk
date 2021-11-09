@@ -6,6 +6,7 @@ import Rating from '@mui/material/Rating';
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
+    // eslint-disable-next-line react/destructuring-assignment
     const { helpfulness } = this.props.review;
     this.state = {
       helpfulClick: false,
