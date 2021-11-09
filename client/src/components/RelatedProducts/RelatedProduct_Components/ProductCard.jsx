@@ -10,6 +10,7 @@ const ProductCard = ({ relatedId, productId }) => {
     ratings: [],
     features: [],
     mainFeatures: [],
+    mainProduct: []
   });
 
   // ASYNC W/ AXIOS.ALL
@@ -24,12 +25,14 @@ const ProductCard = ({ relatedId, productId }) => {
         const allFeatures = allResponseData[0].data.features;
         const allRatings = allResponseData[1].data.results;
         const allMainFeatures = allResponseData[2].data.features
+        const mainProduct = allResponseData[2].data
 
         setProduct({
           products: allProducts,
           ratings: allRatings,
           features: allFeatures,
-          mainFeatures: allMainFeatures
+          mainFeatures: allMainFeatures,
+          mainProduct: mainProduct
         });
       }));
   }, [])
@@ -43,7 +46,7 @@ const ProductCard = ({ relatedId, productId }) => {
   } = product.products;
 
   const defaultPrice = `$${default_price}`;
-
+  // console.log(product.mainProduct)
   return (
     <div key={id} className="product-card">
       <div className="product-card__body">
@@ -52,6 +55,8 @@ const ProductCard = ({ relatedId, productId }) => {
             <ComparisonModal
               features={product.features}
               mainFeatures={product.mainFeatures}
+              productObj={product.mainProduct}
+              relatedProductsObj={product.products}
             />
           </div>
           <StylePhotos

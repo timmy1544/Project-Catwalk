@@ -38,7 +38,7 @@ const style = {
   pb: 3,
 };
 
-export default function Modal({ features, mainFeatures }) {
+export default function Modal({ features, mainFeatures, productObj, relatedProductsObj }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -58,6 +58,8 @@ export default function Modal({ features, mainFeatures }) {
           <ModalTable
             features={features}
             mainFeatures={mainFeatures}
+            productObj={productObj}
+            relatedProductsObj={relatedProductsObj}
           />
         </Box>
       </StyledModal>

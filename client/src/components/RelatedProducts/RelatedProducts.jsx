@@ -10,7 +10,7 @@ const RelatedProducts = ({ productId }) => (
     </div>
     <div className="outfit__inner__container">
       <h3>Your Outfit</h3>
-      <OutFitList />
+      <OutFitList productId={productId} />
     </div>
   </div>
 );

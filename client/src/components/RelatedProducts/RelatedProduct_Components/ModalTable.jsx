@@ -2,7 +2,7 @@
 import * as React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ModalTable = ({ features, mainFeatures }) => {
+const ModalTable = ({ features, mainFeatures, productObj, relatedProductsObj }) => {
   // TO BE CONTINUED...
   // make a compare products method
   // refactor to be a table
@@ -24,11 +24,12 @@ const ModalTable = ({ features, mainFeatures }) => {
   ));
 
   return (
-    <div>
+    <div className="Modal-Container">
       <h1>Comparing</h1>
       <span className="headline-container">
-        <h2>Current Product</h2>
-        <h2>Compared Product</h2>
+        <h2 className="mainName">{productObj.name}</h2>
+        <h2 className="featuresText">FEATURES</h2>
+        <h2 className="relatedName">{relatedProductsObj.name}</h2>
       </span>
       <span className="table-list-container">
         {mapMainFeatures}

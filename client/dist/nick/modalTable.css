@@ -1,8 +1,18 @@
 .headline-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: blue;
+  justify-content: space-between;
+  color: lightslategray;
+  text-align: center;
+}
+
+.mainName {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.relatedName {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .table-list-container {
@@ -29,6 +39,16 @@
   color:white
 }
 
-.featureText {
-  color: black
+.featuresText {
+  color: black;
+  display:flex;
+  align-self: center;
+  padding-right: 15px;
+  padding-left: 15px;
 }
+
+/* .Modal-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
