@@ -3,27 +3,28 @@ import axios from 'axios';
 
 const StylePhotos = ({ styleId, IDchanger }) => {
   // const [styleID, setStyleId] = useState(styleId)
-  const isMountedRef = useRef(null);
+  const CancelToken = axios.CancelToken;
+  const cancelSource = useRef(null);
 
   const [style, setStyle] = useState([]);
   let imgUrl;
   let name;
 
   useEffect(() => {
-    isMountedRef.current = true;
+    cancelSource.current = CancelToken.source();
 
-    if (isMountedRef.current) {
-      if (styleId) {
-        axios.get(`products/${styleId}/styles`)
-          .then((results) => {
-            setStyle(results.data.results);
-          })
-          .catch((err) => console.error(err));
-      }
+    if (styleId) {
+      axios.get(`products/${styleId}/styles`, {
+        cancelToken: cancelSource.current.token,
+      })
+        .then((results) => {
+          setStyle(results.data.results);
+        })
+        .catch((err) => console.error(err));
     }
 
-    return () => isMountedRef.current = false;
-  }, []);
+    return () => { cancelSource.current.cancel };
+  }, [styleId]);
 
   if (style[0]) {
     const photosArr = style[0].photos;

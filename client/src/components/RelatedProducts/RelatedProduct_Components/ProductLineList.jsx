@@ -7,6 +7,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
 
   useEffect(() => {
+    // maybe refactor this to async
     axios.get(`/products/${productId}/related`)
       .then((results) => setrelatedProductIds(results.data))
       .catch((err) => console.log(err));
@@ -21,6 +22,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
     />
   ));
 
+  console.log(productId, 'main productId')
   return (
     <div className="relatedProduct-wrapper">
       {relatedProduct}
