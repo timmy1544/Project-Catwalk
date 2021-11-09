@@ -67,12 +67,10 @@ class QandAEntry extends React.Component {
     let questionBody;
     let answerBody;
     let loadMoreAnswersButton;
-    let questionHelpfulness;
     let answers;
     let moreAnswersButtonText;
     if (this.props.question) {
       questionBody = this.props.question.question_body;
-      questionHelpfulness = this.props.question.question_helpfulness;
       if (this.state.isAnsHelpfulClick === false) {
         answers = this.state.initialAnswers;
       } else {
@@ -94,7 +92,6 @@ class QandAEntry extends React.Component {
       loadMoreAnswersButton = <button type="button" onClick={this.handleMoreAnswersClick}>{moreAnswersButtonText}</button>;
     } else {
       loadMoreAnswersButton = '';
-      questionHelpfulness = '';
     }
     return (
       <div>
@@ -106,6 +103,10 @@ class QandAEntry extends React.Component {
         (
         {this.state.quesHelpfulCount}
         )
+        {' '}
+        |
+        {' '}
+        <span className="qandalink">Add Answer</span>
         <br />
         A:
         {answerBody}
