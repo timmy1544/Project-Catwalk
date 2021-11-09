@@ -189,7 +189,7 @@ module.exports = {
         });
     },
     putQuestionHelpful: (req, res) => {
-      axios.put(`${config.ALTELIER_API}/qa/questions/${req.body.question_id}/helpful`, {
+      axios.put(`${config.ALTELIER_API}/qa/questions/${req.params.question_id}/helpful`, {}, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },
@@ -202,7 +202,6 @@ module.exports = {
         });
     },
     putAnswerHelpful: (req, res) => {
-      console.log('the answerid for helpful is: ', req.params.answer_id);
       axios.put(`${config.ALTELIER_API}/qa/answers/${req.params.answer_id}/helpful`, {}, {
         headers: {
           Authorization: `${config.API_KEY}`,
@@ -216,7 +215,7 @@ module.exports = {
         });
     },
     putQuestionReport: (req, res) => {
-      axios.put(`${config.ALTELIER_API}/qa/questions/${req.params.question_id}/report`, {
+      axios.put(`${config.ALTELIER_API}/qa/questions/${req.params.question_id}/report`, {}, {
         headers: {
           Authorization: `${config.API_KEY}`,
         },

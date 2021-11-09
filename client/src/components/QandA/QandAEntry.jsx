@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/destructuring-assignment */
@@ -14,33 +16,48 @@ class QandAEntry extends React.Component {
     this.state = {
       answers: [],
       initialAnswers: [],
-      click: false,
+      isAnsHelpfulClick: false,
+      isQuesHelpfulClick: false,
+      quesHelpfulCount: 0,
     };
     this.handleMoreAnswersClick = this.handleMoreAnswersClick.bind(this);
+    this.handleQuestionHelpfulClick = this.handleQuestionHelpfulClick.bind(this);
   }
 
   componentDidMount() {
     this.getAnswers();
+    if (this.props.question) {
+      this.setState({ quesHelpfulCount: this.props.question.question_helpfulness });
+    }
   }
 
   handleMoreAnswersClick() {
-    if (this.state.click === false) {
-      this.setState({ click: true });
+    if (this.state.isAnsHelpfulClick === false) {
+      this.setState({ isAnsHelpfulClick: true });
     } else {
-      this.setState({ click: false });
+      this.setState({ isAnsHelpfulClick: false });
+    }
+  }
+
+  handleQuestionHelpfulClick() {
+    const { questionID } = this.state;
+    if (!this.state.isQuesHelpfulClick) {
+      this.setState({ isQuesHelpfulClick: true });
+      axios.put(`qa/questions/${questionID}/helpful`)
+        .then(() => this.setState({ quesHelpfulCount: this.state.quesHelpfulCount + 1 }))
+        .catch((err) => { throw Error('axios question helpful error', err); });
     }
   }
 
   getAnswers() {
     if (this.props.question) {
       const questionID = this.props.question.question_id;
-      // console.log('questionID', questionID);
       axios.get(`/qa/questions/${questionID}/answers`)
         .then((answers) => {
-          // console.log('axios answers', answers.data.results);
           this.setState({
             answers: answers.data.results,
             initialAnswers: answers.data.results.slice(0, 2),
+            questionID,
           });
         });
     }
@@ -50,14 +67,16 @@ class QandAEntry extends React.Component {
     let questionBody;
     let answerBody;
     let loadMoreAnswersButton;
-    if (this.props.question && this.state.click === false) {
+    let answers;
+    let moreAnswersButtonText;
+    if (this.props.question) {
       questionBody = this.props.question.question_body;
-      answerBody = this.state.initialAnswers.map((answerObj, index) => (
-        <Answer answerObj={answerObj} key={index} />
-      ));
-    } else if (this.props.question && this.state.click === true) {
-      questionBody = this.props.question.question_body;
-      answerBody = this.state.answers.map((answerObj, index) => (
+      if (this.state.isAnsHelpfulClick === false) {
+        answers = this.state.initialAnswers;
+      } else {
+        answers = this.state.answers;
+      }
+      answerBody = answers.map((answerObj, index) => (
         <Answer answerObj={answerObj} key={index} />
       ));
     } else {
@@ -65,7 +84,12 @@ class QandAEntry extends React.Component {
       answerBody = 'No Answer Data';
     }
     if (this.state.answers.length > 2) {
-      loadMoreAnswersButton = <button type="button" onClick={this.handleMoreAnswersClick}>Load More Answers</button>;
+      if (this.state.isAnsHelpfulClick === false) {
+        moreAnswersButtonText = 'Load More Answers';
+      } else {
+        moreAnswersButtonText = 'Collapse Answers';
+      }
+      loadMoreAnswersButton = <button type="button" onClick={this.handleMoreAnswersClick}>{moreAnswersButtonText}</button>;
     } else {
       loadMoreAnswersButton = '';
     }
@@ -73,6 +97,16 @@ class QandAEntry extends React.Component {
       <div>
         Q:
         {questionBody}
+        Helpful?
+        {' '}
+        <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
+        (
+        {this.state.quesHelpfulCount}
+        )
+        {' '}
+        |
+        {' '}
+        <span className="qandalink">Add Answer</span>
         <br />
         A:
         {answerBody}
