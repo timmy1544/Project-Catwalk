@@ -19,8 +19,14 @@ const StylePhotos = ({ styleId, IDchanger }) => {
 
   if (style[0]) {
     const photosArr = style[0].photos;
-    name = style[0].name;
-    imgUrl = photosArr[0].url;
+
+    if (photosArr[0].url === null) {
+      name = style[0].name;
+      imgUrl = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'
+    } else {
+      name = style[0].name;
+      imgUrl = photosArr[0].url;
+    }
   }
 
   return (

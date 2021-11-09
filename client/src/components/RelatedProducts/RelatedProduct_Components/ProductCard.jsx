@@ -39,6 +39,7 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
 
   useEffect(() => {
     getRelatedProducts();
+    return () => console.log('cleanup')
   }, [relatedId, productId]);
 
   const {
@@ -51,7 +52,6 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
   return (
     <div key={id} className="product-card" >
       <div className="product-card__body" >
-        {/* <div className="product-card-IMGcontainer" onClick={() => IDchanger(relatedId)}> */}
         <div className="product-card-IMGcontainer" >
           <div className="star-placeholder__top-right">
             <ComparisonModal
@@ -79,6 +79,39 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
 };
 
 export default ProductCard;
+
+
+
+
+// MOST CURRENT COPY
+  // ASYNC W/ AXIOS.ALL
+  // const getRelatedProducts = useCallback(async () => {
+  //   const getProducts = await axios.get(`/products/${relatedId}`);
+  //   const getRatings = await axios.get(`/reviews/${relatedId}`);
+  //   const getMainProductFeatures = await axios.get(`/products/${productId}`)
+
+  //   axios.all([getProducts, getRatings, getMainProductFeatures])
+  //     .then(axios.spread((...allResponseData) => {
+  //       const allProducts = allResponseData[0].data;
+  //       const allFeatures = allResponseData[0].data.features;
+  //       const allRatings = allResponseData[1].data.results;
+  //       const allMainFeatures = allResponseData[2].data.features
+  //       const mainProduct = allResponseData[2].data
+
+  //       setProduct({
+  //         products: allProducts,
+  //         ratings: allRatings,
+  //         features: allFeatures,
+  //         mainFeatures: allMainFeatures,
+  //         mainProduct: mainProduct
+  //       });
+  //     }));
+  // }, [])
+
+  // useEffect(() => {
+  //   getRelatedProducts();
+  //   return () => console.log('cleanup')
+  // }, [relatedId, productId]);
 
   // ASYNC TEST 1
   // const getRelatedProducts = useCallback(async () => {
