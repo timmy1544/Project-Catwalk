@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
@@ -9,10 +10,11 @@ import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
 const PhotoGallery = ({ currentStyle }) => {
-  console.log('currentStyle', currentStyle);
+  // console.log('currentStyle', currentStyle);
   const [current, setCurrent] = useState(0);
   const [selectThumb, setSelectThumb] = useState('');
   const [showArrow, setShowArrow] = useState(false);
+  // const [overflow, setOverflow] = useState('hidden');
 
   const slides = currentStyle.photos;
   const { length } = slides;

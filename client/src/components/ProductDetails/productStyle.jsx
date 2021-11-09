@@ -46,7 +46,7 @@ class ProductStyle extends React.Component {
     let currentRating = 0;
     this.state.currentReviews.results.map((item) => currentRating = item.rating + currentRating);
     currentRating /= this.state.currentReviews.count;
-    console.log('currentRating', currentRating);
+    // console.log('currentRating', currentRating);
     return (
       <div className="productStyle">
         <div className="textPart">
