@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <form>
-        <input type="text" placeholder="Have a question? Search for answers..." />
+        <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       </form>
     );
   }

@@ -96,8 +96,8 @@ class QandAEntry extends React.Component {
     return (
       <div>
         Q:
-        {questionBody}
-        Helpful?
+        <span className="questionBody">{questionBody}</span>
+        <span>Helpful?</span>
         {' '}
         <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
         (
