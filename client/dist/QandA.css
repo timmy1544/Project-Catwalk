@@ -1,14 +1,38 @@
+.qTitle {
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
 .questionBody {
   font-weight: 500;
 }
 
-.qandalink {
+.qHelpfulAddAnswerReport {
   font-weight: 300;
   font-size: .75rem;
+}
+
+.qandalink {
   text-decoration: underline;
 }
 
 .questionButton {
   display: flex;
   justify-content: flex-end;
+}
+
+.qSearchArea {
+  padding-bottom: 1rem;
+}
+
+.qSearchBar {
+  font-weight: 500;
+  width: 100%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: .5rem;
+}
+
+.qSellerText {
+  font-weight:400
 }

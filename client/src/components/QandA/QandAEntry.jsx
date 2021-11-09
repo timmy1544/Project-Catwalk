@@ -97,16 +97,18 @@ class QandAEntry extends React.Component {
       <div>
         Q:
         <span className="questionBody">{questionBody}</span>
-        <span>Helpful?</span>
-        {' '}
-        <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
-        (
-        {this.state.quesHelpfulCount}
-        )
-        {' '}
-        |
-        {' '}
-        <span className="qandalink">Add Answer</span>
+        <span className="qHelpfulAddAnswerReport">
+          Helpful?
+          {' '}
+          <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
+          (
+          {this.state.quesHelpfulCount}
+          )
+          {' '}
+          |
+          {' '}
+          <span className="qandalink">Add Answer</span>
+        </span>
         <br />
         A:
         {answerBody}
