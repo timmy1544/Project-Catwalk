@@ -7,6 +7,8 @@
   width: 80%;
   margin: auto;
   object-fit: scale-down;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 /* ******************************************************************************** */
