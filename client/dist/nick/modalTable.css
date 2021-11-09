@@ -1,14 +1,54 @@
 .headline-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: blue;
+  justify-content: space-between;
+  color: lightslategray;
+  text-align: center;
+}
+
+.mainName {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.relatedName {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .table-list-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-content: center;
-  color: blue;
+  justify-content: center;
 }
+
+.product-characteristics-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.comparedCheckIcon {
+  color:green;
+}
+
+.mainCheckIcon {
+  color: green
+}
+
+.whiteCheckIcon {
+  color:white
+}
+
+.featuresText {
+  color: black;
+  display:flex;
+  align-self: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* .Modal-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
