@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const StylePhotos = ({ styleId }) => {
+const StylePhotos = ({ styleId, IDchanger }) => {
   // const [styleID, setStyleId] = useState(styleId)
   const [style, setStyle] = useState([]);
   let imgUrl;
@@ -22,10 +22,9 @@ const StylePhotos = ({ styleId }) => {
     name = style[0].name;
     imgUrl = photosArr[0].url;
   }
-  // console.log(styleID)
 
   return (
-    <div>
+    <div onClick={IDchanger} aria-hidden="true">
       <img className="product-card__image" src={imgUrl} alt={name} />
     </div>
   );

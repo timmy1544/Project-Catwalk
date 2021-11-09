@@ -16,6 +16,7 @@ class App extends React.Component {
     };
 
     this.getProducts = this.getProducts.bind(this);
+    this.IDchanger = this.IDchanger.bind(this);
   }
 
   componentDidMount() {

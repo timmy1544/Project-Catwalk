@@ -4,7 +4,7 @@ import StylePhotos from './StylePhotos';
 import StarRating from './StarRating';
 import ComparisonModal from './ComparisonModal';
 
-const ProductCard = ({ relatedId, productId }) => {
+const ProductCard = ({ relatedId, productId, IDchanger }) => {
   const [product, setProduct] = useState({
     products: [],
     ratings: [],
@@ -46,11 +46,13 @@ const ProductCard = ({ relatedId, productId }) => {
   } = product.products;
 
   const defaultPrice = `$${default_price}`;
-  // console.log(product.mainProduct)
+
+
   return (
-    <div key={id} className="product-card">
-      <div className="product-card__body">
-        <div className="product-card-IMGcontainer">
+    <div key={id} className="product-card" >
+      <div className="product-card__body" >
+        {/* <div className="product-card-IMGcontainer" onClick={() => IDchanger(relatedId)}> */}
+        <div className="product-card-IMGcontainer" >
           <div className="star-placeholder__top-right">
             <ComparisonModal
               features={product.features}
@@ -62,6 +64,7 @@ const ProductCard = ({ relatedId, productId }) => {
           <StylePhotos
             key={relatedId}
             styleId={id}
+            IDchanger={() => IDchanger(relatedId)}
           />
         </div>
         <p className="product-card__category">{category}</p>

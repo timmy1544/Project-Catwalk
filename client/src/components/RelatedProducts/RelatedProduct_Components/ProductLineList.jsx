@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 
-const ProductLineList = ({ productId }) => {
+const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const ProductLineList = ({ productId }) => {
       key={item}
       relatedId={item}
       productId={productId}
+      IDchanger={IDchanger}
     />
   ));
 
