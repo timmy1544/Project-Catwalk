@@ -29,6 +29,7 @@ class ProductDetails extends React.Component {
     this.getProductInfo();
   }
 
+
   getProductInfo() {
     axios.get(`/products/${this.state.currentID}`)
       .then((response) => {
