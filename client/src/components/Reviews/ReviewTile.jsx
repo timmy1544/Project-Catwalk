@@ -81,12 +81,17 @@ class ReviewTile extends React.Component {
           Response to Review:
           {review.response}
         </div>
-        <div id="ReviewHelpfulness">
-          Rating Helpfulness:
+        <div>
+          Helpful?
+          <span role="button" styling="link" id="helpfulBtn" onClick={this.handleHelpfulClick} onKeyDown={() => {}} tabIndex={0}> Yes</span>
+          (
           {helpfulness}
+          )
+          {' '}
+          |
+          {' '}
+          <span role="button" styling="link" id="reportBtn" onClick={this.handleReportClick} onKeyDown={() => {}} tabIndex={0}> Report </span>
         </div>
-        <button type="button" id="helpfulBtn" onClick={this.handleHelpfulClick}> Helpful </button>
-        <button type="button" id="reportBtn" onClick={this.handleReportClick}> Report </button>
         <p>{'\n'}</p>
       </div>
     );
