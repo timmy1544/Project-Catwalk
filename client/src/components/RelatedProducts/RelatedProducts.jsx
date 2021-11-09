@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import ProductLineList from './RelatedProduct_Components/ProductLineList';
 import OutFitList from './Outfit_Components/OutFitList';

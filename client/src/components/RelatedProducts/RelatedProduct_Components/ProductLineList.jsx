@@ -22,7 +22,6 @@ const ProductLineList = ({ productId, IDchanger }) => {
     />
   ));
 
-  console.log(productId, 'main productId')
   return (
     <div className="relatedProduct-wrapper">
       {relatedProduct}
