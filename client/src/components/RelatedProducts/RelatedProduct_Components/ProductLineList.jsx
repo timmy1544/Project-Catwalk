@@ -3,21 +3,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 
-const ProductLineList = ({ productId }) => {
-  const currentId = productId;
-
+const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
 
   useEffect(() => {
-    axios.get(`/products/${currentId}/related`)
+    // maybe refactor this to async
+    axios.get(`/products/${productId}/related`)
       .then((results) => setrelatedProductIds(results.data))
       .catch((err) => console.log(err));
-  }, [currentId]);
+  }, [productId]);
 
-  const relatedProduct = relatedProductIds.map((item, i) => (
+  const relatedProduct = relatedProductIds.map((item) => (
     <ProductCard
-      key={i}
+      key={item}
       relatedId={item}
+      productId={productId}
+      IDchanger={IDchanger}
     />
   ));
 

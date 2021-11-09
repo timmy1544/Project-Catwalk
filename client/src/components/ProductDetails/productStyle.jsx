@@ -69,18 +69,20 @@ class ProductStyle extends React.Component {
             $
             {this.state.product.default_price}
           </div>
-          <div className="styleOptionTitle">STYLES &gt; SELECTED STYLE</div>
         </div>
-        <div className="styleOptions">
-          {this.state.styles.map((result, index) => (
-            <Img
-              src={result.photos[0].thumbnail_url}
-              key={index}
-              onClick={this.selectStyle}
-              info={result}
-              state={this.state}
-            />
-          ))}
+        <div className="styleOptionsWrapper">
+          <div className="styleOptionTitle">STYLES &gt; SELECTED STYLE</div>
+          <div className="styleOptions">
+            {this.state.styles.map((result, index) => (
+              <Img
+                src={result.photos[0].thumbnail_url}
+                key={index}
+                onClick={this.selectStyle}
+                info={result}
+                state={this.state}
+              />
+            ))}
+          </div>
         </div>
         <div className="buttons">
           <SelectSize

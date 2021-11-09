@@ -1,3 +1,14 @@
+.questionBody {
+  font-weight: 500;
+}
+
 .qandalink {
+  font-weight: 300;
+  font-size: .75rem;
   text-decoration: underline;
+}
+
+.questionButton {
+  display: flex;
+  justify-content: flex-end;
 }

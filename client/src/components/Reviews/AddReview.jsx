@@ -79,6 +79,8 @@ class AddReview extends React.Component {
       rating, summary, body, name, email, photos, characteristics, hover,
     } = this.state;
 
+    const { charItem } = this.props;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="rating">
@@ -131,7 +133,7 @@ class AddReview extends React.Component {
           <input type="text" name="photos" value={photos} onChange={this.handleChange} />
         </label>
         <br />
-        <AddReviewChar characteristics={characteristics} handleChange={this.handleChange} />
+        <AddReviewChar characteristics={characteristics} handleChange={this.handleChange} charItem={charItem} />
         <br />
         <input type="submit" value="Submit Review" />
       </form>

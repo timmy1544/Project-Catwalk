@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, Box } from '@mui/system';
 import { Star } from '@mui/icons-material/';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
@@ -37,8 +38,8 @@ const style = {
   pb: 3,
 };
 
-export default function ModalUnstyledDemo() {
-  const [open, setOpen] = React.useState(false);
+export default function Modal({ features, mainFeatures, productObj, relatedProductsObj }) {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -49,14 +50,17 @@ export default function ModalUnstyledDemo() {
         sx={{ color: 'yellow' }}
       />
       <StyledModal
-        aria-labelledby="unstyled-modal-title"
-        aria-describedby="unstyled-modal-description"
         open={open}
         onClose={handleClose}
         BackdropComponent={Backdrop}
       >
         <Box sx={style}>
-          <ModalTable />
+          <ModalTable
+            features={features}
+            mainFeatures={mainFeatures}
+            productObj={productObj}
+            relatedProductsObj={relatedProductsObj}
+          />
         </Box>
       </StyledModal>
     </div>
