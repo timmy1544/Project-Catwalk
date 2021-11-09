@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const StylePhotos = ({ styleId, IDchanger }) => {
   // const [styleID, setStyleId] = useState(styleId)
+  const isMountedRef = useRef(null);
+
   const [style, setStyle] = useState([]);
   let imgUrl;
   let name;
 
   useEffect(() => {
-    if (styleId) {
-      axios.get(`products/${styleId}/styles`)
-        .then((results) => {
-          setStyle(results.data.results);
-        })
-        .catch((err) => console.error(err));
+    isMountedRef.current = true;
+
+    if (isMountedRef.current) {
+      if (styleId) {
+        axios.get(`products/${styleId}/styles`)
+          .then((results) => {
+            setStyle(results.data.results);
+          })
+          .catch((err) => console.error(err));
+      }
     }
+
+    return () => isMountedRef.current = false;
   }, []);
 
   if (style[0]) {

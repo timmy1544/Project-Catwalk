@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import StylePhotos from './StylePhotos';
 import StarRating from './StarRating';
@@ -12,6 +12,7 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
     mainFeatures: [],
     mainProduct: []
   });
+  const isMountedRef = useRef(null)
 
   // ASYNC W/ AXIOS.ALL
   const getRelatedProducts = useCallback(async () => {
@@ -35,11 +36,14 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
           mainProduct: mainProduct
         });
       }));
-  }, [])
+  }, [relatedId, productId])
 
   useEffect(() => {
-    getRelatedProducts();
-    return () => console.log('cleanup')
+    isMountedRef.current = true;
+    if (isMountedRef.current) {
+      getRelatedProducts();
+    }
+    return () => isMountedRef.current = false;
   }, [relatedId, productId]);
 
   const {

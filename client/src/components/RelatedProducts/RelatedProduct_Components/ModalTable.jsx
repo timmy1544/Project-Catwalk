@@ -1,12 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ModalTable = ({ features, mainFeatures, productObj, relatedProductsObj }) => {
+const ModalTable = ({
+  features, mainFeatures, productObj, relatedProductsObj,
+}) => {
+  const [test, setTest] = useState(productObj.name)
   // TO BE CONTINUED...
   // make a compare products method
   // refactor to be a table
-
   const mapFeatures = features.map((item, i) => (
     <div key={`modal-table-feature-${i}`} className="product-characteristics-container">
       <div className="whiteCheckIcon"><CheckIcon /></div>
@@ -23,6 +25,11 @@ const ModalTable = ({ features, mainFeatures, productObj, relatedProductsObj }) 
     </div>
   ));
 
+  useEffect(() => {
+
+  }, [productObj, relatedProductsObj, features, mainFeatures])
+
+  console.log(test)
   return (
     <div className="Modal-Container">
       <h1>Comparing</h1>
