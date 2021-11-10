@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 import React from 'react';
 import Rating from '@mui/material/Rating';
 import { Chart } from 'react-google-charts';
@@ -30,6 +31,16 @@ const BarChartHelper = (ratings) => {
   return [['stars', 'numbers']].concat(dataArr);
 };
 
+const CharHelper = (characteristics) => {
+  const dataArr = [];
+  for (const i in characteristics) {
+    const value = parseFloat(characteristics[i].value, 10);
+    const arr = [i, value];
+    dataArr.push(arr);
+  }
+  return [['characteristic', 'rating']].concat(dataArr);
+};
+
 const Breakdown = (props) => {
   const { meta } = props;
   if (Object.keys(meta).length === 0) {
@@ -41,6 +52,7 @@ const Breakdown = (props) => {
   const aveRating = parseFloat(AverageRatingsHelper(ratings).toFixed(1), 10);
   const recommendPercentage = parseFloat(RecommendHelper(recommended).toFixed(0), 10);
   const barchartData = BarChartHelper(ratings);
+  const charData = CharHelper(characteristics);
 
   return (
     <div>
@@ -56,12 +68,7 @@ const Breakdown = (props) => {
         loader={<div>Loading Chart</div>}
         data={barchartData}
         options={{
-          // title: 'Population of Largest U.S. Cities',
           chartArea: { width: '50%' },
-          // hAxis: {
-          //   title: 'Total Population',
-          //   minValue: 0,
-          // },
           legend: 'none',
           hAxis: {
             gridlines: {
@@ -71,7 +78,24 @@ const Breakdown = (props) => {
           },
         }}
       />
-      <div>char bar</div>
+      {'\n'}
+      <Chart
+        width="500px"
+        height="300px"
+        chartType="BarChart"
+        loader={<div>Loading Chart</div>}
+        data={charData}
+        options={{
+          chartArea: { width: '50%' },
+          legend: 'none',
+          hAxis: {
+            gridlines: {
+              color: 'transparent',
+            },
+            textPosition: 'none',
+          },
+        }}
+      />
     </div>
   );
 };

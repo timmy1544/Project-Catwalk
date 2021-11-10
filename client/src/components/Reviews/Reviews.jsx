@@ -2,6 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import ReviewTile from './ReviewTile';
 import MoreReviewBtn from './MoreReviewBtn';
 import AddReview from './AddReview';
@@ -16,13 +17,15 @@ class Reviews extends React.Component {
       // eslint-disable-next-line react/prop-types
       currentID: props.productId,
       moreReview: false,
-      moreReviewtext: 'More Reviews',
+      moreReviewtext: 'MORE REVIEWS',
       meta: {},
       charItem: {},
+      modalShow: false,
     };
     this.getReviews = this.getReviews.bind(this);
     this.getReviewMeta = this.getReviewMeta.bind(this);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
+    this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
   }
 
   componentDidMount() {
@@ -48,14 +51,20 @@ class Reviews extends React.Component {
     if (moreReview === false) {
       this.setState({
         moreReview: true,
-        moreReviewtext: 'Show Less Reviews',
+        moreReviewtext: 'LESS REVIEWS',
       });
     } else {
       this.setState({
         moreReview: false,
-        moreReviewtext: 'Show More Reviews',
+        moreReviewtext: 'MORE REVIEWS',
       });
     }
+  }
+
+  handleAddReviewClick(e) {
+    this.setState({
+      modalShow: e,
+    });
   }
 
   getReviews() {
@@ -84,7 +93,7 @@ class Reviews extends React.Component {
 
   render() {
     const {
-      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta, charItem,
+      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta, charItem, modalShow,
     } = this.state;
     // default: render 2 review, if more review button is clicked, show all reviews.
     let renderReviews;
@@ -118,7 +127,15 @@ class Reviews extends React.Component {
           moreReviewtext={moreReviewtext}
         />
         {'\n'}
-        <AddReview currentID={currentID} getReviews={this.getReviews} charItem={charItem} />
+        <Button variant="primary" onClick={() => this.handleAddReviewClick(true)}>
+          ADD A REVIEW +
+        </Button>
+        <AddReview
+          show={modalShow}
+          onHide={() => this.handleAddReviewClick(false)}
+          currentID={currentID}
+          getReviews={this.getReviews}
+          charItem={charItem} />
       </div>
     );
   }
