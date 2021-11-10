@@ -14,28 +14,33 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
   });
   const isMountedRef = useRef(null)
 
+
   // ASYNC W/ AXIOS.ALL
   const getRelatedProducts = useCallback(async () => {
-    const getProducts = await axios.get(`/products/${relatedId}`);
-    const getRatings = await axios.get(`/reviews/${relatedId}`);
-    const getMainProductFeatures = await axios.get(`/products/${productId}`)
+    try {
+      const getProducts = await axios.get(`/products/${relatedId}`);
+      const getRatings = await axios.get(`/reviews/${relatedId}`);
+      const getMainProductFeatures = await axios.get(`/products/${productId}`)
 
-    axios.all([getProducts, getRatings, getMainProductFeatures])
-      .then(axios.spread((...allResponseData) => {
-        const allProducts = allResponseData[0].data;
-        const allFeatures = allResponseData[0].data.features;
-        const allRatings = allResponseData[1].data.results;
-        const allMainFeatures = allResponseData[2].data.features
-        const mainProduct = allResponseData[2].data
+      axios.all([getProducts, getRatings, getMainProductFeatures])
+        .then(axios.spread((...allResponseData) => {
+          const allProducts = allResponseData[0].data;
+          const allFeatures = allResponseData[0].data.features;
+          const allRatings = allResponseData[1].data.results;
+          const allMainFeatures = allResponseData[2].data.features
+          const mainProduct = allResponseData[2].data
 
-        setProduct({
-          products: allProducts,
-          ratings: allRatings,
-          features: allFeatures,
-          mainFeatures: allMainFeatures,
-          mainProduct: mainProduct
-        });
-      }));
+          setProduct({
+            products: allProducts,
+            ratings: allRatings,
+            features: allFeatures,
+            mainFeatures: allMainFeatures,
+            mainProduct: mainProduct
+          });
+        }));
+    } catch (error) {
+      console.error(error)
+    }
   }, [relatedId, productId])
 
   useEffect(() => {
@@ -71,9 +76,12 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
             IDchanger={() => IDchanger(relatedId)}
           />
         </div>
-        <p className="product-card__category">{category}</p>
-        <p className="product-card__name">{name}</p>
-        <p className="product-card__price">{defaultPrice}</p>
+        <div onClick={() => IDchanger(relatedId)}>
+
+          <p className="product-card__category">{category}</p>
+          <p className="product-card__name">{name}</p>
+          <p className="product-card__price">{defaultPrice}</p>
+        </div>
         <StarRating
           ratingResults={product.ratings}
         />

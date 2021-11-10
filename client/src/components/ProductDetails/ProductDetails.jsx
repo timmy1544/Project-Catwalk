@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
@@ -29,15 +30,26 @@ class ProductDetails extends React.Component {
     this.getProductInfo();
   }
 
+  componentDidUpdate() {
+    if (this.props.productId !== this.state.currentID) {
+      this.setState({
+        currentID: this.props.productId,
+      });
+      this.getProductInfo();
+      console.log('this.state.currentID', this.state.currentID);
+    }
+  }
+
+
   getProductInfo() {
-    axios.get(`/products/${this.state.currentID}`)
+    axios.get(`/products/${this.props.productId}`)
       .then((response) => {
         console.log('product info', this.state.currentID, response.data);
         this.setState({
           product: response.data,
         });
       })
-      .then(axios.get(`/products/${this.state.currentID}/styles`)
+      .then(axios.get(`/products/${this.props.productId}/styles`)
         .then((response) => {
           console.log('product style', response.data);
           this.setState({
@@ -45,7 +57,7 @@ class ProductDetails extends React.Component {
             currentStyle: response.data.results[0],
           });
         }))
-      .then(axios.get(`/reviews/${this.state.currentID}`)
+      .then(axios.get(`/reviews/${this.props.productId}`)
         .then((response) => {
           console.log('product reviews', response.data);
           this.setState({
@@ -68,7 +80,6 @@ class ProductDetails extends React.Component {
       || !this.state.style
       || !this.state.currentStyle
       || !this.state.currentReviews) { return null; }
-    // console.log(this.state.currentReviews);
     return (
       <div className="productDetails">
         <PhotoGallery currentStyle={this.state.currentStyle} />

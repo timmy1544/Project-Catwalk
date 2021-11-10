@@ -31,7 +31,8 @@ const StylePhotos = ({ styleId, IDchanger }) => {
 
     if (photosArr[0].url === null) {
       name = style[0].name;
-      imgUrl = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'
+      // imgUrl = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'
+      imgUrl = 'https://stalbertseniors.ca/wp-content/uploads/2019/10/image-coming-soon.jpg'
     } else {
       name = style[0].name;
       imgUrl = photosArr[0].url;

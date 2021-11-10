@@ -7,20 +7,32 @@ const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
 
   useEffect(() => {
-    // maybe refactor this to async
     axios.get(`/products/${productId}/related`)
-      .then((results) => setrelatedProductIds(results.data))
+      .then((results) => {
+        setrelatedProductIds(results.data)
+      })
       .catch((err) => console.log(err));
   }, [productId]);
+  // console.log('---------------------')
+  // console.log(productId, 'MAIN ID')
+  // console.log(relatedProductIds.indexOf(productId), 'INDEX OF ITEM')
+  // console.log(relatedProductIds, 'PRODUCT IDS')
+  // console.log('---------------------')
 
-  const relatedProduct = relatedProductIds.map((item) => (
-    <ProductCard
-      key={item}
-      relatedId={item}
-      productId={productId}
-      IDchanger={IDchanger}
-    />
-  ));
+  let trackArray = [];
+  const relatedProduct = relatedProductIds.map((item) => {
+    if (item !== productId && trackArray.indexOf(item) === -1) {
+      trackArray = [...trackArray, item]
+      return (
+        <ProductCard
+          key={item}
+          relatedId={item}
+          productId={productId}
+          IDchanger={IDchanger}
+        />
+      )
+    }
+  });
 
   return (
     <div className="relatedProduct-wrapper">
