@@ -76,9 +76,12 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
             IDchanger={() => IDchanger(relatedId)}
           />
         </div>
-        <p className="product-card__category">{category}</p>
-        <p className="product-card__name">{name}</p>
-        <p className="product-card__price">{defaultPrice}</p>
+        <div onClick={() => IDchanger(relatedId)}>
+
+          <p className="product-card__category">{category}</p>
+          <p className="product-card__name">{name}</p>
+          <p className="product-card__price">{defaultPrice}</p>
+        </div>
         <StarRating
           ratingResults={product.ratings}
         />

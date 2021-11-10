@@ -29,7 +29,6 @@ const ModalTable = ({
 
   }, [productObj, relatedProductsObj, features, mainFeatures])
 
-  console.log(test)
   return (
     <div className="Modal-Container">
       <h1>Comparing</h1>

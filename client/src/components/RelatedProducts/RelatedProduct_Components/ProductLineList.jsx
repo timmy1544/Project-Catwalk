@@ -5,7 +5,6 @@ import ProductCard from './ProductCard';
 
 const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
-  const [filterdProductIds, setFilteredProductIds] = useState([]);
 
   useEffect(() => {
     axios.get(`/products/${productId}/related`)
