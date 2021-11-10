@@ -3,79 +3,118 @@ import React, { useState, useEffect } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ModalTable = ({
-  features, mainFeatures, productObj, relatedProductsObj,
+  features, mainFeatures, productObj, relatedProductsObj, item,
 }) => {
-  // TO BE CONTINUED...
-  // make a compare products method
-  // refactor to be a table
+  const style = {
+    textAlign: 'center',
+  };
+
+  const divSize = {
+    // tableLayout: 'fixed',
+    width: '100%',
+  }
+
   const mapFeatures = features.map((item, i) => (
-    <div key={`modal-table-feature-${i}`} className="product-characteristics-container">
-      <div className="whiteCheckIcon"><CheckIcon /></div>
-      <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
-      <div className="comparedCheckIcon"><CheckIcon /></div>
-    </div>
+    <tr key={`modal-table-feature-${i}`} style={style}>
+      <td><CheckIcon /></td>
+      <td>
+        {
+          item.feature
+            && item.value
+            ? `~${item.feature}~ \n
+
+          ${item.value}` : item.feature
+        }
+      </td>
+      <td><CheckIcon /></td>
+    </tr>
   ));
 
   const mapMainFeatures = mainFeatures.map((item, i) => (
-    <div key={`modal-table-mainFeature-${i}`} className="product-characteristics-container">
-      <div className="mainCheckIcon"><CheckIcon /></div>
-      <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
-      <div className="whiteCheckIcon"><CheckIcon /></div>
-    </div>
+    <tr key={`modal-table-mainFeature-${i}`} style={style}>
+      <td><CheckIcon /></td>
+      <td>
+        {
+          item.feature
+            && item.value
+            ? `~${item.feature}~ \n
+
+          ${item.value}` : item.feature
+        }
+      </td>
+      <td><CheckIcon /></td>
+    </tr>
   ));
 
-  // useEffect(() => {
 
-  // }, [productObj, relatedProductsObj, features, mainFeatures])
-
+  console.log(item);
   return (
-    <div className="Modal-Container">
-      <h1>Comparing</h1>
-      <span className="headline-container">
-        <h2 className="mainName">{productObj.name}</h2>
-        <h2 className="featuresText">FEATURES</h2>
-        <h2 className="relatedName">{relatedProductsObj.name}</h2>
-      </span>
-      <span className="table-list-container">
-        {mapMainFeatures}
-        {mapFeatures}
-      </span>
+    <div style={divSize}>
+
+      <p>Comparing...</p>
+      <table className="table table-striped">
+        <thead>
+          <tr className="modal-headers" style={style}>
+            <th scope="col">{productObj.name}</th>
+            <th scope="col">Features</th>
+            <th scope="col">{relatedProductsObj.name}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mapFeatures}
+          {mapMainFeatures}
+        </tbody>
+      </table>
     </div>
   );
 };
 export default ModalTable;
 
-// LIST LIKE IMPLEMENTATION
-// import * as React from 'react';
+// /* eslint-disable react/no-array-index-key */
+// import React, { useState, useEffect } from 'react';
 // import CheckIcon from '@mui/icons-material/Check';
 
-// const ModalTable = () => (
-//   <div>
-//     <h1>Comparing</h1>
-//     <span className="headline-container">
-//       <h2>Current Product</h2>
-//       <h2>Compared Product</h2>
-//     </span>
-//     <span className="table-list-container">
-//       <hr />
-//       <div className="product-characteristics-container">
-//         <div><CheckIcon /></div>
-//         {/* if feature/characteristic is true for current then checkmark else null */}
-//         <p>100% Cotten</p>
-//         <div><CheckIcon /></div>
-//         {/* if feature/characteristic is true for compared then checkmark else null */}
-//       </div>
-//       <div className="product-characteristics-container">
-//         {/* if feature/characteristic is true for current then checkmark else null */}
-//         <div><CheckIcon /></div>
-//         <p>100% Cotten</p>
-//         <div><CheckIcon /></div>
-//         {/* if feature/characteristic is true for compared then checkmark else null */}
-//       </div>
-//     </span>
-//   </div>
-// );
+// const ModalTable = ({
+//   features, mainFeatures, productObj, relatedProductsObj,
+// }) => {
+//   // TO BE CONTINUED...
+//   // make a compare products method
+//   // refactor to be a table
+//   const mapFeatures = features.map((item, i) => (
+//     <div key={`modal-table-feature-${i}`} className="product-characteristics-container">
+//       <div className="whiteCheckIcon"><CheckIcon /></div>
+//       <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
+//       <div className="comparedCheckIcon"><CheckIcon /></div>
+//     </div>
+//   ));
 
+//   const mapMainFeatures = mainFeatures.map((item, i) => (
+//     <div key={`modal-table-mainFeature-${i}`} className="product-characteristics-container">
+//       <div className="mainCheckIcon"><CheckIcon /></div>
+//       <p className="featureText">{item.feature && item.value ? `${item.feature}-${item.value}` : item.feature}</p>
+//       <div className="whiteCheckIcon"><CheckIcon /></div>
+//     </div>
+//   ));
+
+//   // useEffect(() => {
+
+//   // }, [productObj, relatedProductsObj, features, mainFeatures])
+
+//   return (
+//     <div className="Modal-Container">
+//       <h1>Comparing</h1>
+//       <span className="headline-container">
+//         <h2 className="mainName">{productObj.name}</h2>
+//         <h2 className="featuresText">FEATURES</h2>
+//         <h2 className="relatedName">{relatedProductsObj.name}</h2>
+//       </span>
+//       <span className="table-list-container">
+//         {mapMainFeatures}
+//         {mapFeatures}
+//       </span>
+//     </div>
+//   );
+// };
 // export default ModalTable;
 
 //  TABLE IMPLEMENTATION
@@ -99,7 +138,6 @@ export default ModalTable;
 //   createData('Cupcake', 305, 3.7, 67, 4.3),
 //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 // ];
-
 
 // const ModalTable = () => (
 //   <TableContainer component={Paper}>

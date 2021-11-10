@@ -29,8 +29,8 @@ const Backdrop = styled('div')`
 `;
 
 const style = {
-  width: '35%',
-  height: 400,
+  width: '30rem',
+  height: '50rem',
   bgcolor: 'white',
   border: '2px solid #000',
   p: 2,
@@ -42,6 +42,12 @@ export default function Modal({ features, mainFeatures, productObj, relatedProdu
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const mapRelatedFeatures = features.map(item => {
+    return (
+      <ModalTable item={item} />
+    )
+  })
 
   return (
     <div>
