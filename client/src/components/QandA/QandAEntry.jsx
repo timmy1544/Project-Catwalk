@@ -85,11 +85,11 @@ class QandAEntry extends React.Component {
     }
     if (this.state.answers.length > 2) {
       if (this.state.isAnsHelpfulClick === false) {
-        moreAnswersButtonText = 'Load More Answers';
+        moreAnswersButtonText = 'LOAD MORE ANSWERS';
       } else {
-        moreAnswersButtonText = 'Collapse Answers';
+        moreAnswersButtonText = 'COLLAPSE ANSWERS';
       }
-      loadMoreAnswersButton = <button type="button" onClick={this.handleMoreAnswersClick}>{moreAnswersButtonText}</button>;
+      loadMoreAnswersButton = <button type="button" className="loadMoreAnswers" onClick={this.handleMoreAnswersClick}>{moreAnswersButtonText}</button>;
     } else {
       loadMoreAnswersButton = '';
     }

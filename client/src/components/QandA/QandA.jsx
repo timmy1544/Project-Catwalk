@@ -43,7 +43,7 @@ class QandA extends React.Component {
   render() {
     let addQuestion;
     if (this.state.quantity < this.state.maxQuantity) {
-      addQuestion = <button type="button" onClick={this.handleMoreQuestions}>More Answered Questions</button>;
+      addQuestion = <button type="button" className="moreQsandAddQsButton" onClick={this.handleMoreQuestions}>MORE ANSWERED QUESTIONS</button>;
     } else {
       addQuestion = '';
     }
@@ -53,7 +53,7 @@ class QandA extends React.Component {
         <SearchBar />
         <QandAList questions={this.state.questions.slice(0, this.state.quantity)} />
         {addQuestion}
-        <button type="button">Add A Question +</button>
+        <button className="moreQsandAddQsButton" type="button">ADD A QUESTION +</button>
       </div>
     );
   }
