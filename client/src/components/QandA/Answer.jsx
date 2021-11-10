@@ -53,25 +53,26 @@ class Answer extends React.Component {
       <div>
         {answer.body}
         <br />
-        by
-        {' '}
-        {answer.answerer_name}
-        ,
-        {' '}
-        {answerConvertedDate}
-        {' '}
-        |  Helpful?
-        {' '}
-        <span className="qandalink" onClick={this.handleAnswerHelpfulClick}>Yes</span>
-        (
-        {this.state.helpfulCount}
-        )
-        {' '}
-        |
-        {' '}
-        <span className="qandalink" onClick={this.handleAnswerReportClick}>
-          {reportText}
-
+        <span className="qHelpfulAddAnswerReport">
+          by
+          {' '}
+          {answer.answerer_name}
+          ,
+          {' '}
+          {answerConvertedDate}
+          {' '}
+          |  Helpful?
+          {' '}
+          <span className="qandalink" onClick={this.handleAnswerHelpfulClick}>Yes</span>
+          (
+          {this.state.helpfulCount}
+          )
+          {' '}
+          |
+          {' '}
+          <span className="qandalink" onClick={this.handleAnswerReportClick}>
+            {reportText}
+          </span>
         </span>
       </div>
     );
