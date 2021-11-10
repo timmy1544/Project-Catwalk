@@ -9,6 +9,7 @@ import axios from 'axios';
 import React from 'react';
 // import axios from 'axios';
 import Answer from './Answer';
+import AddAnswer from './AddAnswer';
 
 class QandAEntry extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class QandAEntry extends React.Component {
       isAnsHelpfulClick: false,
       isQuesHelpfulClick: false,
       quesHelpfulCount: 0,
+      modalShow: false,
     };
     this.handleMoreAnswersClick = this.handleMoreAnswersClick.bind(this);
     this.handleQuestionHelpfulClick = this.handleQuestionHelpfulClick.bind(this);
@@ -47,6 +49,10 @@ class QandAEntry extends React.Component {
         .then(() => this.setState({ quesHelpfulCount: this.state.quesHelpfulCount + 1 }))
         .catch((err) => { throw Error('axios question helpful error', err); });
     }
+  }
+
+  handleAddAnswer(e) {
+    this.setState({ modalShow: e });
   }
 
   getAnswers() {
@@ -107,7 +113,11 @@ class QandAEntry extends React.Component {
           {' '}
           |
           {' '}
-          <span className="qandalink">Add Answer</span>
+          <button type="button" className="qandalink addAnswerBtn" onClick={() => this.handleAddAnswer(true)}>Add Answer</button>
+          <AddAnswer
+            show={this.state.modalShow}
+            onHide={() => this.handleAddAnswer(false)}
+          />
         </span>
         <br />
         A:
