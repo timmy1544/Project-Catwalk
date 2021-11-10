@@ -114,20 +114,23 @@ class Reviews extends React.Component {
     }
 
     return (
-      <div>
+      <div id="Review">
+        <div id="Review_title"> RATINGS & REVIEWS </div>
         {'\n'}
         <Breakdown meta={meta} />
         {'\n'}
-        {renderReviews.map((review, index) =>
-          <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+        <div id="Review_tiles">
+          {renderReviews.map((review, index) =>
+            <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+          {'\n'}
+          <MoreReviewBtn
+            reviews={reviews}
+            handleMoreReviewsClick={this.handleMoreReviewsClick}
+            moreReviewtext={moreReviewtext}
+          />
+        </div>
         {'\n'}
-        <MoreReviewBtn
-          reviews={reviews}
-          handleMoreReviewsClick={this.handleMoreReviewsClick}
-          moreReviewtext={moreReviewtext}
-        />
-        {'\n'}
-        <Button variant="primary" onClick={() => this.handleAddReviewClick(true)}>
+        <Button id="Review_addReviewBtn" variant="primary" onClick={() => this.handleAddReviewClick(true)}>
           ADD A REVIEW +
         </Button>
         <AddReview
@@ -135,7 +138,8 @@ class Reviews extends React.Component {
           onHide={() => this.handleAddReviewClick(false)}
           currentID={currentID}
           getReviews={this.getReviews}
-          charItem={charItem} />
+          charItem={charItem}
+        />
       </div>
     );
   }

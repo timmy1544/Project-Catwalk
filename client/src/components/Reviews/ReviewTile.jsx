@@ -55,7 +55,7 @@ class ReviewTile extends React.Component {
     const { helpfulness } = this.state;
     const convertedDate = moment(review.date).format('MMMM Do[,] YYYY');
     return (
-      <div className="Reviews">
+      <div id="Review_tile">
         Rating:
         <Rating id="ReviewStars" name="read-only" value={review.rating} readOnly />
         <div id="ReviewDate">

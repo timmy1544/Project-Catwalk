@@ -1,3 +1,29 @@
 #helpfulBtn, #reportBtn {
   text-decoration: underline;
 }
+
+#Review {
+  display: grid;
+  grid-template-columns: [first] 30% [line2] 70% [end];
+  grid-template-rows: [row1-start] 40px [row1-end] 40px [third-line] auto [last-line];
+  grid-template-areas:
+    ". . "
+    "title ."
+    "breakdown tiles"
+}
+
+#Review_breakdown {
+  grid-area: breakdown;
+}
+
+#Review_tiles {
+  grid-area: tiles;
+}
+
+#Review_title {
+  grid-area: title;
+}
+
+/* #Review_Btn
+
+#Review_addReviewBtn */
