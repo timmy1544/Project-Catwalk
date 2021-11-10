@@ -24,11 +24,11 @@ const ModalTable = ({
 
   const tableFeatures = compareFeatures.map((item, i) => (
     <tr key={`modal-table-mainFeature-${i}`} style={style}>
-      <td style={checkColor}>{item.main ? <CheckIcon /> : null}</td>
+      <td style={checkColor}>{item.compared ? <CheckIcon /> : null}</td>
       <td>
         {item.value}
       </td>
-      <td style={checkColor}>{item.compared ? <CheckIcon /> : null}</td>
+      <td style={checkColor}>{item.main ? <CheckIcon /> : null}</td>
     </tr>
   ));
 
