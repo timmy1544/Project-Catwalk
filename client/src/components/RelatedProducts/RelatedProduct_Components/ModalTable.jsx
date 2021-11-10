@@ -5,7 +5,6 @@ import CheckIcon from '@mui/icons-material/Check';
 const ModalTable = ({
   features, mainFeatures, productObj, relatedProductsObj,
 }) => {
-  const [test, setTest] = useState(productObj.name)
   // TO BE CONTINUED...
   // make a compare products method
   // refactor to be a table
@@ -25,9 +24,9 @@ const ModalTable = ({
     </div>
   ));
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [productObj, relatedProductsObj, features, mainFeatures])
+  // }, [productObj, relatedProductsObj, features, mainFeatures])
 
   return (
     <div className="Modal-Container">
