@@ -3,16 +3,18 @@ import React, { useState, useEffect } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ModalTable = ({
-  features, mainFeatures, productObj, relatedProductsObj, item,
+  features, mainFeatures, productObj, relatedProductsObj,
 }) => {
   const style = {
     textAlign: 'center',
+    wordWrap: 'break-word',
+    whiteSpace: 'normal',
   };
 
   const divSize = {
     // tableLayout: 'fixed',
     width: '100%',
-  }
+  };
 
   const mapFeatures = features.map((item, i) => (
     <tr key={`modal-table-feature-${i}`} style={style}>
@@ -46,8 +48,6 @@ const ModalTable = ({
     </tr>
   ));
 
-
-  console.log(item);
   return (
     <div style={divSize}>
 
