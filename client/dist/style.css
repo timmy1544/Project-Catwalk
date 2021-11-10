@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Asul:wght@700&family=Spartan:wght@100&display=swap');
+
 /* ******************************************************************************** */
 /* GLOBAL */
 /* ******************************************************************************** */
@@ -220,13 +220,10 @@
 }
 .productName {
   margin: 0.15em 0.15em 0.15em 0.15em;
-  font-family: 'Asul', sans-serif;
-  font-size: 300%
-}
-.smallfonts {
-  font-family: 'Spartan', sans-serif;
+  font-size: 300%;
   font-weight: bold;
 }
+
 
 
 /*select style*/
