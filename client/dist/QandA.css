@@ -1,14 +1,62 @@
+.qTitle {
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
 .questionBody {
   font-weight: 500;
 }
 
-.qandalink {
+.qHelpfulAddAnswerReport {
   font-weight: 300;
   font-size: .75rem;
+}
+
+.qandalink {
   text-decoration: underline;
 }
 
 .questionButton {
   display: flex;
   justify-content: flex-end;
+}
+
+.qSearchArea {
+  padding-bottom: 1rem;
+}
+
+.qSearchBar {
+  font-weight: 500;
+  width: 100%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: .5rem;
+}
+
+.qSellerText {
+  font-weight:400
+}
+
+.moreQsandAddQsButton {
+  background-color: white;
+  border: 1px solid #4d4d4d;
+  padding: 1rem 1rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: #4d4d4d;
+}
+
+.loadMoreAnswers {
+  background-color: white;
+  font-weight: 600;
+  font-size: .75rem;
+  padding: 1rem 0;
+  border: none;
+  color: #4d4d4d;
+}
+
+.addAnswerBtn {
+  background-color: white;
+  border: none;
+  color: #4d4d4d;
 }
