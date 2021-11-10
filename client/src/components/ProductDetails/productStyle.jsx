@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -24,6 +25,18 @@ class ProductStyle extends React.Component {
 
     this.selectStyle = this.selectStyle.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.style.results[0].style_id !== this.state.style_id) {
+      this.setState({
+        product: this.props.product,
+        styles: this.props.style.results,
+        currentStyle: this.props.style.results[0],
+        style_id: this.props.style.results[0].style_id,
+        currentReviews: this.props.currentReviews,
+      });
+    }
   }
 
   handleChange(e) {
@@ -114,9 +127,7 @@ const Img = (props) => {
 };
 
 const SelectSize = (props) => {
-// console.log('currentStyle', props.currentStyle);
   const currentSize = props.currentStyle.skus;
-  // console.log('currentSize', currentSize);
   return (
     <div className="selectSizeDiv">
       <div>
