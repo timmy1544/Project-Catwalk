@@ -55,15 +55,13 @@ const Breakdown = (props) => {
   const charData = CharHelper(characteristics);
 
   return (
-    <div>
-      <h3> Reviews and Ratings </h3>
-      Average Rating:
-      {aveRating}
-      <Rating id="ReviewStars" name="read-only" value={aveRating} precision={0.25} readOnly />
+    <div id="Review_breakdown">
+      <span id="Review_aveRating">{aveRating}</span>
+      <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
       <div>{`${recommendPercentage}% user recommend this product`}</div>
       <Chart
-        width="500px"
-        height="300px"
+        width="220px"
+        height="220px"
         chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={barchartData}
@@ -80,8 +78,8 @@ const Breakdown = (props) => {
       />
       {'\n'}
       <Chart
-        width="500px"
-        height="300px"
+        width="220px"
+        height="220px"
         chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={charData}
