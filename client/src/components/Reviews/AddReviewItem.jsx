@@ -28,11 +28,24 @@ class AddReviewItem extends React.Component {
       photos: [],
       characteristics: {},
       hover: -1,
+      submitState: props.submit,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { submitState } = this.state;
+    const { submit } = this.props;
+    if (submitState !== submit) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        submitState: submit,
+      });
+      this.handleSubmit();
+    }
   }
 
   handleChange(e, newValue) {
@@ -58,21 +71,22 @@ class AddReviewItem extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    const newReview = this.state;
-    const { getReviews } = this.props;
-    e.preventDefault();
-    // validate the submitted form here
-    axios.post(`/reviews/${newReview.product_id}`, newReview)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .then(() => {
-        getReviews();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  handleSubmit() {
+    console.log('run this!');
+    // const newReview = this.state;
+    // const { getReviews } = this.props;
+    // e.preventDefault();
+    // // validate the submitted form here
+    // axios.post(`/reviews/${newReview.product_id}`, newReview)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .then(() => {
+    //     getReviews();
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   }
 
   render() {
@@ -83,7 +97,8 @@ class AddReviewItem extends React.Component {
     const { charItem } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      // <form onSubmit={this.handleSubmit}>
+      <form>
         <label htmlFor="rating">
           Rating star:
           <Rating
@@ -137,9 +152,10 @@ class AddReviewItem extends React.Component {
         <AddReviewChar
           characteristics={characteristics}
           handleChange={this.handleChange}
-          charItem={charItem} />
+          charItem={charItem}
+        />
         <br />
-        <input type="submit" value="Submit Review" />
+        {/* <input type="submit" value="Submit Review" /> */}
       </form>
     );
   }
