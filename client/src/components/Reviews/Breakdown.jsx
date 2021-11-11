@@ -56,8 +56,8 @@ const Breakdown = (props) => {
 
   return (
     <div id="Review_breakdown">
-      {aveRating}
-      <Rating id="ReviewStars" name="read-only" value={aveRating} precision={0.25} readOnly />
+      <span id="Review_aveRating">{aveRating}</span>
+      <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
       <div>{`${recommendPercentage}% user recommend this product`}</div>
       <Chart
         width="220px"

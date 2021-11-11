@@ -56,44 +56,45 @@ class ReviewTile extends React.Component {
     const convertedDate = moment(review.date).format('MMMM Do[,] YYYY');
     return (
       <div id="Review_tile">
-        Rating:
-        <Rating id="ReviewStars" name="read-only" value={review.rating} readOnly />
-        <div id="ReviewDate">
-          date:
-          {convertedDate}
+        <div id="Review_tile_header">
+          <Rating id="Review_tile_stars" name="read-only" value={review.rating} readOnly />
+          <div id="Review_tile_info">
+            {review.reviewer_name}
+            {', '}
+            {convertedDate}
+          </div>
+          <div id="Review_tile_summary">
+            {review.summary}
+          </div>
         </div>
-        <div id="ReviewSummary">
-          summary:
-          {review.summary}
+        <div id="Review_tile_main">
+          <div id="Review_tile_Body">
+            body:
+            {review.body}
+          </div>
+          <div id="Review_tile_Recommend">
+            recommend:
+            {review.recommend}
+          </div>
+
+          <div id="Review_tile_Response">
+            Response to Review:
+            {review.response}
+          </div>
         </div>
-        <div id="ReviewBody">
-          body:
-          {review.body}
+        <div id="Review_tile_footer">
+          <div id="Review_tile_HelpfulandReportBtn">
+            Helpful?
+            <span role="button" styling="link" id="helpfulBtn" onClick={this.handleHelpfulClick} onKeyDown={() => {}} tabIndex={0}> Yes</span>
+            (
+            {helpfulness}
+            )
+            {' '}
+            |
+            {' '}
+            <span role="button" styling="link" id="reportBtn" onClick={this.handleReportClick} onKeyDown={() => {}} tabIndex={0}> Report </span>
+          </div>
         </div>
-        <div id="ReviewRecommend">
-          recommend:
-          {review.recommend}
-        </div>
-        <div id="ReviewName">
-          Reviewer Name:
-          {review.reviewer_name}
-        </div>
-        <div id="ReviewResponse">
-          Response to Review:
-          {review.response}
-        </div>
-        <div>
-          Helpful?
-          <span role="button" styling="link" id="helpfulBtn" onClick={this.handleHelpfulClick} onKeyDown={() => {}} tabIndex={0}> Yes</span>
-          (
-          {helpfulness}
-          )
-          {' '}
-          |
-          {' '}
-          <span role="button" styling="link" id="reportBtn" onClick={this.handleReportClick} onKeyDown={() => {}} tabIndex={0}> Report </span>
-        </div>
-        <p>{'\n'}</p>
       </div>
     );
   }

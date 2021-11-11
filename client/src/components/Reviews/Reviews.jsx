@@ -115,31 +115,34 @@ class Reviews extends React.Component {
 
     return (
       <div id="Review">
-        <div id="Review_title"> RATINGS & REVIEWS </div>
-        {'\n'}
-        <Breakdown meta={meta} />
-        {'\n'}
-        <div id="Review_tiles">
-          {renderReviews.map((review, index) =>
-            <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
-          {'\n'}
-          <MoreReviewBtn
-            reviews={reviews}
-            handleMoreReviewsClick={this.handleMoreReviewsClick}
-            moreReviewtext={moreReviewtext}
+        <div className="qTitle" id="Review_title"> RATINGS & REVIEWS </div>
+        <div id="Review_left">
+          <Breakdown meta={meta} />
+        </div>
+        <div id="Review_right">
+          <div id="Review_sort"> 248 reviews, sorted by relevancd </div>
+          <div id="Review_tiles">
+            {renderReviews.map((review, index) =>
+              <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}
+          </div>
+          <div id="Review_btns">
+            <MoreReviewBtn
+              reviews={reviews}
+              handleMoreReviewsClick={this.handleMoreReviewsClick}
+              moreReviewtext={moreReviewtext}
+            />
+            <Button variant="primary" onClick={() => this.handleAddReviewClick(true)}>
+              ADD A REVIEW +
+            </Button>
+          </div>
+          <AddReview
+            show={modalShow}
+            onHide={() => this.handleAddReviewClick(false)}
+            currentID={currentID}
+            getReviews={this.getReviews}
+            charItem={charItem}
           />
         </div>
-        {'\n'}
-        <Button id="Review_addReviewBtn" variant="primary" onClick={() => this.handleAddReviewClick(true)}>
-          ADD A REVIEW +
-        </Button>
-        <AddReview
-          show={modalShow}
-          onHide={() => this.handleAddReviewClick(false)}
-          currentID={currentID}
-          getReviews={this.getReviews}
-          charItem={charItem}
-        />
       </div>
     );
   }
