@@ -12,7 +12,8 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
     mainFeatures: [],
     mainProduct: []
   });
-  const isMountedRef = useRef(null)
+  // const isMountedRef = useRef(null)
+  const [isLoading, setIsLoading] = useState(true);
 
 
   // ASYNC W/ AXIOS.ALL
@@ -41,14 +42,16 @@ const ProductCard = ({ relatedId, productId, IDchanger }) => {
     } catch (error) {
       console.error(error)
     }
-  }, [relatedId, productId])
+  }, [relatedId])
+  // [relatedId, productId]
 
+  //  USE EFFECT 3 TIMES???
   useEffect(() => {
-    isMountedRef.current = true;
-    if (isMountedRef.current) {
-      getRelatedProducts();
+    getRelatedProducts();
+
+    return () => {
+      console.log('CLEAN THIS COMPONENT UP')
     }
-    return () => isMountedRef.current = false;
   }, [relatedId, productId]);
 
   const {

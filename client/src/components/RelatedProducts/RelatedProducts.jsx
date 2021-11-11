@@ -17,4 +17,5 @@ const RelatedProducts = ({ productId, IDchanger }) => (
   </div>
 );
 
+
 export default RelatedProducts;

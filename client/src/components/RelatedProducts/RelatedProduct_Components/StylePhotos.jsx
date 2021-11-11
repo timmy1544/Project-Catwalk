@@ -3,28 +3,47 @@ import axios from 'axios';
 
 const StylePhotos = ({ styleId, IDchanger }) => {
   // const [styleID, setStyleId] = useState(styleId)
-  const CancelToken = axios.CancelToken;
-  const cancelSource = useRef(null);
 
   const [style, setStyle] = useState([]);
   let imgUrl;
   let name;
 
   useEffect(() => {
-    cancelSource.current = CancelToken.source();
+    const photosUrl = `products/${styleId}/styles`;
+    let controller = new AbortController();
 
-    if (styleId) {
-      axios.get(`products/${styleId}/styles`, {
-        cancelToken: cancelSource.current.token,
-      })
-        .then((results) => {
-          setStyle(results.data.results);
-        })
-        .catch((err) => console.error(err));
+    const getPhotos = async () => {
+      if (styleId) {
+        try {
+          const photosResponse = await axios.get(photosUrl, {
+            signal: controller.signal
+          })
+            .then((results) => {
+              setStyle(results.data.results);
+              controller = null;
+            })
+        } catch (error) {
+          console.error(error)
+        }
+      }
     }
 
-    return () => { cancelSource.current.cancel };
-  }, [styleId]);
+    // useEffect(() => {
+    //   const photosUrl = `products/${styleId}/styles`;
+    //   const getPhotos = async () => {
+    //     if (styleId) {
+    //       const photosResponse = await axios.get(photosUrl)
+    //         .then((results) => {
+    //           setStyle(results.data.results);
+    //         })
+    //         .catch((err) => console.error(err))
+    //     }
+    //   }
+
+
+    getPhotos();
+    return () => controller?.abort();
+  }, []);
 
   if (style[0]) {
     const photosArr = style[0].photos;
