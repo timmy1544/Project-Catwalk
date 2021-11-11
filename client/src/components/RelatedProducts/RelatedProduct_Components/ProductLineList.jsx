@@ -6,6 +6,10 @@ import ProductCard from './ProductCard';
 
 const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
+  const [mainProduct, setMainProduct] = useState({
+    mainFeatures: [],
+    mainProduct: []
+  })
   const RPsettings = {
     dots: true,
     infinite: false,
@@ -19,8 +23,8 @@ const ProductLineList = ({ productId, IDchanger }) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
-          dots: true
+          infinite: false,
+          dots: false
         }
       },
       {
@@ -42,12 +46,13 @@ const ProductLineList = ({ productId, IDchanger }) => {
   };
 
   useEffect(() => {
-    const url = `/products/${productId}/related`;
+    const relatedUrl = `/products/${productId}/related`;
+
     let controller = new AbortController();
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(url, {
+        const response = await axios.get(relatedUrl, {
           signal: controller.signal
         })
           .then((results) => {
@@ -64,6 +69,34 @@ const ProductLineList = ({ productId, IDchanger }) => {
     }
   }, [productId]);
 
+  // SECOND USE EFFECT TO GET INITAL PRODUCT
+  useEffect(() => {
+    let controller = new AbortController();
+    const mainProductUrl = `/products/${productId}`;
+
+    const getMainProducts = async () => {
+      try {
+        const getMainProductFeatures = await axios.get(mainProductUrl, { signal: controller.signal })
+          .then(({ data }) => {
+            console.log(data, 'FROM USEEFFECT')
+            setMainProduct({
+              mainFeatures: data.features,
+              mainProduct: data
+            });
+            controller = null;
+          })
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getMainProducts();
+
+    return () => {
+      controller?.abort;
+    }
+
+  }, [productId])
+
   let trackArray = [];
   const relatedProduct = relatedProductIds.map((item) => {
     if (item !== productId && trackArray.indexOf(item) === -1) {
@@ -74,11 +107,13 @@ const ProductLineList = ({ productId, IDchanger }) => {
           relatedId={item}
           productId={productId}
           IDchanger={IDchanger}
+          mainProduct={mainProduct}
         />
       );
     }
   });
 
+  console.log(trackArray, '<<TrackArray>>')
   return (
     <div className="relatedProduct-wrapper">
       <Slider {...RPsettings}>
@@ -89,24 +124,3 @@ const ProductLineList = ({ productId, IDchanger }) => {
 };
 
 export default ProductLineList;
-
-
-
-  //   useEffect(() => {
-  //   const url = `/products/${productId}/related`;
-  //   let controller = new AbortController();
-
-  //   const fetchProducts = async () => {
-  //     const responst = await
-  //       axios.get(url)
-  //         .then((results) => {
-  //           setrelatedProductIds(results.data)
-  //         })
-  //         .catch((err) => console.log(err));
-  //   }
-  //   fetchProducts();
-
-  //   return () => {
-  //     console.log('cleanup')
-  //   }
-  // }, [productId]);
