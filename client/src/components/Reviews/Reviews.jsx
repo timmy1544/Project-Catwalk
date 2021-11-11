@@ -131,7 +131,7 @@ class Reviews extends React.Component {
               handleMoreReviewsClick={this.handleMoreReviewsClick}
               moreReviewtext={moreReviewtext}
             />
-            <Button variant="primary" onClick={() => this.handleAddReviewClick(true)}>
+            <Button id="Review_addReviewBtn" onClick={() => this.handleAddReviewClick(true)}>
               ADD A REVIEW +
             </Button>
           </div>

@@ -4,7 +4,7 @@ const MoreReviewBtn = (props) => {
   const { reviews, handleMoreReviewsClick, moreReviewtext } = props;
   if (reviews.length > 2) {
     return (
-      <button type="button" id="Review_Btn" onClick={handleMoreReviewsClick}>
+      <button type="button" id="Review_MoreReviewBtn" onClick={handleMoreReviewsClick}>
         {moreReviewtext}
       </button>
     );

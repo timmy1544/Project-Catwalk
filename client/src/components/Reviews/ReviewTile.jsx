@@ -69,7 +69,6 @@ class ReviewTile extends React.Component {
         </div>
         <div id="Review_tile_main">
           <div id="Review_tile_Body">
-            body:
             {review.body}
           </div>
           <div id="Review_tile_Recommend">
@@ -85,13 +84,15 @@ class ReviewTile extends React.Component {
         <div id="Review_tile_footer">
           <div id="Review_tile_HelpfulandReportBtn">
             Helpful?
+            {' '}
             <span role="button" styling="link" id="helpfulBtn" onClick={this.handleHelpfulClick} onKeyDown={() => {}} tabIndex={0}> Yes</span>
+            {' '}
             (
             {helpfulness}
             )
-            {' '}
+            {'  '}
             |
-            {' '}
+            {'  '}
             <span role="button" styling="link" id="reportBtn" onClick={this.handleReportClick} onKeyDown={() => {}} tabIndex={0}> Report </span>
           </div>
         </div>

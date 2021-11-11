@@ -2,6 +2,16 @@
   text-decoration: underline;
 }
 
+ /* Left Section */
+
+#Review_aveRating {
+  font-size: 50px;
+}
+
+#Review_stars {
+  color:black;
+}
+
 /* Review.jsx */
 #Review {
   display: grid;
@@ -28,11 +38,12 @@
 /* Right Section */
 #Review_right {
   display: grid;
-  grid-template-rows: [row1] 3rem [row2] auto [row3] 2rem [last-line];
+  grid-template-rows: [row1] 3rem [row2] auto [row3] 2rem [last-line] 4rem [end];
   grid-template-areas:
   "sort"
   "tiles"
   "btns"
+  "."
 }
 
 #Review_sort {
@@ -47,13 +58,37 @@
 
 #Review_btns {
   grid-area:btns;
+  display: grid;
+  grid-template-columns: [line1] 12rem [line2] 15rem [end];
+  grid-template-areas:
+  "moreReview addReview"
 }
 
- /* Left Section */
-
-#Review_aveRating {
-  font-size: 50px;
+#Review_MoreReviewBtn {
+  grid-area: moreReview;
+  background-color: white;
+  border: 1px solid #4d4d4d;
+  padding: 1rem 1rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: #4d4d4d;
+  border-radius: 0px;
 }
+
+#Review_addReviewBtn {
+  grid-area: addReview;
+  background-color: white;
+  border: 1px solid #4d4d4d;
+  padding: 1rem 1rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: #4d4d4d;
+  border-radius: 0px;
+}
+
+
+
+
 
 /* Review Tile */
 #Review_tile {
@@ -78,7 +113,14 @@
 
 #Review_tile_footer {
   grid-area:footer;
+  border-bottom: 1px solid black;
 }
+
+#Review_tile_HelpfulandReportBtn {
+  color:grey;
+  font-size: 14px;
+}
+
 
 /* Review Tile Header */
 #Review_tile_header {
@@ -94,6 +136,7 @@
 
 #Review_tile_stars {
   grid-area: rating;
+  color: black;
 }
 
 #Review_tile_info {
