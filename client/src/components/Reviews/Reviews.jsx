@@ -21,6 +21,7 @@ class Reviews extends React.Component {
       meta: {},
       charItem: {},
       modalShow: false,
+      count: 0,
     };
     this.getReviews = this.getReviews.bind(this);
     this.getReviewMeta = this.getReviewMeta.bind(this);
@@ -74,6 +75,7 @@ class Reviews extends React.Component {
         this.setState({
           reviews: res.data.results,
           lessReviews: res.data.results.slice(0, 2),
+          count: res.data.count,
         });
       })
       .catch((err) => console.log('error', err));
@@ -93,7 +95,7 @@ class Reviews extends React.Component {
 
   render() {
     const {
-      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta, charItem, modalShow,
+      reviews, lessReviews, currentID, moreReviewtext, moreReview, meta, charItem, modalShow, count
     } = this.state;
     // default: render 2 review, if more review button is clicked, show all reviews.
     let renderReviews;
@@ -120,7 +122,10 @@ class Reviews extends React.Component {
           <Breakdown meta={meta} />
         </div>
         <div id="Review_right">
-          <div id="Review_sort"> 248 reviews, sorted by relevancd </div>
+          <div id="Review_sort">
+            {`${count} `}
+            reviews, sorted by relevance
+          </div>
           <div id="Review_tiles">
             {renderReviews.map((review, index) =>
               <ReviewTile review={review} key={index} getReviews={this.getReviews} />)}

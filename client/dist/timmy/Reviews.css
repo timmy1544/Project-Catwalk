@@ -1,6 +1,7 @@
 /* Review.jsx */
 #Review {
   display: grid;
+  width:90%;
   grid-template-columns: [line1] 27% [line2] 3rem [line3] auto [end];
   grid-template-rows: [row1] 3rem [row2] 3rem [row3] auto [last-line];
   grid-template-areas:
@@ -74,6 +75,19 @@
 
 #Review_tiles {
   grid-area:Review_right_tiles;
+}
+
+#Review_tile_Body {
+  margin-bottom: 1rem;
+}
+
+#Review_tile_Recommend {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+#Review_tile_Response {
+  margin-bottom: 1rem;
 }
 
 #Review_btns {
