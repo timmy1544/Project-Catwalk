@@ -40,7 +40,6 @@ class ProductDetails extends React.Component {
     }
   }
 
-
   getProductInfo() {
     axios.get(`/products/${this.props.productId}`)
       .then((response) => {

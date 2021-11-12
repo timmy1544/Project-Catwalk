@@ -6,7 +6,9 @@
 #app {
   width: 80%;
   margin: auto;
-  object-fit: scale-down;
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #4d4d4d;
@@ -19,7 +21,7 @@
 /*Product Detail Overall Grid*/
 
 .productDetails {
-  height: 90vh;
+  height: 60rem;
   display: grid;
   grid-template-rows: 70% 30%;
   grid-template-columns: 60% 40%;
@@ -59,14 +61,13 @@
 
   .sliderWrapper {
     position:absolute;
-    width: 8.8%;
+    width: 15%;
     height:100%;
-    top: 0.5%;
-    left: 3%;
+    top: 1%;
+    left: 1%;
     background-color: #C4C4C4;
     z-index: 0;
     display:flex;
-    overflow:hidden;
     flex-wrap: nowrap;
     flex-direction:column;
     align-items:center;
@@ -75,7 +76,7 @@
   }
   .slider {
     width:100%;
-    height:75%;
+    height:70%;
     background-color: #C4C4C4;
     z-index: 0;
     display:flex;
@@ -85,7 +86,7 @@
     align-items:center;
     justify-content:flex-start;
     background-color: transparent;
-    row-gap: 1%;
+    row-gap:1%
   }
   .upArrow {
     font-size: 1.5rem;
@@ -119,43 +120,51 @@
     user-select:none;
   }
 
-  .thumbnailPic {
+  /* .thumbnailPic{
     width:3.5rem;
     height:3.5rem;
-    border:0.05em solid #080808;
-  }
+    border:0.05em solid black;
+    cursor:pointer;
+    overflow:hidden;
+  } */
 
   .slider img{
     width:3.5rem;
     height:3.5rem;
     object-fit:cover;
+    border-top:0.05em solid white;
+    cursor:pointer;
+  }
+  .slider img:hover{
+    width:3.5rem;
+    height:3.5rem;
+    object-fit:cover;
+    border-top:0.05em solid white;
+    border-bottom:1rem solid rgb(255, 255, 255);
+    cursor:pointer;
   }
 
-  .thumbnailPic:hover{
+  /* .thumbnailPic:hover{
     width:3.5rem;
     height:3.5rem;
     border:0.05em solid white;
     cursor:pointer;
-  }
+  } */
 
   .selectedThumbnailPic{
     width:3.5rem;
     height:3.5rem;
     border-top:0.05em solid white;
-    border-bottom:0.4rem solid rgb(77, 75, 75);
+    border-bottom:1rem solid rgb(255, 255, 255);
     padding-bottom: 0.2rem;
-  }
-
-
-  .hide {
-    display: none;
+    overflow:hidden;
   }
 
 
 .leftArrow {
   position: absolute;
   top: 50%;
-  left: 12%;
+  left: 15%;
   font-size: 1.5rem;
   color: black;
   cursor: pointer;
@@ -166,7 +175,7 @@
 .leftArrow:hover{
   position: absolute;
   top: 50%;
-  left: 12%;
+  left: 15%;
   font-size: 1.5rem;
   color: white;
   cursor: pointer;
@@ -235,13 +244,13 @@
 }
 
 .styleOptions {
-  width: 20em;
+  width: 16rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  align-content: flex-start;
+  align-content: flex-end;
   row-gap:0.5em;
   column-gap:0.5em
 }
