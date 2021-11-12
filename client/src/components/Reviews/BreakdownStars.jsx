@@ -1,5 +1,14 @@
 import React from 'react';
 import { Box, Slider } from '@mui/material';
+import { withStyles } from '@mui/styles';
+
+const CustomizedSlider = withStyles({
+  thumb: {
+    height: 0,
+    width: 0,
+    backgroundColor: 'transparent',
+  },
+})(Slider);
 
 const BreakdownStars = (props) => {
   const { star, barchartData } = props;
@@ -15,7 +24,7 @@ const BreakdownStars = (props) => {
         {`${star} Stars`}
       </div>
       <Box sx={{ width: 250 }}>
-        <Slider
+        <CustomizedSlider
           id="Review_breakdown_bar"
           defaultValue={barchartData[star]}
           min={0}
