@@ -109,18 +109,20 @@ const OutFitList = ({ productId }) => {
   })
 
   return (
-    <div id="outfit-Container">
+    <div id="outfit-outer-container">
       <AddOutfit
         outfitItem={outfitItem}
         addOutfit={addOutfit}
         key={`current-${productId}`}
       />
-      <div className="outfit-wrapper">
-        <div id="OF_slider-wrapper">
-          {/* <Slider {...OFsettings}> */}
-          {userOutfits.length ? userOutfits : null}
+      <div id="outfit-Container">
+        <div className="outfit-wrapper">
+          <div id="OF_slider-wrapper">
+            <Slider {...OFsettings}>
+              {userOutfits.length ? userOutfits : null}
+            </Slider>
+          </div>
         </div>
-        {/* </Slider> */}
       </div>
     </div>
   );
