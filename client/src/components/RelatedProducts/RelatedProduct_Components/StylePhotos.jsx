@@ -44,6 +44,7 @@ const StylePhotos = ({ styleId, IDchanger }) => {
       imgUrl = 'https://stalbertseniors.ca/wp-content/uploads/2019/10/image-coming-soon.jpg'
     } else {
       name = style[0].name;
+      // imgUrl = photosArr[0].thumbnail_url;
       imgUrl = photosArr[0].url;
     }
   }

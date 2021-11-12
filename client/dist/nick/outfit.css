@@ -1,0 +1,54 @@
+/* controls whole container */
+.outfit-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 16rem));
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.add-outfit-card {
+  overflow: hidden;
+  box-shadow: 0 1px 10px grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  transition:transform 100ms ease-in;
+}
+
+.add-outfit-card:hover {
+  transform: scale(1.02);
+}
+
+.outfit-card {
+  overflow: hidden;
+  box-shadow: 0 1px 10px grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition:transform 100ms ease-in;
+
+}
+
+.outfit__image {
+  height: 20rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.outfit-card-IMGcontainer {
+  position: relative;
+  text-align: center;
+}
+
+
+
+.plusIcon-placeholder__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1D9BF0;
+}

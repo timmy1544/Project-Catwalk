@@ -114,9 +114,11 @@ const ProductLineList = ({ productId, IDchanger }) => {
 
   return (
     <div className="relatedProduct-wrapper">
-      <Slider {...RPsettings}>
-        {relatedProduct}
-      </Slider>
+      <div id="RP_slider-wrapper">
+        <Slider {...RPsettings}>
+          {relatedProduct}
+        </Slider>
+      </div>
     </div>
   );
 };
