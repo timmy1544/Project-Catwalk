@@ -1,0 +1,30 @@
+.slick-prev, .slick-next {
+  font-size: 100px !important;
+}
+
+.slick-prev:before {
+  content: '◀' !important;
+  color: red !important;
+  font-size: 50px !important;
+  font-weight: bold;
+  /* align-content: center !important; */
+
+}
+
+.slick-next:before {
+  content: '▶' !important;
+  color: red !important;
+  font-size: 50px !important;
+  font-weight: bold;
+  /* align-content: center !important; */
+}
+
+.slick-list {
+  overflow: hidden;
+  margin: 0 0 0 1rem ;
+  padding: 0;
+}
+
+.slick-prev {
+  left: -32px;
+}

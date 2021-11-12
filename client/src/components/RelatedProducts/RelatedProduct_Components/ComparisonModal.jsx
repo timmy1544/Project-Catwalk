@@ -47,7 +47,7 @@ export default function Modal({ features, mainFeatures, productObj, relatedProdu
     <div>
       <Star
         onClick={handleOpen}
-        sx={{ color: 'yellow' }}
+        sx={{ color: '#0098fa' }}
       />
       <StyledModal
         open={open}
