@@ -159,7 +159,7 @@
     "form_recommend     form_recommend"
     "form_nameAndEmail  form_nameAndEmail"
     "form_photos        form_photos"
-    "form_char_text     form_char"
+    "form_char     form_char"
 }
 
 #Review_form_rating_text {
@@ -167,6 +167,8 @@
 }
 #Review_form_char_text {
   grid-area: form_char_text;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 #Review_form_rating {
@@ -209,5 +211,15 @@
 }
 #Review_form_char {
   grid-area: form_char;
+  margin-left: 5rem;
+  margin-right: 4rem;
+}
+
+#Review_form_slider {
+  margin-bottom: 3rem;
+}
+#Review_form_slidertext {
+  font-weight: bold;
+  font-size: large;
 }
 

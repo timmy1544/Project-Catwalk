@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import { Box, Slider } from '@mui/material';
+import { Box, Slider, Typography } from '@mui/material';
 
 const charText = {
   Size: {
@@ -65,7 +65,6 @@ const AddReviewChar = (props) => {
 
   const valueText = (value, id) => {
     if (char[id] !== value) {
-      console.log(value, id);
       char[id] = value;
       setChar(char);
     }
@@ -78,7 +77,10 @@ const AddReviewChar = (props) => {
         const { id } = charItem[title];
         const marks = marksHelper(charText[title]);
         return (
-          <Box sx={{ width: 500 }} key={index}>
+          <Box sx={{ width: 600 }} key={index} id="Review_form_slider">
+            <Typography id="Review_form_slidertext" gutterBottom>
+              {title}
+            </Typography>
             <Slider
               aria-label={title}
               defaultValue={3}
