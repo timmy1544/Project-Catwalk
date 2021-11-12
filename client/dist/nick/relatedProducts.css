@@ -25,7 +25,7 @@
   border-style: solid;
   border-color: lightskyblue;
   border-radius: 5px;
-  margin: 10px;
+  margin: 4px;
   /* height: 100%; */
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 
 .product-card__body {
   overflow: hidden;
-  height: 375px;
+  height: 355px;
   background-color: white;
 }
 /*Hover effect for Product Card*/
@@ -51,7 +51,6 @@
   height: 200px;
   text-align: center;
 }
-
 
 /*Manages ComparisonModal Star Element*/
 .star-placeholder__top-right {
@@ -83,8 +82,7 @@
 }
 
 .product-card__name {
-  font-weight: bold;
-  width: 100px;
+  font-weight: 400;
   padding-left: 5px;
 }
 
@@ -94,4 +92,9 @@
 
 .product-card__rating {
   /* padding: 0 1rem; */
+}
+
+.RP_title {
+  padding-bottom: 1rem;
+  padding-top: 2rem;
 }

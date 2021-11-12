@@ -7,11 +7,11 @@ import OutFitList from './Outfit_Components/OutFitList';
 const RelatedProducts = ({ productId, IDchanger }) => (
   <div className="related-products__container">
     <div className="related-products__inner__container">
-      Related Products
+      <div className="RP_title">Related Products</div>
       <ProductLineList productId={productId} IDchanger={IDchanger} />
     </div>
     <div className="outfit__inner__container">
-      Your Outfit
+      <div className="RP_title">Your Outfit</div>
       <OutFitList productId={productId} />
     </div>
   </div>
