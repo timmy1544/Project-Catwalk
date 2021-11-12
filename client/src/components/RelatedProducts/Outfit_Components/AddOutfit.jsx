@@ -4,11 +4,6 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
 const AddOutfit = ({ outfitItem, addOutfit }) => {
-  const [outfitList, setOutfitList] = useState([]);
-
-  function addComponent() {
-    return setOutfitList(prevList => [...prevList, <Outfit />]);
-  }
 
   return (
     <div className="add-outfit-card">
@@ -20,7 +15,10 @@ const AddOutfit = ({ outfitItem, addOutfit }) => {
           <h3 className="plusIcon-placeholder__center"><Fab color="secondary" aria-label="add">
             <AddIcon onClick={() => addOutfit(outfitItem)} />
           </Fab></h3>
-          <img className="outfit__image" alt="" src={outfitItem.photos} />
+          <img className="outfit__image" alt="" src={outfitItem.photos === null ? "https://stalbertseniors.ca/wp-content/uploads/2019/10/image-coming-soon.jpg" : outfitItem.photos} />
+        </div>
+        <div id="add-outfit-name">
+          {outfitItem.product.name}
         </div>
       </div>
     </div >
