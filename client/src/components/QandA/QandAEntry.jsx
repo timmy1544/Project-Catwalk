@@ -75,6 +75,7 @@ class QandAEntry extends React.Component {
     let loadMoreAnswersButton;
     let answers;
     let moreAnswersButtonText;
+    let indent;
     if (this.props.question) {
       questionBody = this.props.question.question_body;
       if (this.state.isAnsHelpfulClick === false) {
@@ -83,7 +84,7 @@ class QandAEntry extends React.Component {
         answers = this.state.answers;
       }
       answerBody = answers.map((answerObj, index) => (
-        <Answer answerObj={answerObj} key={index} />
+        <Answer answerObj={answerObj} key={index} index={index} />
       ));
     } else {
       questionBody = 'No Question Data';
@@ -95,33 +96,40 @@ class QandAEntry extends React.Component {
       } else {
         moreAnswersButtonText = 'COLLAPSE ANSWERS';
       }
+      indent = <span className="ASide questionBody" />;
       loadMoreAnswersButton = <button type="button" className="loadMoreAnswers" onClick={this.handleMoreAnswersClick}>{moreAnswersButtonText}</button>;
     } else {
       loadMoreAnswersButton = '';
+      indent = '';
     }
     return (
       <div>
-        Q:
-        <span className="questionBody">{questionBody}</span>
-        <span className="qHelpfulAddAnswerReport">
-          Helpful?
-          {' '}
-          <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
-          (
-          {this.state.quesHelpfulCount}
-          )
-          {' '}
-          |
-          {' '}
-          <button type="button" className="qandalink addAnswerBtn" onClick={() => this.handleAddAnswer(true)}>Add Answer</button>
-          <AddAnswer
-            show={this.state.modalShow}
-            onHide={() => this.handleAddAnswer(false)}
-          />
-        </span>
-        <br />
-        A:
+        <div className="questionSection">
+          <div className="questionBody">
+            <span className="QSide questionBody"> Q: </span>
+            {' '}
+            {questionBody}
+          </div>
+          <div className="qHelpfulAddAnswerReport">
+            Helpful?
+            {' '}
+            <span className="qandalink" onClick={this.handleQuestionHelpfulClick}>Yes</span>
+            {' '}
+            (
+            {this.state.quesHelpfulCount}
+            )
+            {' '}
+            <span className="qLine"> | </span>
+            {' '}
+            <button type="button" className="qandalink addAnswerBtn" onClick={() => this.handleAddAnswer(true)}>Add Answer</button>
+            <AddAnswer
+              show={this.state.modalShow}
+              onHide={() => this.handleAddAnswer(false)}
+            />
+          </div>
+        </div>
         {answerBody}
+        {indent}
         {loadMoreAnswersButton}
       </div>
     );

@@ -41,6 +41,7 @@ class Answer extends React.Component {
 
   render() {
     let reportText;
+    let indent;
     const answer = this.props.answerObj;
     const { date } = answer;
     const answerConvertedDate = moment(date).format('MMMM Do[,] YYYY');
@@ -49,11 +50,19 @@ class Answer extends React.Component {
     } else {
       reportText = 'Reported';
     }
+    if (this.props.index !== 0) {
+      indent = <span className="ASide questionBody" />;
+    } else {
+      indent = <span className="ASide questionBody">A: </span>;
+    }
     return (
       <div>
+        {indent}
         {answer.body}
         <br />
+        <span className="ASide questionBody" />
         <span className="qHelpfulAddAnswerReport">
+          {' '}
           by
           {' '}
           {answer.answerer_name}
@@ -61,14 +70,15 @@ class Answer extends React.Component {
           {' '}
           {answerConvertedDate}
           {' '}
-          |  Helpful?
+          <span className="qLine"> | </span>
+          Helpful?
           {' '}
           <span className="qandalink" onClick={this.handleAnswerHelpfulClick}>Yes</span>
           (
           {this.state.helpfulCount}
           )
           {' '}
-          |
+          <span className="qLine"> | </span>
           {' '}
           <span className="qandalink" onClick={this.handleAnswerReportClick}>
             {reportText}
