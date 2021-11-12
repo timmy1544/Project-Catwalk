@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { Button } from 'react-bootstrap';
 
 function AddQuestion(props) {
   return (
@@ -18,25 +19,26 @@ function AddQuestion(props) {
       </Modal.Header>
       <Modal.Body>
         <form>
-          Your Question
-          <br />
+          Your Question:
+          {' '}
           <input type="text" />
           <br />
           <br />
-          Nickname
-          <br />
+          Nickname:
+          {' '}
           <input type="text" />
           <br />
           <br />
-          Your Email
-          <br />
+          Your Email:
+          {' '}
           <input type="text" />
           <br />
           <br />
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" onClick={props.onHide}>Close</button>
+        <Button variant="primary">Submit</Button>
+        <Button variant="secondary" onClick={props.onHide}>Cancel</Button>
       </Modal.Footer>
     </Modal>
   );
