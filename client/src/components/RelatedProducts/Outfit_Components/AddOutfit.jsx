@@ -16,13 +16,11 @@ const AddOutfit = ({ outfitItem, addOutfit }) => {
         <div id="OF-add-to-outfit">
           Add to Outfit
         </div>
-        {/* <img className="outfit__overlay__plusIcon" alt="" /> */}
         <div className="outfit-card-IMGcontainer">
           <h3 className="plusIcon-placeholder__center"><Fab color="secondary" aria-label="add">
-            <AddIcon />
+            <AddIcon onClick={() => addOutfit(outfitItem)} />
           </Fab></h3>
-          {/* <button type="button" >click to add</button> */}
-          <img className="outfit__image" alt="" />
+          <img className="outfit__image" alt="" src={outfitItem.photos} />
         </div>
       </div>
     </div >

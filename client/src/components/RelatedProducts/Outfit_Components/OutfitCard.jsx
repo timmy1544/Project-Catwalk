@@ -3,65 +3,23 @@ import { FaPlusCircle } from 'react-icons/fa';
 import AddOutfit from './AddOutfit';
 import axios from 'axios';
 import Outfit from './Outfit';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
-const OutfitCard = ({ outfitItem, productId }) => {
+const OutfitCard = ({ outfitItem, productId, removeItem }) => {
   const [outfitList, setOutfitList] = useState([]);
-  const [photos, setPhotos] = useState([]);
+  const id = productId;
 
-  let imgUrl;
-  let name;
-
-  useEffect(() => {
-    const photosUrl = `products/${productId}/styles`;
-    let controller = new AbortController();
-
-    const getPhotos = async () => {
-      if (productId) {
-        try {
-          const photosResponse = await axios.get(photosUrl, {
-            signal: controller.signal
-          })
-            .then((results) => {
-              setPhotos(results.data.results);
-              controller = null;
-            })
-        } catch (error) {
-          console.error(error)
-        }
-      }
-    }
-    getPhotos();
-
-    return () => {
-      controller?.abort();
-    }
-
-  }, [productId]);
-
-
-  if (photos[0]) {
-    const photosArr = photos[0].photos;
-
-    if (photosArr[0].url === null) {
-      name = photos[0].name;
-      imgUrl = 'https://stalbertseniors.ca/wp-content/uploads/2019/10/image-coming-soon.jpg'
-    } else {
-      name = photos[0].name;
-      // imgUrl = photosArr[0].thumbnail_url;
-      imgUrl = photos[0].url;
-    }
-  }
-
-
-  console.log(imgUrl)
+  console.log(outfitItem, 'OutfitITem')
   return (
     <div key={`outfitItem-${outfitItem.product.created_at}`} className="outfit-card">
       <div className="outfit-card__body" key={outfitItem.product.created_at}>
         <div className="outfit-card-IMGcontainer">
-          <div className="star-placeholder__top-right">
-            <button type="button">x</button>
+          <div className="cancel-placeholder__top-right">
+            <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => removeItem(id)} />
           </div>
-          <img alt={name} src={imgUrl} />
+          <div className="outfit-card__image">
+            <img alt={outfitItem.product.name} src={outfitItem.photos} className="outfit-card__image" />
+          </div>
         </div>
         <div>
           <p className="product-card__category">{outfitItem.product.category}</p>

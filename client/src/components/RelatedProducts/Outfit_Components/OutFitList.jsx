@@ -12,7 +12,7 @@ const OutFitList = ({ productId }) => {
     features: [],
     photos: '',
   })
-  const [outfitList, setOutfitList] = useState([]);
+  let [outfitList, setOutfitList] = useState([]);
 
 
   const OFsettings = {
@@ -54,7 +54,7 @@ const OutFitList = ({ productId }) => {
   const getProduct = useCallback(async () => {
     const getCurrentlyViewedProduct = await axios.get(`/products/${productId}`);
     const getCurrentlyViewedRating = await axios.get(`/reviews/${productId}`);
-    const getCurrentlyViewedPhotos = await axios.get(`/products/${productId}/styles`)
+    const getCurrentlyViewedPhotos = await axios.get(`/products/${productId}/styles`);
 
     axios.all([getCurrentlyViewedProduct, getCurrentlyViewedRating, getCurrentlyViewedPhotos])
       .then(axios.spread((...allResponseData) => {
@@ -62,7 +62,7 @@ const OutFitList = ({ productId }) => {
         const mainFeatures = allResponseData[0].data.features;
         const mainReviews = allResponseData[1].data;
         const mainRatings = allResponseData[1].data.results;
-        const mainPhotos = allResponseData[2].data.results[0].photos[0].url
+        const mainPhotos = allResponseData[2].data.results[0].photos[0].url;
 
         setOutfitItem({
           product: mainProduct,
@@ -81,16 +81,27 @@ const OutFitList = ({ productId }) => {
   }, [productId])
 
   const addOutfit = (item) => {
-    setOutfitList(prevState = [...prevState, item])
+    setOutfitList(outfitList = [...outfitList, item])
   }
 
-  const userOutfits = outfitList.map((outfit) => {
+  const removeItem = (itemId) => {
+    console.log(itemId, 'ITEM ID INSIDE REMOVE ITEM')
+    for (let key in outfitList) {
+      console.log(key, 'key')
+      console.log(outfitList[key], 'atKEY')
+    }
+  }
+
+  console.log(outfitList, 'OUTFITS ARRAY')
+
+  const userOutfits = outfitList.map((outfit, i) => {
 
     return (
-      <div className="outfitProduct-wrapper">
+      <div className="outfitProduct-wrapper" key={`outfit-${i}`}>
         <OutfitCard
           productId={productId}
           outfitItem={outfitItem}
+          removeItem={removeItem}
           key={`ProductId-${productId}`}
         />
       </div>

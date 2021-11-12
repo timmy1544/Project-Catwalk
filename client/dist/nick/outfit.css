@@ -7,7 +7,7 @@
   border-radius: 5px;
   border-color: aliceblue;
   padding: 10px 0 10px 0;
-  width: 54vw;
+  width: 73vw;
 }
 
 .outfit-wrapper {
@@ -72,6 +72,12 @@
   object-fit: cover;
 }
 
+.outfit-card__image {
+  height: 22rem;
+  width: 100%;
+  object-fit: cover;
+}
+
 .outfit-card-IMGcontainer {
   position: relative;
   overflow: hidden;
@@ -89,4 +95,12 @@
 
 #add-to-outfit {
   font-style: italic;
+}
+
+.cancel-placeholder__top-right {
+    position: absolute;
+  top: 8px;
+  right: 16px;
+  align-self: center;
+  color: #0b0108;
 }
