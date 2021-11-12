@@ -46,6 +46,7 @@ class QandA extends React.Component {
   }
 
   getQuestions() {
+    console.log('axios q id', this.state.currentID);
     axios.get(`/qa/questions/${this.state.currentID}`)
       .then((response) => {
         const questionData = response.data.results;

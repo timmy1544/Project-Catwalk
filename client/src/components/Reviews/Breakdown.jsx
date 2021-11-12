@@ -1,7 +1,14 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
 /* eslint-disable guard-for-in */
 import React from 'react';
 import Rating from '@mui/material/Rating';
 import { Chart } from 'react-google-charts';
+import BreakdownStars from './BreakdownStars';
+import BreakdownSlider from './BreakdownSlider';
 
 const AverageRatingsHelper = (ratings) => {
   let count = 0;
@@ -21,25 +28,26 @@ const RecommendHelper = (recommended) => {
 };
 
 const BarChartHelper = (ratings) => {
-  const dataArr = [];
-  // eslint-disable-next-line guard-for-in
-  for (let i = 1; i <= 5; i += 1) {
-    const starNum = parseInt(ratings[i], 10) || 0;
-    const arr = [`${i} Stars`, starNum];
-    dataArr.push(arr);
+  const obj = { max: 0 };
+  for (let i = 1; i < 6; i += 1) {
+    const star = parseInt(ratings[i], 10) || 0;
+    obj[i] = star;
+    if (star > obj.max) {
+      obj.max = star;
+    }
   }
-  return [['stars', 'numbers']].concat(dataArr);
+  return obj;
 };
 
-const CharHelper = (characteristics) => {
-  const dataArr = [];
-  for (const i in characteristics) {
-    const value = parseFloat(characteristics[i].value, 10);
-    const arr = [i, value];
-    dataArr.push(arr);
-  }
-  return [['characteristic', 'rating']].concat(dataArr);
-};
+// const CharHelper = (characteristics) => {
+//   const dataArr = [];
+//   for (const i in characteristics) {
+//     const value = parseFloat(characteristics[i].value, 10);
+//     const arr = [i, value];
+//     dataArr.push(arr);
+//   }
+//   return [['characteristic', 'rating']].concat(dataArr);
+// };
 
 const Breakdown = (props) => {
   const { meta } = props;
@@ -48,53 +56,31 @@ const Breakdown = (props) => {
       <div> </div>
     );
   }
-  const { ratings, recommended, characteristics} = meta;
+  const { ratings, recommended, characteristics } = meta;
   const aveRating = parseFloat(AverageRatingsHelper(ratings).toFixed(1), 10);
   const recommendPercentage = parseFloat(RecommendHelper(recommended).toFixed(0), 10);
   const barchartData = BarChartHelper(ratings);
-  const charData = CharHelper(characteristics);
+  // const charData = CharHelper(characteristics);
 
   return (
     <div id="Review_breakdown">
-      <span id="Review_aveRating">{aveRating}</span>
-      <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
-      <div>{`${recommendPercentage}% user recommend this product`}</div>
-      <Chart
-        width="220px"
-        height="220px"
-        chartType="BarChart"
-        loader={<div>Loading Chart</div>}
-        data={barchartData}
-        options={{
-          chartArea: { width: '50%' },
-          legend: 'none',
-          hAxis: {
-            gridlines: {
-              color: 'transparent',
-            },
-            textPosition: 'none',
-          },
-        }}
-      />
-      {'\n'}
-      <Chart
-        width="220px"
-        height="220px"
-        chartType="BarChart"
-        loader={<div>Loading Chart</div>}
-        data={charData}
-        options={{
-          chartArea: { width: '50%' },
-          legend: 'none',
-          hAxis: {
-            gridlines: {
-              color: 'transparent',
-            },
-            textPosition: 'none',
-          },
-        }}
-      />
+      <div id="Review_breakdown_overview">
+        <span id="Review_aveRating">{aveRating}</span>
+        <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
+        <div>{`${recommendPercentage}% user recommend this product`}</div>
+      </div>
+      <div id="Review_breakdown_break"> </div>
+      <div>
+        {[1, 2, 3, 4, 5].map((star, index) =>
+          <BreakdownStars star={star} key={index} barchartData={barchartData} />)}
+      </div>
+      <div id="Review_breakdown_break"> </div>
+      <div>
+        {Object.keys(characteristics).map((title, index) =>
+          <BreakdownSlider title={title} key={index} characteristics={characteristics} />)}
+      </div>
     </div>
+
   );
 };
 

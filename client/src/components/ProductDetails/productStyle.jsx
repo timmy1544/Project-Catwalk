@@ -14,29 +14,16 @@ class ProductStyle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: this.props.product,
-      styles: this.props.style.results,
       currentStyle: this.props.style.results[0],
       selectSize: 'Select Size',
       selectQuantity: 'QTY',
       style_id: this.props.style.results[0].style_id,
-      currentReviews: this.props.currentReviews,
     };
+
+    this.didUpdate = false;
 
     this.selectStyle = this.selectStyle.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidUpdate() {
-    if (this.props.style.results[0].style_id !== this.state.style_id) {
-      this.setState({
-        product: this.props.product,
-        styles: this.props.style.results,
-        currentStyle: this.props.style.results[0],
-        style_id: this.props.style.results[0].style_id,
-        currentReviews: this.props.currentReviews,
-      });
-    }
   }
 
   handleChange(e) {
@@ -57,8 +44,8 @@ class ProductStyle extends React.Component {
 
   render() {
     let currentRating = 0;
-    this.state.currentReviews.results.map((item) => currentRating = item.rating + currentRating);
-    currentRating /= this.state.currentReviews.count;
+    this.props.currentReviews.results.map((item) => currentRating = item.rating + currentRating);
+    currentRating /= this.props.currentReviews.count;
     // console.log('currentRating', currentRating);
     return (
       <div className="productStyle">
@@ -69,24 +56,24 @@ class ProductStyle extends React.Component {
               <Link to="Reviews" spy smooth>
                 Read all
                 {' '}
-                {this.state.currentReviews.count}
+                {this.props.currentReviews.count}
                 {' '}
                 reviews
               </Link>
 
             </div>
           </div>
-          <div className="smallfonts">{this.state.product.category}</div>
-          <div className="productName">{this.state.product.name}</div>
+          <div className="smallfonts">{this.props.product.category}</div>
+          <div className="productName">{this.props.product.name}</div>
           <div className="smallfonts">
             $
-            {this.state.product.default_price}
+            {this.props.product.default_price}
           </div>
         </div>
         <div className="styleOptionsWrapper">
           <div className="styleOptionTitle">STYLES &gt; SELECTED STYLE</div>
           <div className="styleOptions">
-            {this.state.styles.map((result, index) => (
+            {this.props.style.results.map((result, index) => (
               <Img
                 src={result.photos[0].thumbnail_url}
                 key={index}
