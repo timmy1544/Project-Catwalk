@@ -3,6 +3,7 @@ import axios from 'axios';
 import Slider from 'react-slick';
 import OutfitCard from './OutfitCard';
 import AddOutfit from './AddOutfit';
+import Modal from 'react-bootstrap/Modal'
 
 const OutFitList = ({ productId }) => {
   const [outfitItem, setOutfitItem] = useState({
@@ -13,7 +14,7 @@ const OutFitList = ({ productId }) => {
     photos: '',
   })
   let [outfitList, setOutfitList] = useState([]);
-
+  const [smShow, setSmShow] = useState(false);
 
   const OFsettings = {
     dots: true,
@@ -81,7 +82,16 @@ const OutFitList = ({ productId }) => {
   }, [productId])
 
   const addOutfit = (item) => {
-    setOutfitList(outfitList = [...outfitList, item])
+    const check = outfitList.some(el => {
+      return el.product.id === item.product.id
+    })
+
+    if (check) {
+      return setSmShow(true);
+    } else {
+      setOutfitList(outfitList = [...outfitList, item])
+
+    }
   }
 
   const removeItem = (itemId) => {
@@ -117,6 +127,19 @@ const OutFitList = ({ productId }) => {
       />
       <div id="outfit-Container">
         <div className="outfit-wrapper">
+          <Modal
+            size="sm"
+            show={smShow}
+            onHide={() => setSmShow(false)}
+            aria-labelledby="example-modal-sizes-title-sm"
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="example-modal-sizes-title-sm">
+                Hey! Listen here dude! >:(
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>"You already have {outfitItem.product.name} in your outfit!"</Modal.Body>
+          </Modal>
           <div id="OF_slider-wrapper">
             <Slider {...OFsettings}>
               {userOutfits.length ? userOutfits : null}
