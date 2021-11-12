@@ -113,6 +113,13 @@
   right: 16px;
   align-self: center;
 }
+
+.RP__spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: lightskyblue;
+}
 /***************************************/
 .product-card__image {
   height: 20rem;

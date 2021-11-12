@@ -78,7 +78,6 @@ const ProductLineList = ({ productId, IDchanger }) => {
       try {
         const getMainProductFeatures = await axios.get(mainProductUrl, { signal: controller.signal })
           .then(({ data }) => {
-            console.log(data, 'FROM USEEFFECT')
             setMainProduct({
               mainFeatures: data.features,
               mainProduct: data
@@ -113,7 +112,6 @@ const ProductLineList = ({ productId, IDchanger }) => {
     }
   });
 
-  console.log(trackArray, '<<TrackArray>>')
   return (
     <div className="relatedProduct-wrapper">
       <Slider {...RPsettings}>

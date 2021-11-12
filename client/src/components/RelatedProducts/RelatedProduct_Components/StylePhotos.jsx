@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner'
 
 const StylePhotos = ({ styleId, IDchanger }) => {
   const [style, setStyle] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   let imgUrl;
   let name;
 
@@ -19,6 +21,7 @@ const StylePhotos = ({ styleId, IDchanger }) => {
             .then((results) => {
               setStyle(results.data.results);
               controller = null;
+              setIsLoading(!isLoading)
             })
         } catch (error) {
           console.error(error)
@@ -47,7 +50,18 @@ const StylePhotos = ({ styleId, IDchanger }) => {
 
   return (
     <div onClick={IDchanger} aria-hidden="true">
-      <img className="product-card__image" src={imgUrl} alt={name} />
+      {isLoading ?
+        <div className="product-card__image">
+          <div className="RP__spinner">
+            <Spinner animation="border" role="status" variant="primary">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        </div>
+        :
+        <img className="product-card__image" src={imgUrl} alt={name} />
+      }
+
     </div>
   );
 };

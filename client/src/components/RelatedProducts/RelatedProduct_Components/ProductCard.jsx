@@ -12,10 +12,12 @@ const ProductCard = ({ relatedId, productId, IDchanger, mainProduct }) => {
   });
 
   useEffect(() => {
+    let controller = new AbortController;
+
     const getRelatedProducts = async () => {
       try {
-        const getProducts = await axios.get(`/products/${relatedId}`);
-        const getRatings = await axios.get(`/reviews/${relatedId}`);
+        const getProducts = await axios.get(`/products/${relatedId}`, { controller: controller.signal });
+        const getRatings = await axios.get(`/reviews/${relatedId}`, { controller: controller.signal });
 
         axios.all([getProducts, getRatings])
           .then(axios.spread((...allResponseData) => {
@@ -23,13 +25,12 @@ const ProductCard = ({ relatedId, productId, IDchanger, mainProduct }) => {
             const allFeatures = allResponseData[0].data.features;
             const allRatings = allResponseData[1].data.results;
 
-
             setProduct({
               products: allProducts,
               ratings: allRatings,
               features: allFeatures,
-
             });
+            controller = null;
           }));
       } catch (error) {
         console.error(error)
@@ -38,7 +39,7 @@ const ProductCard = ({ relatedId, productId, IDchanger, mainProduct }) => {
     getRelatedProducts();
 
     return () => {
-      console.log('CLEAN THIS COMPONENT UP')
+      controller?.abort()
     }
   }, [productId, relatedId]);
 
