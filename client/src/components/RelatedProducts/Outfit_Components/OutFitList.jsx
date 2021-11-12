@@ -74,7 +74,7 @@ const OutFitList = ({ productId }) => {
 
       }))
 
-  }, [])
+  }, [productId])
 
   useEffect(() => {
     getProduct();
@@ -85,14 +85,13 @@ const OutFitList = ({ productId }) => {
   }
 
   const removeItem = (itemId) => {
-    console.log(itemId, 'ITEM ID INSIDE REMOVE ITEM')
     for (let key in outfitList) {
-      console.log(key, 'key')
-      console.log(outfitList[key], 'atKEY')
+      const targetId = outfitList[key].product.id;
+      if (targetId === itemId) {
+        setOutfitList(prev => prev.filter((el) => el.product.id !== itemId))
+      }
     }
   }
-
-  console.log(outfitList, 'OUTFITS ARRAY')
 
   const userOutfits = outfitList.map((outfit, i) => {
 
@@ -101,6 +100,7 @@ const OutFitList = ({ productId }) => {
         <OutfitCard
           productId={productId}
           outfitItem={outfitItem}
+          outfitList={outfit}
           removeItem={removeItem}
           key={`ProductId-${productId}`}
         />
@@ -116,9 +116,11 @@ const OutFitList = ({ productId }) => {
         key={`current-${productId}`}
       />
       <div className="outfit-wrapper">
-        <Slider {...OFsettings}>
+        <div id="OF_slider-wrapper">
+          {/* <Slider {...OFsettings}> */}
           {userOutfits.length ? userOutfits : null}
-        </Slider>
+        </div>
+        {/* </Slider> */}
       </div>
     </div>
   );
