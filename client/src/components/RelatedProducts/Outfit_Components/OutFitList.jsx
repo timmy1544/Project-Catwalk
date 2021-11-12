@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import Slider from 'react-slick';
 import OutfitCard from './OutfitCard';
 import AddOutfit from './AddOutfit';
 
@@ -8,27 +9,67 @@ const OutFitList = ({ productId }) => {
     product: [],
     reviews: [],
     ratings: [],
-    features: []
+    features: [],
+    photos: '',
   })
   const [outfitList, setOutfitList] = useState([]);
+
+
+  const OFsettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
 
   const getProduct = useCallback(async () => {
     const getCurrentlyViewedProduct = await axios.get(`/products/${productId}`);
     const getCurrentlyViewedRating = await axios.get(`/reviews/${productId}`);
+    const getCurrentlyViewedPhotos = await axios.get(`/products/${productId}/styles`)
 
-    axios.all([getCurrentlyViewedProduct, getCurrentlyViewedRating])
+    axios.all([getCurrentlyViewedProduct, getCurrentlyViewedRating, getCurrentlyViewedPhotos])
       .then(axios.spread((...allResponseData) => {
         const mainProduct = allResponseData[0].data;
         const mainFeatures = allResponseData[0].data.features;
         const mainReviews = allResponseData[1].data;
         const mainRatings = allResponseData[1].data.results;
+        const mainPhotos = allResponseData[2].data.results[0].photos[0].url
 
         setOutfitItem({
           product: mainProduct,
           reviews: mainReviews,
           ratings: mainRatings,
-          features: mainFeatures
+          features: mainFeatures,
+          photos: mainPhotos
         })
 
       }))
@@ -44,22 +85,30 @@ const OutFitList = ({ productId }) => {
   }
 
   const userOutfits = outfitList.map((outfit) => {
+
     return (
-      <OutfitCard
-        productId={productId}
-        outfitItem={outfitItem}
-        key={`ProductId-${productId}`}
-      />
+      <div className="outfitProduct-wrapper">
+        <OutfitCard
+          productId={productId}
+          outfitItem={outfitItem}
+          key={`ProductId-${productId}`}
+        />
+      </div>
     )
   })
 
   return (
-    <div className="outfit-wrapper">
+    <div id="outfit-Container">
       <AddOutfit
         outfitItem={outfitItem}
         addOutfit={addOutfit}
+        key={`current-${productId}`}
       />
-      {userOutfits.length ? userOutfits : null}
+      <div className="outfit-wrapper">
+        <Slider {...OFsettings}>
+          {userOutfits.length ? userOutfits : null}
+        </Slider>
+      </div>
     </div>
   );
 }

@@ -1,9 +1,39 @@
 /* controls whole container */
+#outfit-Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: aliceblue;
+  padding: 10px 0 10px 0;
+  width: 54vw;
+}
+
 .outfit-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 16rem));
-  gap: 1rem;
-  justify-content: flex-start;
+  border-style: solid;
+  border-color: lightskyblue;
+  border-radius: 5px;
+  padding-left: 100px;
+  padding-right: 100px;
+  box-shadow: 0px 2px 7px 4px rgb(230 224 224);
+  width: 71vh;
+}
+
+.outfit-card {
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgb(172, 203, 226);
+    min-height: 250px;
+    border-style: solid;
+    border-color: lightskyblue;
+    border-radius: 5px;
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition:transform 100ms ease-in;
+    min-width: 196px;
 }
 
 .add-outfit-card {
@@ -15,21 +45,25 @@
   align-items: center;
   cursor: pointer;
   transition:transform 100ms ease-in;
+  border: solid;
+  border-color: #4181ff;
+  border-radius: 5px;
+  margin: 5px 0 5px 0;
+
+  font-size: x-large;
+  font-style: italic;
+  text-align: center;
+}
+
+.outfit-card__body {
+  overflow: hidden;
+  height: 355px;
+  width: 190px;
+  background-color: white;
 }
 
 .add-outfit-card:hover {
   transform: scale(1.02);
-}
-
-.outfit-card {
-  overflow: hidden;
-  box-shadow: 0 1px 10px grey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  transition:transform 100ms ease-in;
-
 }
 
 .outfit__image {
@@ -40,10 +74,10 @@
 
 .outfit-card-IMGcontainer {
   position: relative;
+  overflow: hidden;
+  height: 200px;
   text-align: center;
 }
-
-
 
 .plusIcon-placeholder__center {
   position: absolute;
@@ -51,4 +85,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #1D9BF0;
+}
+
+#add-to-outfit {
+  font-style: italic;
 }

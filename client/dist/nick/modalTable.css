@@ -27,18 +27,14 @@
   justify-content: space-evenly;
 }
 
-.comparedCheckIcon {
-  color:green;
+#checkIcon {
+  color: green;
 }
 
-.mainCheckIcon {
-  color: green
+#RP_comparingText {
+  font-style: italic;
+  color: #f9802ac7;
 }
-
-.whiteCheckIcon {
-  color:white
-}
-
 .featuresText {
   color: black;
   display:flex;
@@ -47,8 +43,6 @@
   padding-left: 15px;
 }
 
-/* .Modal-Container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
+.RP_tr td{
+  border-width: thin;
+}

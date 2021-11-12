@@ -23,12 +23,12 @@ const ModalTable = ({
   };
 
   const tableFeatures = compareFeatures.map((item, i) => (
-    <tr key={`modal-table-mainFeature-${i}`} style={style}>
-      <td style={checkColor}>{item.main ? <CheckIcon /> : null}</td>
+    <tr key={`modal-table-mainFeature-${i}`} style={style} className="RP_tr">
+      <td id="checkIcon">{item.main ? <CheckIcon /> : null}</td>
       <td>
         {item.value}
       </td>
-      <td style={checkColor}>{item.compared ? <CheckIcon /> : null}</td>
+      <td id="checkIcon">{item.compared ? <CheckIcon /> : null}</td>
     </tr>
   ));
 
@@ -83,7 +83,7 @@ const ModalTable = ({
   return (
     <div style={divSize}>
 
-      <p>Comparing...</p>
+      <p id="RP_comparingText">Comparing...</p>
       <table className="table table-striped">
         <thead>
           <tr className="modal-headers" style={style}>
