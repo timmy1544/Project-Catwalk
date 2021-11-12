@@ -39,7 +39,7 @@
     justify-content: space-between;
     cursor: pointer;
     transition:transform 100ms ease-in;
-    min-width: 196px;
+    min-width: 190px;
 }
 
 .add-outfit-card {
@@ -69,7 +69,7 @@
 .outfit-card__body {
   overflow: hidden;
   height: 355px;
-  width: 205px;
+  width: 190px;
   background-color: white;
 }
 
@@ -118,4 +118,15 @@
 
 .outfit-inner-container {
   width: 100px
+}
+.css-1uijbdj {
+  width: auto;
+  height: auto;
+  background-color: white;
+  border: 3px solid #6186c6 !important;
+  border-radius: 17px;
+  padding: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 24px;
 }
