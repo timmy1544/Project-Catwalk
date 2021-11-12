@@ -31,6 +31,8 @@ const AddReview = (props) => {
             getReviews={getReviews}
             charItem={charItem}
             submit={submit}
+            setSubmit={setSubmit}
+            onHide={onHide}
           />
         </div>
       </Modal.Body>

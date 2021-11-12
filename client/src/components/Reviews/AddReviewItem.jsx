@@ -1,8 +1,15 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
+import {
+  Rating,
+  Box,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+} from '@mui/material';
 import AddReviewChar from './AddReviewChar';
 
 const labels = {
@@ -13,152 +20,190 @@ const labels = {
   5: 'Great',
 };
 
-class AddReviewItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product_id: props.currentID,
-      rating: 0,
-      summary: '',
-      body: '',
-      // eslint-disable-next-line react/no-unused-state
-      recommend: false,
-      name: '',
-      email: '',
-      photos: [],
-      characteristics: {},
-      hover: -1,
-      submitState: props.submit,
-    };
+const AddReviewItem = (props) => {
+  const [rating, setRating] = useState(0);
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+  const [recommendStr, setRecommendStr] = useState('No');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [photos, setPhotos] = useState([]);
+  const [characteristics, setChar] = useState({});
+  const [hover, setHover] = useState(-1);
+  // const { submit, setSubmit } = props;
+  // const [submitState, setSubmitState] = useState(submit);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleHover = this.handleHover.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidUpdate() {
-    const { submitState } = this.state;
-    const { submit } = this.props;
-    if (submitState !== submit) {
+  useEffect(() => {
+    const { submit, setSubmit } = props;
+    if (submit === true) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        submitState: submit,
-      });
-      this.handleSubmit();
+      setSubmit(false);
+      // eslint-disable-next-line no-use-before-define
+      handleSubmit();
     }
-  }
+  });
 
-  handleChange(e, newValue) {
-    if (e.target.name === 'rating') {
-      this.setState({
-        rating: newValue,
-      });
-    } else if (e.target.name === 'recommend') {
-      this.setState({
-        // eslint-disable-next-line react/no-unused-state
-        recommend: newValue,
-      });
+  const postItemHelper = () => {
+    const postItem = {};
+    const { currentID } = props;
+    if (recommendStr === 'Yes') {
+      postItem.recommend = true;
     } else {
-      this.setState({
-        [e.target.name]: e.target.value,
-      });
+      postItem.recommend = false;
     }
-  }
+    postItem.product_id = currentID;
+    postItem.rating = rating;
+    postItem.summary = summary;
+    postItem.body = body;
+    postItem.name = name;
+    postItem.email = email;
+    postItem.photos = photos;
+    postItem.characteristics = characteristics;
+    return postItem;
+  };
 
-  handleHover(newHover) {
-    this.setState({
-      hover: newHover,
-    });
-  }
+  const handleSubmit = () => {
+    const postItem = postItemHelper();
+    console.log('postItem');
+    axios.post(`/reviews/${postItem.product_id}`, postItem)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .then(() => {
+        props.getReviews();
+      })
+      .then(() => {
+        props.onHide();
+      })
+      .catch((err) => {
+        console.error(err);
+        // eslint-disable-next-line no-alert
+        alert('Please input valid infomation!');
+      })
+      .catch(() => {
+        props.onHide();
+      });
+  };
 
-  handleSubmit() {
-    console.log('run this!');
-    // const newReview = this.state;
-    // const { getReviews } = this.props;
-    // e.preventDefault();
-    // // validate the submitted form here
-    // axios.post(`/reviews/${newReview.product_id}`, newReview)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .then(() => {
-    //     getReviews();
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-  }
+  const handleRecommendChange = (e) => {
+    const { value } = e.target;
+    if (value === 'Yes') {
+      setRecommendStr('Yes');
+    } else {
+      setRecommendStr('No');
+    }
+  };
 
-  render() {
-    const {
-      rating, summary, body, name, email, photos, characteristics, hover,
-    } = this.state;
+  const { charItem } = props;
 
-    const { charItem } = this.props;
+  return (
+    <form id="Review_form" onSubmit={handleSubmit}>
+      <div id="Review_form_rating_text">
+        Rating star:
+      </div>
+      <div id="Review_form_rating">
+        <Rating
+          id="Review_form_stars"
+          name="rating"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+        {rating !== null && (
+        <Box id="Review_form_starStr" sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+        )}
+      </div>
 
-    return (
-      // <form onSubmit={this.handleSubmit}>
-      <form>
-        <label htmlFor="rating">
-          Rating star:
-          <Rating
-            name="rating"
-            value={rating}
-            onChange={(event, newValue) => {
-              this.handleChange(event, newValue);
-            }}
-            onChangeActive={(event, newHover) => {
-              this.handleHover(newHover);
-            }}
-          />
-          {rating !== null && (
-          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
-          )}
-        </label>
-        <br />
-        <label htmlFor="summary">
-          Summary:
-          <input type="text" name="summary" value={summary} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="body">
-          comment:
-          <input type="text" name="body" value={body} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="recommend">
-          recommend:
-          <input type="radio" id="recommendYes" name="recommend" onChange={(e) => { this.handleChange(e, true); }} />
-          <label htmlFor="recommendYes">Yes</label>
-          <input type="radio" id="recommendNo" name="recommend" onChange={(e) => { this.handleChange(e, false); }} />
-          <label htmlFor="recommendNo">No</label>
-        </label>
-        <br />
-        <label htmlFor="name">
-          name:
-          <input type="text" name="name" value={name} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="email">
-          email:
-          <input type="text" name="email" value={email} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="photos">
-          photos:
-          <input type="text" name="photos" value={photos} onChange={this.handleChange} />
-        </label>
-        <br />
-        <AddReviewChar
-          characteristics={characteristics}
-          handleChange={this.handleChange}
-          charItem={charItem}
+      <TextField
+        id="standard-multiline-flexible"
+        className="Review_form_summary"
+        label="Summary"
+        multiline
+        fullWidth
+        name="summary"
+        value={summary}
+        onChange={(e) => setSummary(e.target.value)}
+        size="small"
+        placeholder="Example: Best purchase ever!"
+      />
+
+      <TextField
+        id="standard-multiline-flexible"
+        className="Review_form_comment"
+        label="Comments"
+        multiline
+        fullWidth
+        name="body"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        placeholder="Why did you like the product or not?"
+      />
+      <div id="Review_form_recommend">
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Do you recommend this product?</FormLabel>
+          <RadioGroup
+            row
+            aria-label="Recommend this product?"
+            name="controlled-radio-buttons-group"
+            value={recommendStr}
+            onChange={handleRecommendChange}
+          >
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+            <FormControlLabel value="No" control={<Radio />} label="No" />
+          </RadioGroup>
+        </FormControl>
+      </div>
+
+      <div id="Review_form_nameAndEmail">
+        <TextField
+          id="standard-multiline-flexible"
+          className="Review_form_name"
+          label="Name"
+          size="small"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Example: jackson11!"
         />
         <br />
-        {/* <input type="submit" value="Submit Review" /> */}
-      </form>
-    );
-  }
-}
+
+        <TextField
+          id="standard-multiline-flexible"
+          className="Review_form_email"
+          label="Email"
+          size="small"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Example: jackson11@gmail.com"
+        />
+        <br />
+      </div>
+
+      <TextField
+        id="standard-multiline-flexible"
+        className="Review_form_photo"
+        label="Photos"
+        name="photos"
+        fullWidth
+        value={photos}
+        placeholder="Upload your photos"
+        // onChange={(e) => setPhotos(e.target.value)}
+      />
+      <br />
+
+      <AddReviewChar
+        characteristics={characteristics}
+        handleCharChange={setChar}
+        charItem={charItem}
+      />
+    </form>
+  );
+};
 
 export default AddReviewItem;

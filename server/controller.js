@@ -86,6 +86,7 @@ module.exports = {
         });
     },
     postReviews: (req, res) => {
+      console.log(req.body);
       axios.post(`${config.ALTELIER_API}/reviews`, req.body, {
         headers: {
           Authorization: `${config.API_KEY}`,
