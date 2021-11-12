@@ -1,10 +1,28 @@
-#helpfulBtn, #reportBtn {
-  text-decoration: underline;
+/* Review.jsx */
+#Review {
+  display: grid;
+  grid-template-columns: [line1] 30% [line2] 2rem [line3] auto [end];
+  grid-template-rows: [row1] 3rem [row2] 3rem [row3] auto [last-line];
+  grid-template-areas:
+    "ReivewTitle . ."
+    ". . ."
+    "Review_left . Review_rigth"
+}
+
+#Review_title {
+  grid-area: ReivewTitle;
+}
+
+#Review_left {
+  grid-area: Review_left;
+}
+
+#Review_right {
+  grid-area: Review_rigth;
 }
 
  /* Left Section */
-
-#Review_aveRating {
+ #Review_aveRating {
   font-size: 50px;
 }
 
@@ -12,54 +30,31 @@
   color:black;
 }
 
-/* Review.jsx */
-#Review {
-  display: grid;
-  grid-template-columns: [line1] 30% [line2] 2rem [line3] auto [end];
-  grid-template-rows: [row1] 3rem [row2] 3rem [row3] auto [last-line];
-  grid-template-areas:
-    "title . ."
-    ". . ."
-    "leftpart . rightpart"
-}
-
-#Review_title {
-  grid-area: title;
-}
-
-#Review_left {
-  grid-area: leftpart;
-}
-
-#Review_right {
-  grid-area: rightpart;
-}
-
 /* Right Section */
 #Review_right {
   display: grid;
   grid-template-rows: [row1] 3rem [row2] auto [row3] 2rem [last-line] 4rem [end];
   grid-template-areas:
-  "sort"
-  "tiles"
-  "btns"
+  "Review_right_sort"
+  "Review_right_tiles"
+  "Review_right_btns"
   "."
 }
 
 #Review_sort {
-  grid-area:sort;
+  grid-area:Review_right_sort;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
 #Review_tiles {
-  grid-area:tiles;
+  grid-area:Review_right_tiles;
 }
 
 #Review_btns {
-  grid-area:btns;
+  grid-area:Review_right_btns;
   display: grid;
-  grid-template-columns: [line1] 12rem [line2] 15rem [end];
+  grid-template-columns: [line1] 12rem [line2] 12rem [end];
   grid-template-areas:
   "moreReview addReview"
 }
@@ -86,39 +81,39 @@
   border-radius: 0px;
 }
 
-
-
-
-
 /* Review Tile */
 #Review_tile {
   display: grid;
   grid-template-rows: [row1] 4rem [row2] 1rem [row3] auto [row4] 1rem [row5] 3rem [row6] 1rem [end];
   grid-template-areas:
-    "header"
+    "tileheader"
     "."
-    "main"
+    "tilemain"
     "."
-    "footer"
+    "tilefooter"
     "."
 }
 
 #Review_tile_header {
-  grid-area:header;
+  grid-area: tileheader;
 }
 
 #Review_tile_main {
-  grid-area:main;
+  grid-area: tilemain;
 }
 
 #Review_tile_footer {
-  grid-area:footer;
+  grid-area: tilefooter;
   border-bottom: 1px solid black;
 }
 
 #Review_tile_HelpfulandReportBtn {
   color:grey;
   font-size: 14px;
+}
+
+#helpfulBtn, #reportBtn {
+  text-decoration: underline;
 }
 
 
@@ -128,26 +123,91 @@
   grid-template-columns: [line1] 60% [line2] 40% [end];
   grid-template-rows: [row1] 40% [row2] 0.8rem [row3] auto [row4] 1.5rem [end];
   grid-template-areas:
-    "rating info"
+    "tileRating tileInfo"
     ". ."
-    "summary summary"
+    "tileSummary tileSummary"
     ". ."
 }
 
 #Review_tile_stars {
-  grid-area: rating;
+  grid-area: tileRating;
   color: black;
 }
 
 #Review_tile_info {
-  grid-area: info;
+  grid-area: tileInfo;
   justify-self: end;
   font-size: 12px;
   color:grey;
 }
 
 #Review_tile_summary {
-  grid-area: summary;
+  grid-area: tileSummary;
   font-weight: bold;
+}
+
+/* Modal - Add Review Form */
+#Review_form {
+  display: grid;
+  grid-template-rows: [rating] 3rem [summary] 4rem [comm] 10rem [recomm] 6rem [name] 4rem
+                      [pho] 6rem [char] auto [end];
+  grid-template-columns: [line1] 10rem [line] auto [end];
+  grid-template-areas:
+    "form_rating_text    form_rating"
+    "form_summary       form_summary"
+    "form_comment       form_comment"
+    "form_recommend     form_recommend"
+    "form_nameAndEmail  form_nameAndEmail"
+    "form_photos        form_photos"
+    "form_char_text     form_char"
+}
+
+#Review_form_rating_text {
+  grid-area: form_rating_text;
+}
+#Review_form_char_text {
+  grid-area: form_char_text;
+}
+
+#Review_form_rating {
+  grid-area: form_rating;
+  display: grid;
+  grid-template-columns: [line1] 10rem [line] auto [end];
+  grid-template-areas:
+    "form_stars form_starStr"
+}
+#Review_form_stars {
+  grid-area: form_stars;
+}
+#Review_form_starStr {
+  grid-area: form_starStr;
+}
+.Review_form_summary {
+  grid-area: form_summary;
+}
+.Review_form_comment {
+  grid-area: form_comment;
+}
+#Review_form_recommend {
+  grid-area: form_recommend;
+}
+#Review_form_nameAndEmail {
+  grid-area: form_nameAndEmail;
+  display: grid;
+  grid-template-columns: [line1] 45% [line2] 2rem [line3] auto [end];
+  grid-template-areas:
+    "form_name . form_eamil"
+}
+.Review_form_name {
+  grid-area: form_name;
+}
+.Review_form_email {
+  grid-area: form_eamil;
+}
+.Review_form_photo {
+  grid-area: form_photos;
+}
+#Review_form_char {
+  grid-area: form_char;
 }
 

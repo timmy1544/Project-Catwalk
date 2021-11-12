@@ -1,8 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import axios from 'axios';
-import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
+import {
+  Rating,
+  Box,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+} from '@mui/material';
 import AddReviewChar from './AddReviewChar';
 
 const labels = {
@@ -17,12 +25,14 @@ class AddReviewItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // eslint-disable-next-line react/no-unused-state
       product_id: props.currentID,
       rating: 0,
       summary: '',
       body: '',
       // eslint-disable-next-line react/no-unused-state
       recommend: false,
+      recommentStr: 'No',
       name: '',
       email: '',
       photos: [],
@@ -30,11 +40,26 @@ class AddReviewItem extends React.Component {
       hover: -1,
       submitState: props.submit,
     };
-
+    this.handleRatingChange = this.handleRatingChange.bind(this);
+    this.handleRecommendChange = this.handleRecommendChange.bind(this);
+    this.handleCharChange = this.handleCharChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleHover = this.handleHover.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.postItemHelper = this.postItemHelper.bind(this);
   }
+
+  // componentDidMount() {
+  //   const { charItem } = this.props;
+  //   const initChar = {};
+  //   if (Object.keys(charItem).length !== 0) {
+  //     // eslint-disable-next-line guard-for-in
+  //     for (const i in charItem) {
+  //       initChar[charItem[i].id] = 3;
+  //     }
+  //   }
+  //   console.log('initChar', initChar);
+  // }
 
   componentDidUpdate() {
     const { submitState } = this.state;
@@ -48,21 +73,39 @@ class AddReviewItem extends React.Component {
     }
   }
 
-  handleChange(e, newValue) {
-    if (e.target.name === 'rating') {
+  handleRatingChange(e, newValue) {
+    this.setState({
+      rating: newValue,
+    });
+  }
+
+  handleRecommendChange(e) {
+    const { value } = e.target;
+    console.log('value = ', value);
+    if (value === 'Yes') {
       this.setState({
-        rating: newValue,
-      });
-    } else if (e.target.name === 'recommend') {
-      this.setState({
-        // eslint-disable-next-line react/no-unused-state
-        recommend: newValue,
+        recommend: true,
+        recommentStr: 'Yes',
       });
     } else {
       this.setState({
-        [e.target.name]: e.target.value,
+        recommend: false,
+        recommentStr: 'No',
       });
     }
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleCharChange(newChar) {
+    console.log('hi!');
+    // this.setState({
+    //   characteristics: newChar,
+    // });
   }
 
   handleHover(newHover) {
@@ -71,91 +114,146 @@ class AddReviewItem extends React.Component {
     });
   }
 
-  handleSubmit() {
-    console.log('run this!');
-    // const newReview = this.state;
-    // const { getReviews } = this.props;
-    // e.preventDefault();
-    // // validate the submitted form here
-    // axios.post(`/reviews/${newReview.product_id}`, newReview)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .then(() => {
-    //     getReviews();
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-  }
+  // handlePost() {
+  //   const newReview = this.state;
+  //   const { getReviews } = this.props;
+  //   // validate the submitted form here
+  //   axios.post(`/reviews/${newReview.product_id}`, newReview)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .then(() => {
+  //       getReviews();
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
+
+  // postItemHelper() {
+  //   const postItem = {};
+  //   const param = ['product_id', 'rating', 'summary', 'body',
+  //     'recommend', 'name', 'email', 'photos', 'characteristics'];
+  //   for (let i = 0; i < param.length; i += 1) {
+  //     // eslint-disable-next-line react/destructuring-assignment
+  //     postItem[param[i]] = this.state[param[i]];
+  //   }
+  //   console.log('postItem = ', postItem);
+  //   return postItem;
+  // }
 
   render() {
     const {
-      rating, summary, body, name, email, photos, characteristics, hover,
+      rating, summary, body, name, email, photos, characteristics, hover, recommentStr,
     } = this.state;
 
     const { charItem } = this.props;
 
     return (
-      // <form onSubmit={this.handleSubmit}>
-      <form>
-        <label htmlFor="rating">
+      <form id="Review_form" onSubmit={this.handleSubmit}>
+        <div id="Review_form_rating_text">
           Rating star:
+        </div>
+        <div id="Review_form_rating">
           <Rating
+            id="Review_form_stars"
             name="rating"
             value={rating}
             onChange={(event, newValue) => {
-              this.handleChange(event, newValue);
+              this.handleRatingChange(event, newValue);
             }}
             onChangeActive={(event, newHover) => {
               this.handleHover(newHover);
             }}
           />
           {rating !== null && (
-          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+          <Box id="Review_form_starStr" sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
           )}
-        </label>
-        <br />
-        <label htmlFor="summary">
-          Summary:
-          <input type="text" name="summary" value={summary} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="body">
-          comment:
-          <input type="text" name="body" value={body} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="recommend">
-          recommend:
-          <input type="radio" id="recommendYes" name="recommend" onChange={(e) => { this.handleChange(e, true); }} />
-          <label htmlFor="recommendYes">Yes</label>
-          <input type="radio" id="recommendNo" name="recommend" onChange={(e) => { this.handleChange(e, false); }} />
-          <label htmlFor="recommendNo">No</label>
-        </label>
-        <br />
-        <label htmlFor="name">
-          name:
-          <input type="text" name="name" value={name} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="email">
-          email:
-          <input type="text" name="email" value={email} onChange={this.handleChange} />
-        </label>
-        <br />
-        <label htmlFor="photos">
-          photos:
-          <input type="text" name="photos" value={photos} onChange={this.handleChange} />
-        </label>
-        <br />
-        <AddReviewChar
-          characteristics={characteristics}
-          handleChange={this.handleChange}
-          charItem={charItem}
+        </div>
+
+        <TextField
+          id="standard-multiline-flexible"
+          className="Review_form_summary"
+          label="Summary"
+          multiline
+          fullWidth
+          name="summary"
+          value={summary}
+          onChange={this.handleChange}
+          size="small"
+        />
+
+        <TextField
+          id="standard-multiline-flexible"
+          className="Review_form_comment"
+          label="Comments"
+          multiline
+          fullWidth
+          name="body"
+          value={body}
+          onChange={this.handleChange}
+        />
+        <div id="Review_form_recommend">
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Do you recommend this product?</FormLabel>
+            <RadioGroup
+              row
+              aria-label="Recommend this product?"
+              name="controlled-radio-buttons-group"
+              value={recommentStr}
+              onChange={this.handleRecommendChange}
+            >
+              <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+              <FormControlLabel value="No" control={<Radio />} label="No" />
+            </RadioGroup>
+          </FormControl>
+        </div>
+
+        <div id="Review_form_nameAndEmail">
+          <TextField
+            id="standard-multiline-flexible"
+            className="Review_form_name"
+            label="Name"
+            size="small"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+          />
+          <br />
+
+          <TextField
+            id="standard-multiline-flexible"
+            className="Review_form_email"
+            label="Email"
+            size="small"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+          />
+          <br />
+        </div>
+
+        <TextField
+          id="standard-multiline-flexible"
+          className="Review_form_photo"
+          label="Photos"
+          name="photos"
+          fullWidth
+          value={photos}
+          onChange={this.handleChange}
         />
         <br />
-        {/* <input type="submit" value="Submit Review" /> */}
+
+        <div id="Review_form_char_text">
+          Characteristics:
+        </div>
+
+        <AddReviewChar
+          characteristics={characteristics}
+          handleCharChange={this.handleCharChange}
+          charItem={charItem}
+        />
+
       </form>
     );
   }
