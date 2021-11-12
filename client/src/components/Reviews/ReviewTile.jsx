@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import Rating from '@mui/material/Rating';
+import ReviewTileRecommend from './ReviewTileRecommend';
+import ReviewTileResponse from './ReviewTileResponse';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -72,15 +74,14 @@ class ReviewTile extends React.Component {
             {review.body}
           </div>
           <div id="Review_tile_Recommend">
-            recommend:
-            {review.recommend}
+            <ReviewTileRecommend recommend={review.recommend} />
           </div>
 
           <div id="Review_tile_Response">
-            Response to Review:
-            {review.response}
+            <ReviewTileResponse response={review.response} />
           </div>
         </div>
+
         <div id="Review_tile_footer">
           <div id="Review_tile_HelpfulandReportBtn">
             Helpful?

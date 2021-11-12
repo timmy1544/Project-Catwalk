@@ -76,6 +76,19 @@
   grid-area:Review_right_tiles;
 }
 
+#Review_tile_Body {
+  margin-bottom: 1rem;
+}
+
+#Review_tile_Recommend {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+#Review_tile_Response {
+  margin-bottom: 1rem;
+}
+
 #Review_btns {
   grid-area:Review_right_btns;
   display: grid;
