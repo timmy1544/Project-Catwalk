@@ -123,7 +123,7 @@ class Reviews extends React.Component {
         </div>
         <div id="Review_right">
           <div id="Review_sort">
-            {`${count}`}
+            {`${count} `}
             reviews, sorted by relevance
           </div>
           <div id="Review_tiles">

@@ -1,6 +1,7 @@
 /* Review.jsx */
 #Review {
   display: grid;
+  width:90%;
   grid-template-columns: [line1] 27% [line2] 3rem [line3] auto [end];
   grid-template-rows: [row1] 3rem [row2] 3rem [row3] auto [last-line];
   grid-template-areas:
