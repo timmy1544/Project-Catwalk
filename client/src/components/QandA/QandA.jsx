@@ -68,7 +68,7 @@ class QandA extends React.Component {
       addQuestion = '';
     }
     return (
-      <div>
+      <div className="qAndASection">
         <div className="qTitle">QUESTIONS & ANSWERS</div>
         <SearchBar />
         <QandAList questions={this.state.questions.slice(0, this.state.quantity)} />
