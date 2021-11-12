@@ -1,7 +1,7 @@
 /* Review.jsx */
 #Review {
   display: grid;
-  grid-template-columns: [line1] 30% [line2] 2rem [line3] auto [end];
+  grid-template-columns: [line1] 27% [line2] 3rem [line3] auto [end];
   grid-template-rows: [row1] 3rem [row2] 3rem [row3] auto [last-line];
   grid-template-areas:
     "ReivewTitle . ."
@@ -13,25 +13,50 @@
   grid-area: ReivewTitle;
 }
 
-#Review_left {
+
+ /* Left Section */
+ #Review_left {
   grid-area: Review_left;
 }
 
-#Review_right {
-  grid-area: Review_rigth;
-}
-
- /* Left Section */
- #Review_aveRating {
+#Review_aveRating {
   font-size: 50px;
 }
-
 #Review_stars {
   color:black;
 }
 
+#Review_breakdown_barchart {
+  display: grid;
+  grid-template-columns: [line1] 4rem [line2] 1rem [line3] auto [end];
+  grid-template-areas:
+  "breakdown_starText . breakdown_bar"
+}
+
+#Review_breakdown_chart {
+  margin-bottom: 0.5rem;
+}
+#Review_breakdown_break {
+  margin-bottom: 2rem;
+}
+
+#Review_breakdown_starText {
+  grid-area: breakdown_starText;
+}
+#Review_breakdown_bar {
+  grid-area: breakdown_bar;
+}
+
+
+
+
+
+
+
+
 /* Right Section */
 #Review_right {
+  grid-area: Review_rigth;
   display: grid;
   grid-template-rows: [row1] 3rem [row2] auto [row3] 2rem [last-line] 4rem [end];
   grid-template-areas:

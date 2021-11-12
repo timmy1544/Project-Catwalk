@@ -10,12 +10,18 @@ const BreakdownStars = (props) => {
   }
 
   return (
-    <div>
-      <Box sx={{ width: 230 }} id="Review_breakdown_starText">
-        <div id="Review_breakdown_starText">
-          {`${star} Stars`}
-        </div>
-        <Slider defaultValue={barchartData[star]} min={0} max={barchartData.max} disabled />
+    <div id="Review_breakdown_barchart">
+      <div id="Review_breakdown_starText">
+        {`${star} Stars`}
+      </div>
+      <Box sx={{ width: 250 }}>
+        <Slider
+          id="Review_breakdown_bar"
+          defaultValue={barchartData[star]}
+          min={0}
+          max={barchartData.max}
+          disabled
+        />
       </Box>
     </div>
   );

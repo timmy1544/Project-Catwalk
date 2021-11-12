@@ -74,7 +74,7 @@ const BreakdownSlider = (props) => {
   const value = parseFloat(characteristics[title].value, 10);
 
   return (
-    <div>
+    <div id="Review_breakdown_sliders">
       <Box sx={{ width: 230 }}>
         <Typography gutterBottom>
           {title}
@@ -88,6 +88,7 @@ const BreakdownSlider = (props) => {
           max={5}
           track={false}
           disabled
+          size="small"
         />
       </Box>
     </div>

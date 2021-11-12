@@ -64,14 +64,18 @@ const Breakdown = (props) => {
 
   return (
     <div id="Review_breakdown">
-      <span id="Review_aveRating">{aveRating}</span>
-      <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
-      <div>{`${recommendPercentage}% user recommend this product`}</div>
-      <div id="Review_breakdown_barchart">
+      <div id="Review_breakdown_overview">
+        <span id="Review_aveRating">{aveRating}</span>
+        <Rating id="Review_stars" name="read-only" value={aveRating} precision={0.25} readOnly />
+        <div>{`${recommendPercentage}% user recommend this product`}</div>
+      </div>
+      <div id="Review_breakdown_break"> </div>
+      <div>
         {[1, 2, 3, 4, 5].map((star, index) =>
           <BreakdownStars star={star} key={index} barchartData={barchartData} />)}
       </div>
-      <div id="Review_breakdown_slider">
+      <div id="Review_breakdown_break"> </div>
+      <div>
         {Object.keys(characteristics).map((title, index) =>
           <BreakdownSlider title={title} key={index} characteristics={characteristics} />)}
       </div>
