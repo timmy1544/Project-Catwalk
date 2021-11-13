@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
 import OutfitCard from './OutfitCard';
 import AddOutfit from './AddOutfit';
 import Modal from 'react-bootstrap/Modal'
@@ -15,42 +14,6 @@ const OutFitList = ({ productId }) => {
   })
   let [outfitList, setOutfitList] = useState([]);
   const [smShow, setSmShow] = useState(false);
-
-  const OFsettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
 
   const getProduct = useCallback(async () => {
     const getCurrentlyViewedProduct = await axios.get(`/products/${productId}`);
@@ -141,9 +104,9 @@ const OutFitList = ({ productId }) => {
             <Modal.Body>"You already have {outfitItem.product.name} in your outfit!"</Modal.Body>
           </Modal>
           <div id="OF_slider-wrapper">
-            <Slider {...OFsettings}>
-              {userOutfits.length ? userOutfits : null}
-            </Slider>
+            {/* <Slider {...OFsettings}> */}
+            {userOutfits.length ? userOutfits : null}
+            {/* </Slider> */}
           </div>
         </div>
       </div>

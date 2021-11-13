@@ -1,7 +1,6 @@
 // USING HOOKS
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
 import ProductCard from './ProductCard';
 
 const ProductLineList = ({ productId, IDchanger }) => {
@@ -10,40 +9,6 @@ const ProductLineList = ({ productId, IDchanger }) => {
     mainFeatures: [],
     mainProduct: []
   })
-  const RPsettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
 
   useEffect(() => {
     const relatedUrl = `/products/${productId}/related`;
@@ -96,10 +61,14 @@ const ProductLineList = ({ productId, IDchanger }) => {
 
   }, [productId])
 
-  let trackArray = [];
   const relatedProduct = relatedProductIds.map((item) => {
-    if (item !== productId && trackArray.indexOf(item) === -1) {
-      trackArray = [...trackArray, item];
+    const filterIds = relatedProductIds.filter(el => {
+      if (el !== productId) {
+        return true;
+      }
+    });
+
+    if (filterIds) {
       return (
         <ProductCard
           key={item}
@@ -110,15 +79,18 @@ const ProductLineList = ({ productId, IDchanger }) => {
         />
       );
     }
+
   });
 
   return (
     <div className="relatedProduct-wrapper">
-      <div id="RP_slider-wrapper">
-        <Slider {...RPsettings}>
-          {relatedProduct}
-        </Slider>
-      </div>
+      {/* <div id="RP_slider-wrapper"> */}
+      {/* <Slider {...RPsettings}> */}
+      {relatedProduct}
+      {/* {filterIds} */}
+      {/* {testFilter} */}
+      {/* </Slider> */}
+      {/* </div> */}
     </div>
   );
 };
