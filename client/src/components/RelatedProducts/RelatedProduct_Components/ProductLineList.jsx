@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
+import ProductSlider from './ProductSlider';
 
 const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
@@ -21,7 +22,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
           signal: controller.signal
         })
           .then((results) => {
-            setrelatedProductIds(results.data);
+            setrelatedProductIds([...new Set(results.data)]);
             controller = null;
           })
       } catch (error) {
@@ -29,6 +30,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
       }
     }
     fetchProducts();
+
     return () => {
       controller?.abort();
     }
@@ -61,14 +63,10 @@ const ProductLineList = ({ productId, IDchanger }) => {
 
   }, [productId])
 
-  const relatedProduct = relatedProductIds.map((item) => {
-    const filterIds = relatedProductIds.filter(el => {
-      if (el !== productId) {
-        return true;
-      }
-    });
 
-    if (filterIds) {
+
+  const relatedProduct = relatedProductIds.map((item) => {
+    if (item !== productId) {
       return (
         <ProductCard
           key={item}
@@ -79,13 +77,16 @@ const ProductLineList = ({ productId, IDchanger }) => {
         />
       );
     }
-
   });
 
   return (
     <div className="relatedProduct-wrapper">
       {/* <div id="RP_slider-wrapper"> */}
       {/* <Slider {...RPsettings}> */}
+      <ProductSlider
+        card={relatedProduct}
+        key={`slider-${productId}`}
+      />
       {relatedProduct}
       {/* {filterIds} */}
       {/* {testFilter} */}

@@ -36,7 +36,7 @@ class ProductDetails extends React.Component {
         currentID: this.props.productId,
       });
       this.getProductInfo();
-      console.log('this.state.currentID', this.state.currentID);
+      // console.log('this.state.currentID', this.state.currentID);
     }
   }
 

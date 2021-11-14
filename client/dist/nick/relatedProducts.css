@@ -6,11 +6,12 @@
 }
 
 .relatedProduct-wrapper {
-  padding-left: 100px;
-  padding-right: 100px;
-  box-shadow: 0px 2px 7px 4px rgb(230 224 224);
+  /* padding-left: 100px; */
+  /* padding-right: 100px; */
+  /* box-shadow: 0px 2px 7px 4px rgb(230 224 224); */
   width: 1124px;
   display: flex;
+  justify-content: space-around;
 }
 
 .product-card {
@@ -61,8 +62,8 @@
 }
 
 .product-card__image {
-  height: 13rem;
-  width: 100%;
+  height: 200px;
+  width: 150px;
   object-fit: cover;
 
 }
