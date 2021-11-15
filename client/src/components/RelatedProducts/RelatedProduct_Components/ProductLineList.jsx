@@ -1,8 +1,8 @@
 // USING HOOKS
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
 import ProductCard from './ProductCard';
+import ProductSlider from './ProductSlider';
 
 const ProductLineList = ({ productId, IDchanger }) => {
   const [relatedProductIds, setrelatedProductIds] = useState([]);
@@ -10,40 +10,6 @@ const ProductLineList = ({ productId, IDchanger }) => {
     mainFeatures: [],
     mainProduct: []
   })
-  const RPsettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
 
   useEffect(() => {
     const relatedUrl = `/products/${productId}/related`;
@@ -56,7 +22,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
           signal: controller.signal
         })
           .then((results) => {
-            setrelatedProductIds(results.data);
+            setrelatedProductIds([...new Set(results.data)]);
             controller = null;
           })
       } catch (error) {
@@ -64,6 +30,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
       }
     }
     fetchProducts();
+
     return () => {
       controller?.abort();
     }
@@ -96,29 +63,35 @@ const ProductLineList = ({ productId, IDchanger }) => {
 
   }, [productId])
 
-  let trackArray = [];
-  const relatedProduct = relatedProductIds.map((item) => {
-    if (item !== productId && trackArray.indexOf(item) === -1) {
-      trackArray = [...trackArray, item];
-      return (
-        <ProductCard
-          key={item}
-          relatedId={item}
-          productId={productId}
-          IDchanger={IDchanger}
-          mainProduct={mainProduct}
-        />
-      );
-    }
+  const filterIDs = relatedProductIds.filter(id => {
+    return id !== productId
+  })
+
+  const relatedProduct = filterIDs.map((item) => {
+    return (
+      <ProductCard
+        key={item}
+        relatedId={item}
+        productId={productId}
+        IDchanger={IDchanger}
+        mainProduct={mainProduct}
+      />
+    );
   });
 
   return (
     <div className="relatedProduct-wrapper">
-      <div id="RP_slider-wrapper">
-        <Slider {...RPsettings}>
-          {relatedProduct}
-        </Slider>
-      </div>
+      {/* <div id="RP_slider-wrapper"> */}
+      {/* <Slider {...RPsettings}> */}
+      <ProductSlider
+        card={relatedProduct}
+        key={`slider-${productId}`}
+      />
+      {/* {relatedProduct} */}
+      {/* {filterIds} */}
+      {/* {testFilter} */}
+      {/* </Slider> */}
+      {/* </div> */}
     </div>
   );
 };

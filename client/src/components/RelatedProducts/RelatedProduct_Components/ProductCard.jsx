@@ -33,7 +33,7 @@ const ProductCard = ({ relatedId, productId, IDchanger, mainProduct }) => {
             controller = null;
           }));
       } catch (error) {
-        console.error(error)
+        console.error(error, 'Error in axios Product card', 'ERROR STATUS:', error.response.status)
       }
     }
     getRelatedProducts();
