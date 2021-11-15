@@ -16,8 +16,8 @@ const RelatedProducts = ({ productId, IDchanger }) => (
       <OutFitList productId={productId} />
     </div>
     {/* </div> */}
-  </div >
-);
+  </div>
 
+);
 
 export default RelatedProducts;

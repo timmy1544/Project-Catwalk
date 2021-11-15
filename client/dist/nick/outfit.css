@@ -17,11 +17,14 @@
 }
 
 .outfit-wrapper {
-  border-style: solid;
-  border-color: lightskyblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* border-style: solid; */
+  /* border-color: lightskyblue; */
   border-radius: 5px;
-  padding-left: 47px;
-  padding-right: 60px;
+  /* padding-left: 47px; */
+  /* padding-right: 60px; */
+
 }
 
 .outfit-card {
@@ -37,7 +40,7 @@
     justify-content: space-between;
     cursor: pointer;
     transition:transform 100ms ease-in;
-    min-width: 190px;
+    width: 195px;
 }
 
 .add-outfit-card {
@@ -49,14 +52,16 @@
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  transition:transform 100ms ease-in;
+  transition: transform 100ms ease-in;
   border: solid;
   border-color: #4181ff;
   border-radius: 5px;
   min-width: 195px;
-  min-height: 414px;
-  margin: 0px 37px 4px 0;
+  height: 360px;
+  /* min-height: 414px; */
 
+  margin: 26px 0px 0px 0;
+  width: 200px;
   font-size: x-large;
   font-style: italic;
   text-align: center;
@@ -77,6 +82,7 @@
   height: 13rem;
   width: 100%;
   object-fit: cover;
+  /* opacity: 0.4; */
 }
 
 .outfit-card__image {
@@ -105,7 +111,7 @@
 }
 
 .cancel-placeholder__top-right {
-    position: absolute;
+  position: absolute;
   top: 8px;
   right: 16px;
   align-self: center;
@@ -115,7 +121,7 @@
 .outfit-inner-container {
   width: 100px
 }
-.css-1uijbdj {
+/* .css-1uijbdj {
   width: auto;
   height: auto;
   background-color: white;
@@ -125,4 +131,4 @@
   padding-left: 32px;
   padding-right: 32px;
   padding-bottom: 24px;
-}
+} */

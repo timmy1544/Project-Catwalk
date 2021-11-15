@@ -48,7 +48,8 @@ const ProductCard = ({ relatedId, productId, IDchanger, mainProduct }) => {
   } = product.products;
 
   const defaultPrice = `$${default_price}`;
-
+  // console.log('product name:', product.products.name)
+  // console.log('product ID:', relatedId)
   return (
     <div key={id} className="product-card" >
       <div className="product-card__body" >

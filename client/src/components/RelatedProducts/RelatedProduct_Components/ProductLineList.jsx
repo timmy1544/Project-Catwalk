@@ -63,20 +63,20 @@ const ProductLineList = ({ productId, IDchanger }) => {
 
   }, [productId])
 
+  const filterIDs = relatedProductIds.filter(id => {
+    return id !== productId
+  })
 
-
-  const relatedProduct = relatedProductIds.map((item) => {
-    if (item !== productId) {
-      return (
-        <ProductCard
-          key={item}
-          relatedId={item}
-          productId={productId}
-          IDchanger={IDchanger}
-          mainProduct={mainProduct}
-        />
-      );
-    }
+  const relatedProduct = filterIDs.map((item) => {
+    return (
+      <ProductCard
+        key={item}
+        relatedId={item}
+        productId={productId}
+        IDchanger={IDchanger}
+        mainProduct={mainProduct}
+      />
+    );
   });
 
   return (
@@ -87,7 +87,7 @@ const ProductLineList = ({ productId, IDchanger }) => {
         card={relatedProduct}
         key={`slider-${productId}`}
       />
-      {relatedProduct}
+      {/* {relatedProduct} */}
       {/* {filterIds} */}
       {/* {testFilter} */}
       {/* </Slider> */}

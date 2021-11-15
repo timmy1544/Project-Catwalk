@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard';
 import AddOutfit from './AddOutfit';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import OutfitSlider from './OutfitSlider';
 
 const OutFitList = ({ productId }) => {
   const [outfitItem, setOutfitItem] = useState({
@@ -105,8 +106,11 @@ const OutFitList = ({ productId }) => {
           </Modal>
           <div id="OF_slider-wrapper">
             {/* <Slider {...OFsettings}> */}
-            {userOutfits.length ? userOutfits : null}
+            {/* {userOutfits.length ? userOutfits : null} */}
             {/* </Slider> */}
+            <OutfitSlider
+              card={userOutfits}
+            />
           </div>
         </div>
       </div>
